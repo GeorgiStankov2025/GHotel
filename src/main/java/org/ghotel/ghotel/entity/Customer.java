@@ -10,6 +10,11 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "customer")
+@NamedEntityGraph(
+        name = "Customer.rooms",
+        includeAllAttributes = false,
+        attributeNodes = @NamedAttributeNode("rooms")
+)
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_generator")

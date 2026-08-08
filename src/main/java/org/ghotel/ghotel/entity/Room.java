@@ -6,6 +6,11 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "room")
+@NamedEntityGraph(
+        name = "Room.customer",
+        includeAllAttributes = false,
+        attributeNodes = @NamedAttributeNode("customer")
+)
 public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "room_generator")
@@ -18,7 +23,7 @@ public class Room {
     @Column(name = "room_id")
     private Long id;
 
-    @Column(name = "roomCapacity", nullable = false)
+    @Column(name = "room_capacity", nullable = false)
     private int roomCapacity;
 
     @Column(name = "taken", nullable = false)
