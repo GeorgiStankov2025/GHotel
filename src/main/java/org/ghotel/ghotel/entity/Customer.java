@@ -33,7 +33,7 @@ public class Customer {
     @Column(name = "last_name", nullable = false, length = 30)
     private String lastName;
 
-    @Column(name = "details", nullable = false, length = 255)
+    @Column(name = "details", length = 255)
     private String details;
 
     @Column(name = "check_in", nullable = false)
