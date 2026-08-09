@@ -116,12 +116,14 @@ public class Customer {
         if (room == null) return;
         rooms.add(room);
         room.setCustomer(this);
+        room.setTaken(true);
     }
 
     public void removeRoom(Room room) {
         if (room == null) return;
         rooms.remove(room);
         room.setCustomer(null);
+        room.setTaken(false);
     }
 
     public List<Room> getRooms() {

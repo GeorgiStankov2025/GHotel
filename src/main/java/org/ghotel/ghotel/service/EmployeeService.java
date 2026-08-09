@@ -1,6 +1,5 @@
 package org.ghotel.ghotel.service;
 
-import jakarta.transaction.Transactional;
 import org.ghotel.ghotel.dto.request.EmployeeRequest;
 import org.ghotel.ghotel.dto.response.EmployeeResponse;
 import org.ghotel.ghotel.entity.Employee;
@@ -8,6 +7,9 @@ import org.ghotel.ghotel.exception.EmployeeException;
 import org.ghotel.ghotel.mapper.EmployeeMapper;
 import org.ghotel.ghotel.repository.EmployeeRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 public class EmployeeService {
@@ -22,13 +24,17 @@ public class EmployeeService {
 
     @Transactional
     public EmployeeResponse addEmployee(EmployeeRequest request) {
+        if (employeeRepository.existsByUsername(request.username())) {
+            throw new EmployeeException
+                    ("Employee with username " + request.username() + " already exists.");
+        }
         Employee employee = employeeMapper.toEntity(request);
         Employee saved = employeeRepository.save(employee);
         return employeeMapper.toResponse(saved);
     }
 
 
-    @Transactional(rollbackOn = EmployeeException.class)
+    @Transactional
     public EmployeeResponse editEmployee(Long id, EmployeeRequest request) {
 
         Employee employee = findByIdUndeleted(id);
@@ -36,17 +42,25 @@ public class EmployeeService {
         return employeeMapper.toResponse(employee);
     }
 
-    @Transactional(rollbackOn = EmployeeException.class)
+    @Transactional
     public EmployeeResponse deleteEmployee(Long id) {
         Employee employee = findByIdUndeleted(id);
         employee.setDeleted(true);
         return employeeMapper.toResponse(employee);
     }
 
-    @Transactional
-    public EmployeeResponse getEmployeeByIdUndeleted(Long id) {
+    @Transactional(readOnly = true)
+    public EmployeeResponse getEmployeeById(Long id) {
         Employee employee = findByIdUndeleted(id);
         return employeeMapper.toResponse(employee);
+    }
+
+    @Transactional(readOnly = true)
+    public List<EmployeeResponse> getAllEmployees() {
+        List<Employee> employees = employeeRepository.getAllByDeletedFalse();
+        return employees.stream()
+                .map(employeeMapper::toResponse)
+                .toList();
     }
 
     private Employee findByIdUndeleted(Long id) {

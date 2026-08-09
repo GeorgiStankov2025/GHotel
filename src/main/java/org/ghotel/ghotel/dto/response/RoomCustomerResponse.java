@@ -5,6 +5,7 @@ import org.ghotel.ghotel.entity.Customer;
 public record RoomCustomerResponse(
         Long id,
         int roomCapacity,
-        CustomerResponse customer
+        Long customerId,
+        String customerName
 ) {
 }

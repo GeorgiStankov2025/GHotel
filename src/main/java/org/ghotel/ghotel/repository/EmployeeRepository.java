@@ -16,4 +16,6 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
     public List<Employee> getAllByDeletedTrue();
 
+    public boolean existsByUsername(String username);
+
 }
