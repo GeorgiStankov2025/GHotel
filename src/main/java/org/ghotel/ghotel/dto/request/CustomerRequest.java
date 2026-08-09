@@ -1,9 +1,6 @@
 package org.ghotel.ghotel.dto.request;
 
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 import java.time.LocalDateTime;
 
@@ -19,6 +16,7 @@ public record CustomerRequest(
         @NotNull(message = "Check in date is required")
         LocalDateTime checkIn,
         @Min(value = 1, message = "Stay duration must be one day at least.")
+        @Max(value = 365, message = "Stay duration cannot exceed 365 days.")
         int stayDuration
 ) {
 }
