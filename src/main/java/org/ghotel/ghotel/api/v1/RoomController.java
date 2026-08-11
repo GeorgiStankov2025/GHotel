@@ -1,5 +1,6 @@
 package org.ghotel.ghotel.api.v1;
 
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import org.ghotel.ghotel.dto.request.RoomRequest;
 import org.ghotel.ghotel.dto.response.RoomCustomerResponse;
@@ -21,6 +22,7 @@ public class RoomController {
     }
 
     @PostMapping
+    @Operation(description = "Add room")
     public ResponseEntity<RoomResponse> addRoom(
             @Valid
             @RequestBody RoomRequest request) {
@@ -29,6 +31,7 @@ public class RoomController {
     }
 
     @GetMapping("/{id}")
+    @Operation(description = "Get a room by id.")
     public ResponseEntity<RoomResponse> getRoomById(
             @PathVariable Long id) {
         RoomResponse response = roomService.getRoomById(id);
@@ -36,6 +39,7 @@ public class RoomController {
     }
 
     @GetMapping("/{id}/customer")
+    @Operation(description = "Get a room by id with its customer.")
     public ResponseEntity<RoomCustomerResponse> getRoomByIdWithCustomer(
             @PathVariable Long id) {
         RoomCustomerResponse response = roomService.getRoomWithCustomerById(id);
@@ -43,18 +47,21 @@ public class RoomController {
     }
 
     @GetMapping
+    @Operation(description = "Get all rooms.")
     public ResponseEntity<List<RoomResponse>> getAllRooms() {
         List<RoomResponse> response = roomService.getAllRooms();
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @GetMapping("/customer")
+    @Operation(description = "Get all rooms with their customer.")
     public ResponseEntity<List<RoomCustomerResponse>> getAllRoomsWithCustomer() {
         List<RoomCustomerResponse> response = roomService.getAllRoomsWithCustomer();
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
+    @Operation(description = "Edit room information.")
     public ResponseEntity<RoomResponse> editRoom(
             @PathVariable Long id,
             @Valid @RequestBody RoomRequest request) {
@@ -63,6 +70,7 @@ public class RoomController {
     }
 
     @DeleteMapping("/{id}")
+    @Operation(description = "Delete room.")
     public ResponseEntity<RoomResponse> deleteRoom(
             @PathVariable Long id) {
         RoomResponse response = roomService.deleteRoom(id);
@@ -70,6 +78,7 @@ public class RoomController {
     }
 
     @PostMapping("/{id}/customer/assign/{customerId}")
+    @Operation(description = "Take room for customer.")
     public ResponseEntity<RoomCustomerResponse> takeRoom(
             @PathVariable Long id,
             @PathVariable Long customerId
@@ -79,6 +88,7 @@ public class RoomController {
     }
 
     @PostMapping("/{id}/customer/{customerId}/release")
+    @Operation(description = "Free room from customer.")
     public ResponseEntity<RoomCustomerResponse> freeRoom(
             @PathVariable Long id,
             @PathVariable Long customerId

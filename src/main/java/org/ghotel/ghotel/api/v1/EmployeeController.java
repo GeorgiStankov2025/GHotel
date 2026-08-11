@@ -1,5 +1,6 @@
 package org.ghotel.ghotel.api.v1;
 
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import org.ghotel.ghotel.dto.request.EmployeeRequest;
 import org.ghotel.ghotel.dto.response.EmployeeResponse;
@@ -21,6 +22,7 @@ public class EmployeeController {
     }
 
     @PostMapping
+    @Operation(description = "Add employee.")
     public ResponseEntity<EmployeeResponse> addEmployee(
             @Valid
             @RequestBody EmployeeRequest request) {
@@ -29,6 +31,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/{id}")
+    @Operation(description = "Get employee by id.")
     public ResponseEntity<EmployeeResponse> getEmployeeById(
             @PathVariable Long id) {
         EmployeeResponse response = employeeService.getEmployeeById(id);
@@ -36,12 +39,14 @@ public class EmployeeController {
     }
 
     @GetMapping
+    @Operation(description = "Get all employees.")
     public ResponseEntity<List<EmployeeResponse>> getAllEmployees() {
         List<EmployeeResponse> response = employeeService.getAllEmployees();
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
+    @Operation(description = "Edit employee information.")
     public ResponseEntity<EmployeeResponse> editEmployee(
             @PathVariable Long id,
             @Valid @RequestBody EmployeeRequest request) {
@@ -50,6 +55,7 @@ public class EmployeeController {
     }
 
     @DeleteMapping("/{id}")
+    @Operation(description = "Delete employee.")
     public ResponseEntity<EmployeeResponse> deleteEmployee(
             @PathVariable Long id) {
         EmployeeResponse response = employeeService.deleteEmployee(id);

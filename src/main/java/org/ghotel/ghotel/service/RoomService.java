@@ -73,6 +73,9 @@ public class RoomService {
     public RoomCustomerResponse takeRoom(Long roomId, Long customerId) {
         Customer customer = findCustomerById(customerId);
         Room room = findRoomById(roomId);
+        if (room.isTaken()) {
+            throw new RoomException("No free room found with id: " + roomId);
+        }
         customer.addRoom(room);
         return roomMapper.toRoomCustomerResponse(room);
     }
@@ -81,6 +84,9 @@ public class RoomService {
     public RoomCustomerResponse freeRoom(Long roomId, Long customerId) {
         Customer customer = findCustomerById(customerId);
         Room room = findRoomById(roomId);
+        if (!room.isTaken()) {
+            throw new RoomException("No taken room found with id: " + roomId);
+        }
         customer.removeRoom(room);
         return roomMapper.toRoomCustomerResponse(room);
     }
