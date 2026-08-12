@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/customer")
@@ -36,7 +37,7 @@ public class CustomerController {
     @GetMapping("/{id}")
     @Operation(description = "Get customer by id.")
     public ResponseEntity<CustomerResponse> getCustomerById(
-            @PathVariable Long id) {
+            @PathVariable UUID id) {
         CustomerResponse response = customerService.getCustomerById(id);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -44,7 +45,7 @@ public class CustomerController {
     @GetMapping("/{id}/rooms")
     @Operation(description = "Get customer with id including the rooms taken by him.")
     public ResponseEntity<CustomerRoomsResponse> getCustomerWithRoomsById(
-            @PathVariable Long id) {
+            @PathVariable UUID id) {
         CustomerRoomsResponse response = customerService.getCustomerWithRoomsById(id);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -66,7 +67,7 @@ public class CustomerController {
     @PutMapping("/{id}")
     @Operation(description = "Edit customer information.")
     public ResponseEntity<CustomerResponse> editCustomer(
-            @PathVariable Long id,
+            @PathVariable UUID id,
             @Valid @RequestBody CustomerRequest request) {
         CustomerResponse response = customerService.editCustomer(id, request);
         return new ResponseEntity<>(response, HttpStatus.OK);
@@ -75,7 +76,7 @@ public class CustomerController {
     @DeleteMapping("/{id}")
     @Operation(description = "Delete customer.")
     public ResponseEntity<CustomerResponse> deleteCustomer(
-            @PathVariable Long id) {
+            @PathVariable UUID id) {
         CustomerResponse response = customerService.deleteCustomer(id);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }

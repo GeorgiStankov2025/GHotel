@@ -7,7 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 class GHotelApplicationTests {
 
     @Test
-    void contextLoads() {
+    void lockingTest() {
     }
 
 }

@@ -14,8 +14,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
+@Transactional(readOnly = true)
 public class RoomService {
     private final RoomRepository roomRepository;
     private final CustomerRepository customerRepository;
@@ -37,13 +39,11 @@ public class RoomService {
         return roomMapper.toRoomResponse(saved);
     }
 
-    @Transactional(readOnly = true)
-    public RoomResponse getRoomById(Long id) {
+    public RoomResponse getRoomById(UUID id) {
         Room room = findRoomById(id);
         return roomMapper.toRoomResponse(room);
     }
 
-    @Transactional(readOnly = true)
     public List<RoomResponse> getAllRooms() {
         List<Room> rooms = roomRepository.getAllByDeletedFalse();
         return rooms
@@ -52,15 +52,11 @@ public class RoomService {
                 .toList();
     }
 
-    @Transactional(readOnly = true)
-    public RoomCustomerResponse getRoomWithCustomerById(Long id) {
-        Room room = roomRepository.getRoomAndCustomerByIdAndDeletedFalse(id)
-                .orElseThrow(() ->
-                        new RoomException("Room not found with id: " + id));
+    public RoomCustomerResponse getRoomWithCustomerById(UUID id) {
+        Room room = findRoomWithCustomerById(id);
         return roomMapper.toRoomCustomerResponse(room);
     }
 
-    @Transactional(readOnly = true)
     public List<RoomCustomerResponse> getAllRoomsWithCustomer() {
         List<Room> rooms = roomRepository.getAllWithCustomerByDeletedFalse();
         return rooms
@@ -70,50 +66,59 @@ public class RoomService {
     }
 
     @Transactional
-    public RoomCustomerResponse takeRoom(Long roomId, Long customerId) {
+    public RoomCustomerResponse takeRoom(UUID roomId, UUID customerId) {
         Customer customer = findCustomerById(customerId);
         Room room = findRoomById(roomId);
         if (room.isTaken()) {
-            throw new RoomException("No free room found with id: " + roomId);
+            throw new RoomException("No free room found.");
         }
         customer.addRoom(room);
         return roomMapper.toRoomCustomerResponse(room);
     }
 
     @Transactional
-    public RoomCustomerResponse freeRoom(Long roomId, Long customerId) {
+    public RoomCustomerResponse freeRoom(UUID roomId, UUID customerId) {
         Customer customer = findCustomerById(customerId);
-        Room room = findRoomById(roomId);
+        Room room = findRoomWithCustomerById(roomId);
         if (!room.isTaken()) {
-            throw new RoomException("No taken room found with id: " + roomId);
+            throw new RoomException("No taken room found");
+        }
+        if (!room.getCustomer().equals(customer)) {
+            throw new RoomException("Invalid customer data.");
         }
         customer.removeRoom(room);
         return roomMapper.toRoomCustomerResponse(room);
     }
 
     @Transactional
-    public RoomResponse editRoom(Long id, RoomRequest request) {
+    public RoomResponse editRoom(UUID id, RoomRequest request) {
         Room room = findRoomById(id);
         room = roomMapper.changeRoom(request, room);
         return roomMapper.toRoomResponse(room);
     }
 
     @Transactional
-    public RoomResponse deleteRoom(Long id) {
+    public RoomResponse deleteRoom(UUID id) {
         Room room = findRoomById(id);
         room.setDeleted(true);
         return roomMapper.toRoomResponse(room);
     }
 
-    private Room findRoomById(Long id) {
+    private Room findRoomById(UUID id) {
         return roomRepository.getRoomByIdAndDeletedFalse(id)
-                .orElseThrow(() -> new RoomException("Room not found with id: " + id));
+                .orElseThrow(() -> new RoomException("Room not found."));
     }
 
-    private Customer findCustomerById(Long id) {
+    private Customer findCustomerById(UUID id) {
         return customerRepository.getByIdAndDeletedFalse(id)
                 .orElseThrow(() ->
-                        new CustomerException("Customer not found with id: " + id));
+                        new CustomerException("Customer not found."));
+    }
+
+    private Room findRoomWithCustomerById(UUID id) {
+        return roomRepository.getRoomAndCustomerByIdAndDeletedFalse(id)
+                .orElseThrow(() ->
+                        new RoomException("Room not found."));
     }
 
 }

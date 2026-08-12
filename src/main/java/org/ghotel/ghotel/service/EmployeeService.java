@@ -9,9 +9,12 @@ import org.ghotel.ghotel.repository.EmployeeRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 @Service
+@Transactional(readOnly = true)
 public class EmployeeService {
 
     private final EmployeeRepository employeeRepository;
@@ -26,7 +29,7 @@ public class EmployeeService {
     public EmployeeResponse addEmployee(EmployeeRequest request) {
         if (employeeRepository.existsByUsername(request.username())) {
             throw new EmployeeException
-                    ("Employee with username " + request.username() + " already exists.");
+                    ("Invalid username.");
         }
         Employee employee = employeeMapper.toEntity(request);
         Employee saved = employeeRepository.save(employee);
@@ -35,7 +38,7 @@ public class EmployeeService {
 
 
     @Transactional
-    public EmployeeResponse editEmployee(Long id, EmployeeRequest request) {
+    public EmployeeResponse editEmployee(UUID id, EmployeeRequest request) {
 
         Employee employee = findByIdUndeleted(id);
         employee = employeeMapper.changeEmployee(request, employee);
@@ -43,19 +46,18 @@ public class EmployeeService {
     }
 
     @Transactional
-    public EmployeeResponse deleteEmployee(Long id) {
+    public EmployeeResponse deleteEmployee(UUID id) {
         Employee employee = findByIdUndeleted(id);
+        employee.setUpdatedAt(LocalDateTime.now());
         employee.setDeleted(true);
         return employeeMapper.toResponse(employee);
     }
 
-    @Transactional(readOnly = true)
-    public EmployeeResponse getEmployeeById(Long id) {
+    public EmployeeResponse getEmployeeById(UUID id) {
         Employee employee = findByIdUndeleted(id);
         return employeeMapper.toResponse(employee);
     }
 
-    @Transactional(readOnly = true)
     public List<EmployeeResponse> getAllEmployees() {
         List<Employee> employees = employeeRepository.getAllByDeletedFalse();
         return employees.stream()
@@ -63,10 +65,10 @@ public class EmployeeService {
                 .toList();
     }
 
-    private Employee findByIdUndeleted(Long id) {
+    private Employee findByIdUndeleted(UUID id) {
         return employeeRepository.getEmployeeByIdAndDeletedFalse(id)
                 .orElseThrow(() ->
-                        new EmployeeException("Employee not found with id: " + id));
+                        new EmployeeException("Employee not found."));
     }
 
 }

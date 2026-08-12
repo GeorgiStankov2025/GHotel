@@ -10,9 +10,12 @@ import org.ghotel.ghotel.repository.CustomerRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 @Service
+@Transactional(readOnly = true)
 public class CustomerService {
     private final CustomerRepository customerRepository;
     private final CustomerMapper customerMapper;
@@ -31,13 +34,11 @@ public class CustomerService {
         return customerMapper.toCustomerResponse(saved);
     }
 
-    @Transactional(readOnly = true)
-    public CustomerResponse getCustomerById(Long id) {
+    public CustomerResponse getCustomerById(UUID id) {
         Customer customer = findCustomerById(id);
         return customerMapper.toCustomerResponse(customer);
     }
 
-    @Transactional(readOnly = true)
     public List<CustomerResponse> getAllCustomers() {
         List<Customer> customers = customerRepository.getAllByDeletedFalse();
         return customers
@@ -46,15 +47,13 @@ public class CustomerService {
                 .toList();
     }
 
-    @Transactional(readOnly = true)
-    public CustomerRoomsResponse getCustomerWithRoomsById(Long id) {
+    public CustomerRoomsResponse getCustomerWithRoomsById(UUID id) {
         Customer customer = customerRepository.getWithRoomsByIdAndDeletedFalse(id)
                 .orElseThrow(() ->
-                        new CustomerException("Customer not found with id: " + id));
+                        new CustomerException("Customer not found."));
         return customerMapper.toCustomerRoomsResponse(customer);
     }
 
-    @Transactional(readOnly = true)
     public List<CustomerRoomsResponse> getAllCustomersWithRooms() {
         List<Customer> customers = customerRepository.getAllWithRoomsByDeletedFalse();
         return customers
@@ -64,22 +63,23 @@ public class CustomerService {
     }
 
     @Transactional
-    public CustomerResponse editCustomer(Long id, CustomerRequest request) {
+    public CustomerResponse editCustomer(UUID id, CustomerRequest request) {
         Customer customer = findCustomerById(id);
         customer = customerMapper.changeCustomer(customer, request);
         return customerMapper.toCustomerResponse(customer);
     }
 
     @Transactional
-    public CustomerResponse deleteCustomer(Long id) {
+    public CustomerResponse deleteCustomer(UUID id) {
         Customer customer = findCustomerById(id);
+        customer.setUpdatedAt(LocalDateTime.now());
         customer.setDeleted(true);
         return customerMapper.toCustomerResponse(customer);
     }
 
-    private Customer findCustomerById(Long id) {
+    private Customer findCustomerById(UUID id) {
         return customerRepository.getByIdAndDeletedFalse(id)
                 .orElseThrow(() ->
-                        new CustomerException("Customer not found with id: " + id));
+                        new CustomerException("Customer not found."));
     }
 }

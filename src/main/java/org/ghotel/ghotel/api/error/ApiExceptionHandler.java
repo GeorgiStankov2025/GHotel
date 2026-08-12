@@ -3,6 +3,7 @@ package org.ghotel.ghotel.api.error;
 import org.ghotel.ghotel.exception.CustomerException;
 import org.ghotel.ghotel.exception.EmployeeException;
 import org.ghotel.ghotel.exception.RoomException;
+import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -57,6 +58,12 @@ public class ApiExceptionHandler {
         );
 
         return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(OptimisticLockingFailureException.class)
+    public ResponseEntity<String> handleOptimisticLockingFailure() {
+        return ResponseEntity.status(HttpStatus.CONFLICT)
+                .body("The requested object is not modifiable at the moment.");
     }
 
 }

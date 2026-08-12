@@ -26,8 +26,7 @@ public class CustomerMapper {
                 request.lastName(),
                 request.details(),
                 request.checkIn(),
-                request.checkIn().plusDays(request.stayDuration()),
-                false
+                request.checkIn().plusDays(request.stayDuration())
         );
     }
 
@@ -74,6 +73,7 @@ public class CustomerMapper {
         customer.setDetails(request.details());
         customer.setCheckIn(request.checkIn());
         customer.setCheckOut(request.checkIn().plusDays(request.stayDuration()));
+        customer.setUpdatedAt(LocalDateTime.now());
         return customer;
     }
 

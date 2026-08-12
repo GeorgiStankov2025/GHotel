@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/room")
@@ -33,7 +34,7 @@ public class RoomController {
     @GetMapping("/{id}")
     @Operation(description = "Get a room by id.")
     public ResponseEntity<RoomResponse> getRoomById(
-            @PathVariable Long id) {
+            @PathVariable UUID id) {
         RoomResponse response = roomService.getRoomById(id);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -41,7 +42,7 @@ public class RoomController {
     @GetMapping("/{id}/customer")
     @Operation(description = "Get a room by id with its customer.")
     public ResponseEntity<RoomCustomerResponse> getRoomByIdWithCustomer(
-            @PathVariable Long id) {
+            @PathVariable UUID id) {
         RoomCustomerResponse response = roomService.getRoomWithCustomerById(id);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -63,7 +64,7 @@ public class RoomController {
     @PutMapping("/{id}")
     @Operation(description = "Edit room information.")
     public ResponseEntity<RoomResponse> editRoom(
-            @PathVariable Long id,
+            @PathVariable UUID id,
             @Valid @RequestBody RoomRequest request) {
         RoomResponse response = roomService.editRoom(id, request);
         return new ResponseEntity<>(response, HttpStatus.OK);
@@ -72,16 +73,16 @@ public class RoomController {
     @DeleteMapping("/{id}")
     @Operation(description = "Delete room.")
     public ResponseEntity<RoomResponse> deleteRoom(
-            @PathVariable Long id) {
+            @PathVariable UUID id) {
         RoomResponse response = roomService.deleteRoom(id);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @PostMapping("/{id}/customer/assign/{customerId}")
+    @PostMapping("/{id}/customer/{customerId}/assign")
     @Operation(description = "Take room for customer.")
     public ResponseEntity<RoomCustomerResponse> takeRoom(
-            @PathVariable Long id,
-            @PathVariable Long customerId
+            @PathVariable UUID id,
+            @PathVariable UUID customerId
     ) {
         RoomCustomerResponse response = roomService.takeRoom(id, customerId);
         return new ResponseEntity<>(response, HttpStatus.OK);
@@ -90,8 +91,8 @@ public class RoomController {
     @PostMapping("/{id}/customer/{customerId}/release")
     @Operation(description = "Free room from customer.")
     public ResponseEntity<RoomCustomerResponse> freeRoom(
-            @PathVariable Long id,
-            @PathVariable Long customerId
+            @PathVariable UUID id,
+            @PathVariable UUID customerId
     ) {
         RoomCustomerResponse response = roomService.freeRoom(id, customerId);
         return new ResponseEntity<>(response, HttpStatus.OK);

@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/employee")
@@ -33,7 +34,7 @@ public class EmployeeController {
     @GetMapping("/{id}")
     @Operation(description = "Get employee by id.")
     public ResponseEntity<EmployeeResponse> getEmployeeById(
-            @PathVariable Long id) {
+            @PathVariable UUID id) {
         EmployeeResponse response = employeeService.getEmployeeById(id);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -48,7 +49,7 @@ public class EmployeeController {
     @PutMapping("/{id}")
     @Operation(description = "Edit employee information.")
     public ResponseEntity<EmployeeResponse> editEmployee(
-            @PathVariable Long id,
+            @PathVariable UUID id,
             @Valid @RequestBody EmployeeRequest request) {
         EmployeeResponse response = employeeService.editEmployee(id, request);
         return new ResponseEntity<>(response, HttpStatus.OK);
@@ -57,7 +58,7 @@ public class EmployeeController {
     @DeleteMapping("/{id}")
     @Operation(description = "Delete employee.")
     public ResponseEntity<EmployeeResponse> deleteEmployee(
-            @PathVariable Long id) {
+            @PathVariable UUID id) {
         EmployeeResponse response = employeeService.deleteEmployee(id);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }

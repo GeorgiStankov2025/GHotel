@@ -1,11 +1,11 @@
 package org.ghotel.ghotel.dto.response;
 
-import org.ghotel.ghotel.entity.Customer;
+import java.util.UUID;
 
 public record RoomCustomerResponse(
-        Long id,
+        UUID id,
         int roomCapacity,
-        Long customerId,
+        UUID customerId,
         String customerName
 ) {
 }

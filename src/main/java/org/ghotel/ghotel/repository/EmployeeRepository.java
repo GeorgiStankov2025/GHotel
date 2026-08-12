@@ -5,17 +5,18 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
-public interface EmployeeRepository extends JpaRepository<Employee, Long> {
+public interface EmployeeRepository extends JpaRepository<Employee, UUID> {
 
-    public Optional<Employee> getEmployeeByIdAndDeletedFalse(Long id);
+    Optional<Employee> getEmployeeByIdAndDeletedFalse(UUID id);
 
-    public List<Employee> getAllByDeletedFalse();
+    List<Employee> getAllByDeletedFalse();
 
-    public Optional<Employee> getEmployeeByIdAndDeletedTrue(Long id);
+    boolean existsByUsername(String username);
 
-    public List<Employee> getAllByDeletedTrue();
+    Optional<Employee> getEmployeeByIdAndDeletedTrue(UUID id);
 
-    public boolean existsByUsername(String username);
+    List<Employee> getAllByDeletedTrue();
 
 }

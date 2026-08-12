@@ -6,26 +6,27 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
-public interface CustomerRepository extends JpaRepository<Customer, Long> {
+public interface CustomerRepository extends JpaRepository<Customer, UUID> {
 
-    public Optional<Customer> getByIdAndDeletedFalse(Long id);
+    Optional<Customer> getByIdAndDeletedFalse(UUID id);
 
-    public List<Customer> getAllByDeletedFalse();
-
-    public Optional<Customer> getByIdAndDeletedTrue(Long id);
-
-    public List<Customer> getAllByDeletedTrue();
+    List<Customer> getAllByDeletedFalse();
 
     @EntityGraph(value = "Customer.rooms")
-    public Optional<Customer> getWithRoomsByIdAndDeletedFalse(Long id);
+    Optional<Customer> getWithRoomsByIdAndDeletedFalse(UUID id);
 
     @EntityGraph(value = "Customer.rooms")
-    public List<Customer> getAllWithRoomsByDeletedFalse();
+    List<Customer> getAllWithRoomsByDeletedFalse();
+
+    Optional<Customer> getByIdAndDeletedTrue(UUID id);
+
+    List<Customer> getAllByDeletedTrue();
 
     @EntityGraph(value = "Customer.rooms")
-    public Optional<Customer> getWithRoomsByIdAndDeletedTrue(Long id);
+    Optional<Customer> getWithRoomsByIdAndDeletedTrue(UUID id);
 
     @EntityGraph(value = "Customer.rooms")
-    public List<Customer> getAllWithRoomsByDeletedTrue();
+    List<Customer> getAllWithRoomsByDeletedTrue();
 }

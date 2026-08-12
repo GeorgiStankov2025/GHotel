@@ -5,7 +5,7 @@ import org.ghotel.ghotel.dto.response.EmployeeResponse;
 import org.ghotel.ghotel.entity.Employee;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
+import java.time.LocalDateTime;
 
 @Component
 public class EmployeeMapper {
@@ -14,8 +14,7 @@ public class EmployeeMapper {
                 request.firstName(),
                 request.lastName(),
                 request.username(),
-                request.password(),
-                false
+                request.password()
         );
     }
 
@@ -24,6 +23,7 @@ public class EmployeeMapper {
         employee.setFirstName(request.firstName());
         employee.setLastName(request.lastName());
         employee.setPassword(request.password());
+        employee.setUpdatedAt(LocalDateTime.now());
         return employee;
     }
 

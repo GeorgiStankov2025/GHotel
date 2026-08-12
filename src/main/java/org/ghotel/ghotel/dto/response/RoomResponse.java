@@ -1,7 +1,9 @@
 package org.ghotel.ghotel.dto.response;
 
+import java.util.UUID;
+
 public record RoomResponse(
-        Long id,
+        UUID id,
         int roomCapacity,
         boolean taken
 ) {
