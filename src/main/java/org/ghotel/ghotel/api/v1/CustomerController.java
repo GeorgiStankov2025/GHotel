@@ -3,9 +3,8 @@ package org.ghotel.ghotel.api.v1;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 
-import org.ghotel.ghotel.dto.request.CustomerRequest;
-import org.ghotel.ghotel.dto.response.CustomerResponse;
-import org.ghotel.ghotel.dto.response.CustomerRoomsResponse;
+import org.ghotel.ghotel.dto.request.CustomerRequestDTO;
+import org.ghotel.ghotel.dto.response.CustomerResponseDTO;
 import org.ghotel.ghotel.service.CustomerService;
 import org.springframework.context.annotation.Description;
 import org.springframework.http.HttpStatus;
@@ -27,18 +26,18 @@ public class CustomerController {
 
     @PostMapping
     @Operation(description = "Add new customer.")
-    public ResponseEntity<CustomerResponse> addCustomer(
+    public ResponseEntity<CustomerResponseDTO> addCustomer(
             @Valid
-            @RequestBody CustomerRequest request) {
-        CustomerResponse response = customerService.addCustomer(request);
+            @RequestBody CustomerRequestDTO request) {
+        CustomerResponseDTO response = customerService.addCustomer(request);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
     @Operation(description = "Get customer by id.")
-    public ResponseEntity<CustomerResponse> getCustomerById(
+    public ResponseEntity<CustomerResponseDTO> getCustomerById(
             @PathVariable UUID id) {
-        CustomerResponse response = customerService.getCustomerById(id);
+        CustomerResponseDTO response = customerService.getCustomerById(id);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
@@ -52,8 +51,8 @@ public class CustomerController {
 
     @GetMapping
     @Operation(description = "Get all customers.")
-    public ResponseEntity<List<CustomerResponse>> getAllCustomers() {
-        List<CustomerResponse> response = customerService.getAllCustomers();
+    public ResponseEntity<List<CustomerResponseDTO>> getAllCustomers() {
+        List<CustomerResponseDTO> response = customerService.getAllCustomers();
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
@@ -66,18 +65,18 @@ public class CustomerController {
 
     @PutMapping("/{id}")
     @Operation(description = "Edit customer information.")
-    public ResponseEntity<CustomerResponse> editCustomer(
+    public ResponseEntity<CustomerResponseDTO> editCustomer(
             @PathVariable UUID id,
-            @Valid @RequestBody CustomerRequest request) {
-        CustomerResponse response = customerService.editCustomer(id, request);
+            @Valid @RequestBody CustomerRequestDTO request) {
+        CustomerResponseDTO response = customerService.editCustomer(id, request);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
     @Operation(description = "Delete customer.")
-    public ResponseEntity<CustomerResponse> deleteCustomer(
+    public ResponseEntity<CustomerResponseDTO> deleteCustomer(
             @PathVariable UUID id) {
-        CustomerResponse response = customerService.deleteCustomer(id);
+        CustomerResponseDTO response = customerService.deleteCustomer(id);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }

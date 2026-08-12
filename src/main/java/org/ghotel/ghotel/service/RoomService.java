@@ -1,13 +1,12 @@
 package org.ghotel.ghotel.service;
 
-import org.ghotel.ghotel.dto.request.RoomRequest;
-import org.ghotel.ghotel.dto.response.RoomCustomerResponse;
-import org.ghotel.ghotel.dto.response.RoomResponse;
+import org.ghotel.ghotel.dto.request.RoomRequestDTO;
+import org.ghotel.ghotel.dto.response.RoomReservationsResponseDTO;
+import org.ghotel.ghotel.dto.response.RoomResponseDTO;
 import org.ghotel.ghotel.entity.Customer;
 import org.ghotel.ghotel.entity.Room;
 import org.ghotel.ghotel.exception.CustomerException;
 import org.ghotel.ghotel.exception.RoomException;
-import org.ghotel.ghotel.mapper.RoomMapper;
 import org.ghotel.ghotel.repository.CustomerRepository;
 import org.ghotel.ghotel.repository.RoomRepository;
 import org.springframework.stereotype.Service;
@@ -33,18 +32,18 @@ public class RoomService {
     }
 
     @Transactional
-    public RoomResponse addRoom(RoomRequest request) {
+    public RoomResponseDTO addRoom(RoomRequestDTO request) {
         Room room = roomMapper.toEntity(request);
         Room saved = roomRepository.save(room);
         return roomMapper.toRoomResponse(saved);
     }
 
-    public RoomResponse getRoomById(UUID id) {
+    public RoomResponseDTO getRoomById(UUID id) {
         Room room = findRoomById(id);
         return roomMapper.toRoomResponse(room);
     }
 
-    public List<RoomResponse> getAllRooms() {
+    public List<RoomResponseDTO> getAllRooms() {
         List<Room> rooms = roomRepository.getAllByDeletedFalse();
         return rooms
                 .stream()
@@ -52,12 +51,12 @@ public class RoomService {
                 .toList();
     }
 
-    public RoomCustomerResponse getRoomWithCustomerById(UUID id) {
+    public RoomReservationsResponseDTO getRoomWithCustomerById(UUID id) {
         Room room = findRoomWithCustomerById(id);
         return roomMapper.toRoomCustomerResponse(room);
     }
 
-    public List<RoomCustomerResponse> getAllRoomsWithCustomer() {
+    public List<RoomReservationsResponseDTO> getAllRoomsWithCustomer() {
         List<Room> rooms = roomRepository.getAllWithCustomerByDeletedFalse();
         return rooms
                 .stream()
@@ -66,7 +65,7 @@ public class RoomService {
     }
 
     @Transactional
-    public RoomCustomerResponse takeRoom(UUID roomId, UUID customerId) {
+    public RoomReservationsResponseDTO takeRoom(UUID roomId, UUID customerId) {
         Customer customer = findCustomerById(customerId);
         Room room = findRoomById(roomId);
         if (room.isTaken()) {
@@ -77,7 +76,7 @@ public class RoomService {
     }
 
     @Transactional
-    public RoomCustomerResponse freeRoom(UUID roomId, UUID customerId) {
+    public RoomReservationsResponseDTO freeRoom(UUID roomId, UUID customerId) {
         Customer customer = findCustomerById(customerId);
         Room room = findRoomWithCustomerById(roomId);
         if (!room.isTaken()) {
@@ -91,14 +90,14 @@ public class RoomService {
     }
 
     @Transactional
-    public RoomResponse editRoom(UUID id, RoomRequest request) {
+    public RoomResponseDTO editRoom(UUID id, RoomRequestDTO request) {
         Room room = findRoomById(id);
         room = roomMapper.changeRoom(request, room);
         return roomMapper.toRoomResponse(room);
     }
 
     @Transactional
-    public RoomResponse deleteRoom(UUID id) {
+    public RoomResponseDTO deleteRoom(UUID id) {
         Room room = findRoomById(id);
         room.setDeleted(true);
         return roomMapper.toRoomResponse(room);

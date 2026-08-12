@@ -2,8 +2,8 @@ package org.ghotel.ghotel.api.v1;
 
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
-import org.ghotel.ghotel.dto.request.EmployeeRequest;
-import org.ghotel.ghotel.dto.response.EmployeeResponse;
+import org.ghotel.ghotel.dto.request.EmployeeRequestDTO;
+import org.ghotel.ghotel.dto.response.EmployeeResponseDTO;
 import org.ghotel.ghotel.service.EmployeeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,42 +24,42 @@ public class EmployeeController {
 
     @PostMapping
     @Operation(description = "Add employee.")
-    public ResponseEntity<EmployeeResponse> addEmployee(
+    public ResponseEntity<EmployeeResponseDTO> addEmployee(
             @Valid
-            @RequestBody EmployeeRequest request) {
-        EmployeeResponse response = employeeService.addEmployee(request);
+            @RequestBody EmployeeRequestDTO request) {
+        EmployeeResponseDTO response = employeeService.addEmployee(request);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
     @Operation(description = "Get employee by id.")
-    public ResponseEntity<EmployeeResponse> getEmployeeById(
+    public ResponseEntity<EmployeeResponseDTO> getEmployeeById(
             @PathVariable UUID id) {
-        EmployeeResponse response = employeeService.getEmployeeById(id);
+        EmployeeResponseDTO response = employeeService.getEmployeeById(id);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @GetMapping
     @Operation(description = "Get all employees.")
-    public ResponseEntity<List<EmployeeResponse>> getAllEmployees() {
-        List<EmployeeResponse> response = employeeService.getAllEmployees();
+    public ResponseEntity<List<EmployeeResponseDTO>> getAllEmployees() {
+        List<EmployeeResponseDTO> response = employeeService.getAllEmployees();
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
     @Operation(description = "Edit employee information.")
-    public ResponseEntity<EmployeeResponse> editEmployee(
+    public ResponseEntity<EmployeeResponseDTO> editEmployee(
             @PathVariable UUID id,
-            @Valid @RequestBody EmployeeRequest request) {
-        EmployeeResponse response = employeeService.editEmployee(id, request);
+            @Valid @RequestBody EmployeeRequestDTO request) {
+        EmployeeResponseDTO response = employeeService.editEmployee(id, request);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
     @Operation(description = "Delete employee.")
-    public ResponseEntity<EmployeeResponse> deleteEmployee(
+    public ResponseEntity<EmployeeResponseDTO> deleteEmployee(
             @PathVariable UUID id) {
-        EmployeeResponse response = employeeService.deleteEmployee(id);
+        EmployeeResponseDTO response = employeeService.deleteEmployee(id);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }

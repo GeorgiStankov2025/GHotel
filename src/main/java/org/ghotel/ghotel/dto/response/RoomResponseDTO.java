@@ -2,9 +2,9 @@ package org.ghotel.ghotel.dto.response;
 
 import java.util.UUID;
 
-public record RoomResponse(
+public record RoomResponseDTO(
         UUID id,
         int roomCapacity,
-        boolean taken
+        long roomNumber
 ) {
 }

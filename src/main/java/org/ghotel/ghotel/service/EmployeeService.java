@@ -1,10 +1,9 @@
 package org.ghotel.ghotel.service;
 
-import org.ghotel.ghotel.dto.request.EmployeeRequest;
-import org.ghotel.ghotel.dto.response.EmployeeResponse;
+import org.ghotel.ghotel.dto.request.EmployeeRequestDTO;
+import org.ghotel.ghotel.dto.response.EmployeeResponseDTO;
 import org.ghotel.ghotel.entity.Employee;
 import org.ghotel.ghotel.exception.EmployeeException;
-import org.ghotel.ghotel.mapper.EmployeeMapper;
 import org.ghotel.ghotel.repository.EmployeeRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,7 +25,7 @@ public class EmployeeService {
     }
 
     @Transactional
-    public EmployeeResponse addEmployee(EmployeeRequest request) {
+    public EmployeeResponseDTO addEmployee(EmployeeRequestDTO request) {
         if (employeeRepository.existsByUsername(request.username())) {
             throw new EmployeeException
                     ("Invalid username.");
@@ -38,7 +37,7 @@ public class EmployeeService {
 
 
     @Transactional
-    public EmployeeResponse editEmployee(UUID id, EmployeeRequest request) {
+    public EmployeeResponseDTO editEmployee(UUID id, EmployeeRequestDTO request) {
 
         Employee employee = findByIdUndeleted(id);
         employee = employeeMapper.changeEmployee(request, employee);
@@ -46,19 +45,19 @@ public class EmployeeService {
     }
 
     @Transactional
-    public EmployeeResponse deleteEmployee(UUID id) {
+    public EmployeeResponseDTO deleteEmployee(UUID id) {
         Employee employee = findByIdUndeleted(id);
         employee.setUpdatedAt(LocalDateTime.now());
         employee.setDeleted(true);
         return employeeMapper.toResponse(employee);
     }
 
-    public EmployeeResponse getEmployeeById(UUID id) {
+    public EmployeeResponseDTO getEmployeeById(UUID id) {
         Employee employee = findByIdUndeleted(id);
         return employeeMapper.toResponse(employee);
     }
 
-    public List<EmployeeResponse> getAllEmployees() {
+    public List<EmployeeResponseDTO> getAllEmployees() {
         List<Employee> employees = employeeRepository.getAllByDeletedFalse();
         return employees.stream()
                 .map(employeeMapper::toResponse)

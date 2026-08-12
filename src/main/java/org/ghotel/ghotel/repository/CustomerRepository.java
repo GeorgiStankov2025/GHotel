@@ -14,19 +14,19 @@ public interface CustomerRepository extends JpaRepository<Customer, UUID> {
 
     List<Customer> getAllByDeletedFalse();
 
-    @EntityGraph(value = "Customer.rooms")
-    Optional<Customer> getWithRoomsByIdAndDeletedFalse(UUID id);
+    @EntityGraph(value = "Customer.reservations")
+    Optional<Customer> getWithReservationsByIdAndDeletedFalse(UUID id);
 
-    @EntityGraph(value = "Customer.rooms")
-    List<Customer> getAllWithRoomsByDeletedFalse();
+    @EntityGraph(value = "Customer.reservations")
+    List<Customer> getAllWithReservationsByDeletedFalse();
 
     Optional<Customer> getByIdAndDeletedTrue(UUID id);
 
     List<Customer> getAllByDeletedTrue();
 
-    @EntityGraph(value = "Customer.rooms")
-    Optional<Customer> getWithRoomsByIdAndDeletedTrue(UUID id);
+    @EntityGraph(value = "Customer.reservations")
+    Optional<Customer> getWithReservationsByIdAndDeletedTrue(UUID id);
 
-    @EntityGraph(value = "Customer.rooms")
-    List<Customer> getAllWithRoomsByDeletedTrue();
+    @EntityGraph(value = "Customer.reservations")
+    List<Customer> getAllWithReservationsByDeletedTrue();
 }

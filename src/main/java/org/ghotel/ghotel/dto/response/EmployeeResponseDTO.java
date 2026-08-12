@@ -2,7 +2,7 @@ package org.ghotel.ghotel.dto.response;
 
 import java.util.UUID;
 
-public record EmployeeResponse(
+public record EmployeeResponseDTO(
         UUID id,
         String username,
         String firstName,

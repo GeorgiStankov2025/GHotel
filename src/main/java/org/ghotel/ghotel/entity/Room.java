@@ -7,31 +7,46 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.ghotel.ghotel.entity.base.BaseEntity;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 
 @Entity
 @Table(name = "room")
 @Getter
 @Setter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @NamedEntityGraph(
-        name = "Room.customer",
-        includeAllAttributes = false,
-        attributeNodes = @NamedAttributeNode("customer")
+        name = "Room.reservations",
+        attributeNodes = @NamedAttributeNode(value = "reservations")
 )
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Room extends BaseEntity {
+    @Column(name = "room_number", nullable = false)
+    private long roomNumber;
 
     @Column(name = "room_capacity", nullable = false)
     private int roomCapacity;
 
-    @Column(name = "taken", nullable = false)
-    private boolean taken;
+    @ManyToMany(mappedBy = "rooms")
+    @Setter(AccessLevel.NONE)
+    private final List<Reservation> reservations = new ArrayList<>();
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "customer_id")
-    private Customer customer;
-
-    public Room(int roomCapacity, boolean taken) {
+    public Room(long roomNumber, int roomCapacity) {
+        this.roomNumber = roomNumber;
         this.roomCapacity = roomCapacity;
-        this.taken = taken;
     }
+
+    public List<Reservation> getReservations() {
+        return Collections.unmodifiableList(reservations);
+    }
+
+    public void addReservation(Reservation reservation) {
+        this.reservations.add(reservation);
+    }
+
+    public void removeReservation(Reservation reservation) {
+        this.reservations.remove(reservation);
+    }
+
 }

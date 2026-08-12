@@ -7,19 +7,17 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.ghotel.ghotel.entity.base.BaseEntity;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 @Entity
 @Table(name = "customer")
-@NamedEntityGraph(
-        name = "Customer.rooms",
-        includeAllAttributes = false,
-        attributeNodes = @NamedAttributeNode("rooms")
-)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NamedEntityGraph(
+        name = "Customer.reservations",
+        attributeNodes = @NamedAttributeNode("reservations")
+)
 @Getter
 @Setter
 public class Customer extends BaseEntity {
@@ -29,44 +27,26 @@ public class Customer extends BaseEntity {
     @Column(name = "last_name", nullable = false, length = 30)
     private String lastName;
 
-    @Column(name = "details", length = 255)
-    private String details;
-
-    @Column(name = "check_in", nullable = false)
-    private LocalDateTime checkIn;
-
-    @Column(name = "check_out", nullable = false)
-    private LocalDateTime checkOut;
-
-    @OneToMany(mappedBy = "customer", cascade = {CascadeType.DETACH, CascadeType.MERGE})
-    private final List<Room> rooms = new ArrayList<>();
-
-    public Customer(String firstName,
-                    String lastName,
-                    String details,
-                    LocalDateTime checkIn,
-                    LocalDateTime checkOut) {
+    public Customer(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.details = details;
-        this.checkIn = checkIn;
-        this.checkOut = checkOut;
     }
 
-    public void addRoom(Room room) {
-        rooms.add(room);
-        room.setCustomer(this);
-        room.setTaken(true);
+    @OneToMany(mappedBy = "customer", cascade = {CascadeType.DETACH, CascadeType.MERGE})
+    @Setter(AccessLevel.NONE)
+    private List<Reservation> reservations = new ArrayList<>();
+
+    public List<Reservation> getReservations() {
+        return Collections.unmodifiableList(reservations);
     }
 
-    public void removeRoom(Room room) {
-        rooms.remove(room);
-        room.setCustomer(null);
-        room.setTaken(false);
+    public void addReservation(Reservation reservation) {
+        this.reservations.add(reservation);
+        reservation.setCustomer(this);
     }
 
-    public List<Room> getRooms() {
-        return Collections.unmodifiableList(rooms);
+    public void removeReservation(Reservation reservation) {
+        this.reservations.remove(reservation);
+        reservation.setCustomer(null);
     }
-
 }

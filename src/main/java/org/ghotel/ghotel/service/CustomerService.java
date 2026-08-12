@@ -1,11 +1,9 @@
 package org.ghotel.ghotel.service;
 
-import org.ghotel.ghotel.dto.request.CustomerRequest;
-import org.ghotel.ghotel.dto.response.CustomerResponse;
-import org.ghotel.ghotel.dto.response.CustomerRoomsResponse;
+import org.ghotel.ghotel.dto.request.CustomerRequestDTO;
+import org.ghotel.ghotel.dto.response.CustomerResponseDTO;
 import org.ghotel.ghotel.entity.Customer;
 import org.ghotel.ghotel.exception.CustomerException;
-import org.ghotel.ghotel.mapper.CustomerMapper;
 import org.ghotel.ghotel.repository.CustomerRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,18 +26,18 @@ public class CustomerService {
     }
 
     @Transactional
-    public CustomerResponse addCustomer(CustomerRequest request) {
+    public CustomerResponseDTO addCustomer(CustomerRequestDTO request) {
         Customer customer = customerMapper.toEntity(request);
         Customer saved = customerRepository.save(customer);
         return customerMapper.toCustomerResponse(saved);
     }
 
-    public CustomerResponse getCustomerById(UUID id) {
+    public CustomerResponseDTO getCustomerById(UUID id) {
         Customer customer = findCustomerById(id);
         return customerMapper.toCustomerResponse(customer);
     }
 
-    public List<CustomerResponse> getAllCustomers() {
+    public List<CustomerResponseDTO> getAllCustomers() {
         List<Customer> customers = customerRepository.getAllByDeletedFalse();
         return customers
                 .stream()
@@ -63,14 +61,14 @@ public class CustomerService {
     }
 
     @Transactional
-    public CustomerResponse editCustomer(UUID id, CustomerRequest request) {
+    public CustomerResponseDTO editCustomer(UUID id, CustomerRequestDTO request) {
         Customer customer = findCustomerById(id);
         customer = customerMapper.changeCustomer(customer, request);
         return customerMapper.toCustomerResponse(customer);
     }
 
     @Transactional
-    public CustomerResponse deleteCustomer(UUID id) {
+    public CustomerResponseDTO deleteCustomer(UUID id) {
         Customer customer = findCustomerById(id);
         customer.setUpdatedAt(LocalDateTime.now());
         customer.setDeleted(true);

@@ -3,7 +3,7 @@ package org.ghotel.ghotel.dto.request;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-public record EmployeeRequest(
+public record EmployeeRequestDTO(
         @NotBlank(message = "Username is required")
         @Size(min = 3, max = 25, message = "Username can be between 3 and 25 characters long")
         String username,

@@ -14,20 +14,20 @@ public interface RoomRepository extends JpaRepository<Room, UUID> {
 
     List<Room> getAllByDeletedFalse();
 
-    @EntityGraph(value = "Room.customer")
-    Optional<Room> getRoomAndCustomerByIdAndDeletedFalse(UUID id);
+    @EntityGraph(value = "Room.reservations")
+    Optional<Room> getRoomAndReservationsByIdAndDeletedFalse(UUID id);
 
-    @EntityGraph(value = "Room.customer")
-    List<Room> getAllWithCustomerByDeletedFalse();
+    @EntityGraph(value = "Room.reservations")
+    List<Room> getAllWithReservationsByDeletedFalse();
 
     Optional<Room> getRoomByIdAndDeletedTrue(UUID id);
 
     List<Room> getAllByDeletedTrue();
 
-    @EntityGraph(value = "Room.customer")
-    Optional<Room> getRoomAndCustomerByIdAndDeletedTrue(UUID id);
+    @EntityGraph(value = "Room.reservations")
+    Optional<Room> getRoomAndReservationsByIdAndDeletedTrue(UUID id);
 
-    @EntityGraph(value = "Room.customer")
-    List<Room> getAllWithCustomerByDeletedTrue();
+    @EntityGraph(value = "Room.reservations")
+    List<Room> getAllWithReservationsByDeletedTrue();
 
 }
