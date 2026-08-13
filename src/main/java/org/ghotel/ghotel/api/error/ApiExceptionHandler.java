@@ -1,16 +1,19 @@
 package org.ghotel.ghotel.api.error;
 
-import org.ghotel.ghotel.exception.InvalidDataException;
+import org.ghotel.ghotel.exception.InvalidRequestException;
 import org.ghotel.ghotel.exception.ResourceNotFoundException;
 import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestControllerAdvice
 public class ApiExceptionHandler {
@@ -18,53 +21,64 @@ public class ApiExceptionHandler {
     //ToDO: Appropriate exception handling for updated exception classes.
     // Return error messages with ProblemDetails as well as validation error messages fixes.
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<ApiError> handleValidationExceptions(MethodArgumentNotValidException ex) {
+    public ResponseEntity<ProblemDetail> handleValidationExceptions(MethodArgumentNotValidException ex) {
 
-        ApiError apiError = new ApiError(
+        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(
                 HttpStatus.BAD_REQUEST,
-                ex.getMessage(),
-                LocalDateTime.now()
+                "Validation errors."
         );
-
-        return new ResponseEntity<>(apiError, HttpStatus.BAD_REQUEST);
+        problemDetail.setTitle("Invalid request data.");
+        problemDetail.setProperty("timestamp", OffsetDateTime.now());
+        Map<String, String> fieldErrors = new HashMap<>();
+        ex.getBindingResult().getFieldErrors().forEach(error ->
+                fieldErrors.put(error.getField(), error.getDefaultMessage())
+        );
+        problemDetail.setProperty("invalidFields", fieldErrors);
+        return new ResponseEntity<>(problemDetail, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler({CustomerException.class, ResourceNotFoundException.class, InvalidDataException.class})
-    public ResponseEntity<ApiError> handleNotFoundExceptions(RuntimeException ex) {
-        ApiError apiError = new ApiError(
+    @ExceptionHandler({ResourceNotFoundException.class})
+    public ResponseEntity<ProblemDetail> handleNotFoundExceptions(RuntimeException ex) {
+        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(
                 HttpStatus.NOT_FOUND,
-                ex.getMessage(),
-                LocalDateTime.now()
+                ex.getMessage()
         );
-
-        return new ResponseEntity<>(apiError, HttpStatus.NOT_FOUND);
+        problemDetail.setTitle("Resource not found.");
+        problemDetail.setProperty("timestamp", OffsetDateTime.now());
+        return new ResponseEntity<>(problemDetail, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
-    public ResponseEntity<ApiError> handleHttpMessageNotReadable(HttpMessageNotReadableException ex) {
-        ApiError errorResponse = new ApiError(
+    public ResponseEntity<ProblemDetail> handleHttpMessageNotReadable(HttpMessageNotReadableException ex) {
+        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(
                 HttpStatus.BAD_REQUEST,
-                "Invalid data/date format.",
-                LocalDateTime.now()
+                "Invalid data/date format."
         );
-
-        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+        problemDetail.setTitle("Data format error.");
+        problemDetail.setProperty("timestamp", OffsetDateTime.now());
+        return new ResponseEntity<>(problemDetail, HttpStatus.BAD_REQUEST);
     }
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<ApiError> handleGenericException(Exception ex) {
-        ApiError errorResponse = new ApiError(
-                HttpStatus.INTERNAL_SERVER_ERROR,
-                "An unexpected error occurred. Please try again later.",
-                LocalDateTime.now()
-        );
 
-        return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+    @ExceptionHandler(InvalidRequestException.class)
+    public ResponseEntity<ProblemDetail> handleInvalidRequest(InvalidRequestException ex) {
+        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(
+                HttpStatus.BAD_REQUEST,
+                ex.getMessage()
+        );
+        problemDetail.setTitle("Request error.");
+        problemDetail.setProperty("timestamp", OffsetDateTime.now());
+        return new ResponseEntity<>(problemDetail, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(OptimisticLockingFailureException.class)
-    public ResponseEntity<String> handleOptimisticLockingFailure() {
-        return ResponseEntity.status(HttpStatus.CONFLICT)
-                .body("The requested object is not modifiable at the moment.");
+    public ResponseEntity<ProblemDetail> handleOptimisticLockingFailure() {
+        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(
+                HttpStatus.CONFLICT,
+                "Resource not usable at the moment."
+        );
+        problemDetail.setTitle("Conflict error.");
+        problemDetail.setProperty("timestamp", OffsetDateTime.now());
+        return new ResponseEntity<>(problemDetail, HttpStatus.CONFLICT);
     }
 
 }

@@ -7,6 +7,6 @@ public record ReservationResponseDTO(
         UUID id,
         String details,
         OffsetDateTime checkIn,
-        OffsetDateTime checkOut,
-        int stayDuration) {
+        OffsetDateTime checkOut
+        ) {
 }

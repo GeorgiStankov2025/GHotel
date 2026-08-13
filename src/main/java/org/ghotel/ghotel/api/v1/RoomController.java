@@ -3,6 +3,7 @@ package org.ghotel.ghotel.api.v1;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import org.ghotel.ghotel.dto.request.RoomRequestDTO;
+import org.ghotel.ghotel.dto.response.DeletedDTO;
 import org.ghotel.ghotel.dto.response.RoomReservationsResponseDTO;
 import org.ghotel.ghotel.dto.response.RoomResponseDTO;
 import org.ghotel.ghotel.service.RoomService;
@@ -39,11 +40,11 @@ public class RoomController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}/customer")
-    @Operation(description = "Get a room by id with its customer.")
-    public ResponseEntity<RoomReservationsResponseDTO> getRoomByIdWithCustomer(
+    @GetMapping("/{id}/reservations")
+    @Operation(description = "Get a room by id with its reservations.")
+    public ResponseEntity<RoomReservationsResponseDTO> getRoomByIdWithReservations(
             @PathVariable UUID id) {
-        RoomReservationsResponseDTO response = roomService.getRoomWithCustomerById(id);
+        RoomReservationsResponseDTO response = roomService.getRoomWithReservationById(id);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
@@ -54,10 +55,10 @@ public class RoomController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @GetMapping("/customer")
-    @Operation(description = "Get all rooms with their customer.")
-    public ResponseEntity<List<RoomReservationsResponseDTO>> getAllRoomsWithCustomer() {
-        List<RoomReservationsResponseDTO> response = roomService.getAllRoomsWithCustomer();
+    @GetMapping("/reservations")
+    @Operation(description = "Get all rooms with their reservations.")
+    public ResponseEntity<List<RoomReservationsResponseDTO>> getAllRoomsWithReservations() {
+        List<RoomReservationsResponseDTO> response = roomService.getAllRoomsWithReservations();
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
@@ -72,29 +73,9 @@ public class RoomController {
 
     @DeleteMapping("/{id}")
     @Operation(description = "Delete room.")
-    public ResponseEntity<RoomResponseDTO> deleteRoom(
+    public ResponseEntity<DeletedDTO> deleteRoom(
             @PathVariable UUID id) {
-        RoomResponseDTO response = roomService.deleteRoom(id);
-        return new ResponseEntity<>(response, HttpStatus.OK);
-    }
-
-    @PostMapping("/{id}/customer/{customerId}/assign")
-    @Operation(description = "Take room for customer.")
-    public ResponseEntity<RoomReservationsResponseDTO> takeRoom(
-            @PathVariable UUID id,
-            @PathVariable UUID customerId
-    ) {
-        RoomReservationsResponseDTO response = roomService.takeRoom(id, customerId);
-        return new ResponseEntity<>(response, HttpStatus.OK);
-    }
-
-    @PostMapping("/{id}/customer/{customerId}/release")
-    @Operation(description = "Free room from customer.")
-    public ResponseEntity<RoomReservationsResponseDTO> freeRoom(
-            @PathVariable UUID id,
-            @PathVariable UUID customerId
-    ) {
-        RoomReservationsResponseDTO response = roomService.freeRoom(id, customerId);
+        DeletedDTO response = roomService.deleteRoom(id);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 

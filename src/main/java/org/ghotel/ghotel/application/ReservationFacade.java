@@ -1,6 +1,8 @@
 package org.ghotel.ghotel.application;
 
+import org.ghotel.ghotel.dto.request.ReservationCustomerRequestDTO;
 import org.ghotel.ghotel.dto.request.ReservationRequestDTO;
+import org.ghotel.ghotel.dto.request.ReservationRoomRequestDTO;
 import org.ghotel.ghotel.dto.response.*;
 import org.ghotel.ghotel.entity.Customer;
 import org.ghotel.ghotel.entity.Reservation;
@@ -33,10 +35,10 @@ public class ReservationFacade {
     }
 
     @Transactional
-    public ReservationRoomsResponseDTO addRoomToReservation(UUID reservationId, UUID roomId) {
+    public ReservationRoomsResponseDTO addRoomToReservation(ReservationRoomRequestDTO request) {
 
-        Reservation reservation = reservationService.findWithRoomsByIdUndeleted(reservationId);
-        Room room = roomService.findRoomById(roomId);
+        Reservation reservation = reservationService.findWithRoomsByIdUndeleted(request.reservationId());
+        Room room = roomService.findRoomById(request.roomId());
         if (reservation.containsRoom(room)) {
             throw new InvalidRequestException("Cannot add room to reservation.");
         }
@@ -45,9 +47,9 @@ public class ReservationFacade {
     }
 
     @Transactional
-    public ReservationRoomsResponseDTO removeRoomFromReservation(UUID reservationId, UUID roomId) {
-        Reservation reservation = reservationService.findWithRoomsByIdUndeleted(reservationId);
-        Room room = roomService.findRoomById(roomId);
+    public ReservationRoomsResponseDTO removeRoomFromReservation(ReservationRoomRequestDTO request) {
+        Reservation reservation = reservationService.findWithRoomsByIdUndeleted(request.reservationId());
+        Room room = roomService.findRoomById(request.roomId());
         if (!reservation.containsRoom(room)) {
             throw new InvalidRequestException("Room not in reservation.");
         }
@@ -55,10 +57,11 @@ public class ReservationFacade {
         return reservationMapper.toReservationRoomsResponseDTO(reservation);
     }
 
+    //ToDO: Make it more adequate and make sure no customer is randomly kicked out.
     @Transactional
-    public ReservationCustomerResponseDTO addCustomerToReservation(UUID reservationId, UUID customerId) {
-        Reservation reservation = reservationService.findWithCustomerByIdUndeleted(reservationId);
-        Customer customer = customerService.findCustomerById(customerId);
+    public ReservationCustomerResponseDTO setReservationCustomer(ReservationCustomerRequestDTO request) {
+        Reservation reservation = reservationService.findWithCustomerByIdUndeleted(request.reservationId());
+        Customer customer = customerService.findCustomerById(request.customerId());
         if (reservation.hasCustomer(customer)) {
             throw new InvalidRequestException("Cannot add customer");
         }
@@ -66,20 +69,21 @@ public class ReservationFacade {
         return reservationMapper.toReservationCustomerResponseDTO(reservation);
     }
 
-    @Transactional
-    public ReservationCustomerResponseDTO removeCustomerFromReservation(UUID reservationId, UUID customerId) {
-        Reservation reservation = reservationService.findWithCustomerByIdUndeleted(reservationId);
-        Customer customer = customerService.findCustomerById(customerId);
-        if (!reservation.hasCustomer(customer)) {
-            throw new InvalidRequestException("Customer not in reservation.");
-        }
-        reservation.unsetCustomer(customer);
-        return reservationMapper.toReservationCustomerResponseDTO(reservation);
-    }
+//    @Transactional
+//    public ReservationCustomerResponseDTO removeCustomerFromReservation(UUID reservationId, UUID customerId) {
+//        Reservation reservation = reservationService.findWithCustomerByIdUndeleted(reservationId);
+//        Customer customer = customerService.findCustomerById(customerId);
+//        if (!reservation.hasCustomer(customer)) {
+//            throw new InvalidRequestException("Customer not in reservation.");
+//        }
+//        reservation.unsetCustomer(customer);
+//        return reservationMapper.toReservationCustomerResponseDTO(reservation);
+//    }
 
     @Transactional
     public ReservationResponseDTO addReservation(ReservationRequestDTO request) {
-        return reservationService.addReservation(request);
+        Customer customer = customerService.findCustomerById(request.customerId());
+        return reservationService.addReservation(request, customer);
     }
 
 

@@ -4,7 +4,7 @@ import org.ghotel.ghotel.dto.request.EmployeeRequestDTO;
 import org.ghotel.ghotel.dto.response.DeletedDTO;
 import org.ghotel.ghotel.dto.response.EmployeeResponseDTO;
 import org.ghotel.ghotel.entity.Employee;
-import org.ghotel.ghotel.exception.InvalidDataException;
+import org.ghotel.ghotel.exception.InvalidRequestException;
 import org.ghotel.ghotel.exception.ResourceNotFoundException;
 import org.ghotel.ghotel.mapper.EmployeeMapper;
 import org.ghotel.ghotel.repository.EmployeeRepository;
@@ -30,7 +30,7 @@ public class EmployeeService {
     @Transactional
     public EmployeeResponseDTO addEmployee(EmployeeRequestDTO request) {
         if (employeeRepository.existsByUsername(request.username())) {
-            throw new InvalidDataException
+            throw new InvalidRequestException
                     ("Invalid username.");
         }
         Employee employee = employeeMapper.toEmployeeEntity(request);

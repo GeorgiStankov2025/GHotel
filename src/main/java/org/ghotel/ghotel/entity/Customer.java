@@ -42,11 +42,9 @@ public class Customer extends BaseEntity {
 
     public void addReservation(Reservation reservation) {
         this.reservations.add(reservation);
-        reservation.setCustomer(this);
     }
 
     public void removeReservation(Reservation reservation) {
         this.reservations.remove(reservation);
-        reservation.setCustomer(null);
     }
 }

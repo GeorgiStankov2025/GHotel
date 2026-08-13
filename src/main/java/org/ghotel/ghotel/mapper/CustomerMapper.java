@@ -8,13 +8,14 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 
-@Mapper(componentModel = "spring", uses = {ReservationMapper.class})
+@Mapper(componentModel = "spring")
 public interface CustomerMapper {
 
     Customer toCustomerEntity(CustomerRequestDTO request);
 
     CustomerResponseDTO toCustomerResponseDTO(Customer customer);
 
+    @Mapping(source = ".", target = "customer")
     CustomerReservationsResponseDTO toCustomerReservationsResponseDTO(Customer customer);
 
     Customer updateCustomer(CustomerRequestDTO request, @MappingTarget Customer customer);

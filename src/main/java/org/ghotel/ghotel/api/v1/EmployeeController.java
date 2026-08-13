@@ -3,6 +3,7 @@ package org.ghotel.ghotel.api.v1;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import org.ghotel.ghotel.dto.request.EmployeeRequestDTO;
+import org.ghotel.ghotel.dto.response.DeletedDTO;
 import org.ghotel.ghotel.dto.response.EmployeeResponseDTO;
 import org.ghotel.ghotel.service.EmployeeService;
 import org.springframework.http.HttpStatus;
@@ -57,9 +58,9 @@ public class EmployeeController {
 
     @DeleteMapping("/{id}")
     @Operation(description = "Delete employee.")
-    public ResponseEntity<EmployeeResponseDTO> deleteEmployee(
+    public ResponseEntity<DeletedDTO> deleteEmployee(
             @PathVariable UUID id) {
-        EmployeeResponseDTO response = employeeService.deleteEmployee(id);
+        DeletedDTO response = employeeService.deleteEmployee(id);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }

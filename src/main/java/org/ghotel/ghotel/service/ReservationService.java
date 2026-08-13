@@ -2,6 +2,7 @@ package org.ghotel.ghotel.service;
 
 import org.ghotel.ghotel.dto.request.ReservationRequestDTO;
 import org.ghotel.ghotel.dto.response.*;
+import org.ghotel.ghotel.entity.Customer;
 import org.ghotel.ghotel.entity.Reservation;
 import org.ghotel.ghotel.exception.ResourceNotFoundException;
 import org.ghotel.ghotel.mapper.ReservationMapper;
@@ -26,13 +27,14 @@ public class ReservationService {
     }
 
     @Transactional
-    public ReservationResponseDTO addReservation(ReservationRequestDTO request) {
+    public ReservationResponseDTO addReservation(ReservationRequestDTO request, Customer customer) {
         Reservation reservation = reservationMapper.toReservationEntity(request);
+        reservation.setCustomer(customer);
         Reservation saved = reservationRepository.save(reservation);
         return reservationMapper.toReservationResponseDTO(saved);
     }
 
-
+    //ToDo:Implement a DTO for editReservation which does not include customerId or else it blows.
     @Transactional
     public ReservationResponseDTO editReservation(UUID id, ReservationRequestDTO request) {
 

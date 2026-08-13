@@ -47,7 +47,20 @@ public class Reservation extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id")
+    //ToDo: Soft delete case fix.
+    // If a customer is deleted this reservation has big problems.
     private Customer customer;
+
+    public Reservation(
+            String details,
+            OffsetDateTime checkIn,
+            OffsetDateTime checkOut,
+            Customer customer) {
+        this.details = details;
+        this.checkIn = checkIn;
+        this.checkOut = checkOut;
+        this.customer = customer;
+    }
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
@@ -56,6 +69,7 @@ public class Reservation extends BaseEntity {
             inverseJoinColumns = @JoinColumn(name = "room_id")
     )
     @Setter(AccessLevel.NONE)
+    //ToDo: Soft delete case fix. If a room is deleted it should not appear here.
     private List<Room> rooms = new ArrayList<>();
 
     public List<Room> getRooms() {

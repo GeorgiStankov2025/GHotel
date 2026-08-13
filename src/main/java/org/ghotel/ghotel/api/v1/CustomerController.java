@@ -6,6 +6,7 @@ import jakarta.validation.Valid;
 import org.ghotel.ghotel.dto.request.CustomerRequestDTO;
 import org.ghotel.ghotel.dto.response.CustomerReservationsResponseDTO;
 import org.ghotel.ghotel.dto.response.CustomerResponseDTO;
+import org.ghotel.ghotel.dto.response.DeletedDTO;
 import org.ghotel.ghotel.service.CustomerService;
 import org.springframework.context.annotation.Description;
 import org.springframework.http.HttpStatus;
@@ -42,11 +43,11 @@ public class CustomerController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}/rooms")
-    @Operation(description = "Get customer with id including the rooms taken by him.")
-    public ResponseEntity<CustomerRoomsResponse> getCustomerWithRoomsById(
+    @GetMapping("/{id}/reservations")
+    @Operation(description = "Get customer with id including the reservations made by him.")
+    public ResponseEntity<CustomerReservationsResponseDTO> getCustomerWithReservationsById(
             @PathVariable UUID id) {
-        CustomerRoomsResponse response = customerService.getCustomerWithRoomsById(id);
+        CustomerReservationsResponseDTO response = customerService.getCustomerWithReservationsById(id);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
@@ -75,9 +76,9 @@ public class CustomerController {
 
     @DeleteMapping("/{id}")
     @Operation(description = "Delete customer.")
-    public ResponseEntity<CustomerResponseDTO> deleteCustomer(
+    public ResponseEntity<DeletedDTO> deleteCustomer(
             @PathVariable UUID id) {
-        CustomerResponseDTO response = customerService.deleteCustomer(id);
+        DeletedDTO response = customerService.deleteCustomer(id);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }
