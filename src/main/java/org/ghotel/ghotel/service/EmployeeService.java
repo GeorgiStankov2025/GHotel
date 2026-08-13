@@ -1,14 +1,17 @@
 package org.ghotel.ghotel.service;
 
 import org.ghotel.ghotel.dto.request.EmployeeRequestDTO;
+import org.ghotel.ghotel.dto.response.DeletedDTO;
 import org.ghotel.ghotel.dto.response.EmployeeResponseDTO;
 import org.ghotel.ghotel.entity.Employee;
-import org.ghotel.ghotel.exception.EmployeeException;
+import org.ghotel.ghotel.exception.InvalidDataException;
+import org.ghotel.ghotel.exception.ResourceNotFoundException;
+import org.ghotel.ghotel.mapper.EmployeeMapper;
 import org.ghotel.ghotel.repository.EmployeeRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -27,12 +30,12 @@ public class EmployeeService {
     @Transactional
     public EmployeeResponseDTO addEmployee(EmployeeRequestDTO request) {
         if (employeeRepository.existsByUsername(request.username())) {
-            throw new EmployeeException
+            throw new InvalidDataException
                     ("Invalid username.");
         }
-        Employee employee = employeeMapper.toEntity(request);
+        Employee employee = employeeMapper.toEmployeeEntity(request);
         Employee saved = employeeRepository.save(employee);
-        return employeeMapper.toResponse(saved);
+        return employeeMapper.toEmployeeResponseDTO(saved);
     }
 
 
@@ -40,34 +43,34 @@ public class EmployeeService {
     public EmployeeResponseDTO editEmployee(UUID id, EmployeeRequestDTO request) {
 
         Employee employee = findByIdUndeleted(id);
-        employee = employeeMapper.changeEmployee(request, employee);
-        return employeeMapper.toResponse(employee);
+        employee = employeeMapper.updateEmployee(request, employee);
+        return employeeMapper.toEmployeeResponseDTO(employee);
     }
 
     @Transactional
-    public EmployeeResponseDTO deleteEmployee(UUID id) {
+    public DeletedDTO deleteEmployee(UUID id) {
         Employee employee = findByIdUndeleted(id);
-        employee.setUpdatedAt(LocalDateTime.now());
+        employee.setUpdatedAt(OffsetDateTime.now());
         employee.setDeleted(true);
-        return employeeMapper.toResponse(employee);
+        return new DeletedDTO("Resource deleted successfully.");
     }
 
     public EmployeeResponseDTO getEmployeeById(UUID id) {
         Employee employee = findByIdUndeleted(id);
-        return employeeMapper.toResponse(employee);
+        return employeeMapper.toEmployeeResponseDTO(employee);
     }
 
     public List<EmployeeResponseDTO> getAllEmployees() {
         List<Employee> employees = employeeRepository.getAllByDeletedFalse();
         return employees.stream()
-                .map(employeeMapper::toResponse)
+                .map(employeeMapper::toEmployeeResponseDTO)
                 .toList();
     }
 
     private Employee findByIdUndeleted(UUID id) {
         return employeeRepository.getEmployeeByIdAndDeletedFalse(id)
                 .orElseThrow(() ->
-                        new EmployeeException("Employee not found."));
+                        new ResourceNotFoundException("Employee not found."));
     }
 
 }

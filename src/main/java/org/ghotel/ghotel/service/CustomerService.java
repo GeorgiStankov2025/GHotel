@@ -1,14 +1,17 @@
 package org.ghotel.ghotel.service;
 
 import org.ghotel.ghotel.dto.request.CustomerRequestDTO;
+import org.ghotel.ghotel.dto.response.CustomerReservationsResponseDTO;
 import org.ghotel.ghotel.dto.response.CustomerResponseDTO;
+import org.ghotel.ghotel.dto.response.DeletedDTO;
 import org.ghotel.ghotel.entity.Customer;
-import org.ghotel.ghotel.exception.CustomerException;
+import org.ghotel.ghotel.exception.ResourceNotFoundException;
+import org.ghotel.ghotel.mapper.CustomerMapper;
 import org.ghotel.ghotel.repository.CustomerRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -27,57 +30,57 @@ public class CustomerService {
 
     @Transactional
     public CustomerResponseDTO addCustomer(CustomerRequestDTO request) {
-        Customer customer = customerMapper.toEntity(request);
+        Customer customer = customerMapper.toCustomerEntity(request);
         Customer saved = customerRepository.save(customer);
-        return customerMapper.toCustomerResponse(saved);
+        return customerMapper.toCustomerResponseDTO(saved);
     }
 
     public CustomerResponseDTO getCustomerById(UUID id) {
         Customer customer = findCustomerById(id);
-        return customerMapper.toCustomerResponse(customer);
+        return customerMapper.toCustomerResponseDTO(customer);
     }
 
     public List<CustomerResponseDTO> getAllCustomers() {
         List<Customer> customers = customerRepository.getAllByDeletedFalse();
         return customers
                 .stream()
-                .map(customerMapper::toCustomerResponse)
+                .map(customerMapper::toCustomerResponseDTO)
                 .toList();
     }
 
-    public CustomerRoomsResponse getCustomerWithRoomsById(UUID id) {
-        Customer customer = customerRepository.getWithRoomsByIdAndDeletedFalse(id)
+    public CustomerReservationsResponseDTO getCustomerWithReservationsById(UUID id) {
+        Customer customer = customerRepository.getWithReservationsByIdAndDeletedFalse(id)
                 .orElseThrow(() ->
-                        new CustomerException("Customer not found."));
-        return customerMapper.toCustomerRoomsResponse(customer);
+                        new ResourceNotFoundException("Customer not found."));
+        return customerMapper.toCustomerReservationsResponseDTO(customer);
     }
 
-    public List<CustomerRoomsResponse> getAllCustomersWithRooms() {
-        List<Customer> customers = customerRepository.getAllWithRoomsByDeletedFalse();
+    public List<CustomerReservationsResponseDTO> getAllCustomersWithReservations() {
+        List<Customer> customers = customerRepository.getAllWithReservationsByDeletedFalse();
         return customers
                 .stream()
-                .map(customerMapper::toCustomerRoomsResponse)
+                .map(customerMapper::toCustomerReservationsResponseDTO)
                 .toList();
     }
 
     @Transactional
     public CustomerResponseDTO editCustomer(UUID id, CustomerRequestDTO request) {
         Customer customer = findCustomerById(id);
-        customer = customerMapper.changeCustomer(customer, request);
-        return customerMapper.toCustomerResponse(customer);
+        customer = customerMapper.updateCustomer(request, customer);
+        return customerMapper.toCustomerResponseDTO(customer);
     }
 
     @Transactional
-    public CustomerResponseDTO deleteCustomer(UUID id) {
+    public DeletedDTO deleteCustomer(UUID id) {
         Customer customer = findCustomerById(id);
-        customer.setUpdatedAt(LocalDateTime.now());
+        customer.setUpdatedAt(OffsetDateTime.now());
         customer.setDeleted(true);
-        return customerMapper.toCustomerResponse(customer);
+        return new DeletedDTO("Resource deleted successfully.");
     }
 
-    private Customer findCustomerById(UUID id) {
+    public Customer findCustomerById(UUID id) {
         return customerRepository.getByIdAndDeletedFalse(id)
                 .orElseThrow(() ->
-                        new CustomerException("Customer not found."));
+                        new ResourceNotFoundException("Customer not found."));
     }
 }

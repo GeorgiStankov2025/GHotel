@@ -1,8 +1,7 @@
 package org.ghotel.ghotel.api.error;
 
-import org.ghotel.ghotel.exception.CustomerException;
-import org.ghotel.ghotel.exception.EmployeeException;
-import org.ghotel.ghotel.exception.RoomException;
+import org.ghotel.ghotel.exception.InvalidDataException;
+import org.ghotel.ghotel.exception.ResourceNotFoundException;
 import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +15,8 @@ import java.time.LocalDateTime;
 @RestControllerAdvice
 public class ApiExceptionHandler {
 
+    //ToDO: Appropriate exception handling for updated exception classes.
+    // Return error messages with ProblemDetails as well as validation error messages fixes.
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ApiError> handleValidationExceptions(MethodArgumentNotValidException ex) {
 
@@ -28,7 +29,7 @@ public class ApiExceptionHandler {
         return new ResponseEntity<>(apiError, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler({CustomerException.class, RoomException.class, EmployeeException.class})
+    @ExceptionHandler({CustomerException.class, ResourceNotFoundException.class, InvalidDataException.class})
     public ResponseEntity<ApiError> handleNotFoundExceptions(RuntimeException ex) {
         ApiError apiError = new ApiError(
                 HttpStatus.NOT_FOUND,

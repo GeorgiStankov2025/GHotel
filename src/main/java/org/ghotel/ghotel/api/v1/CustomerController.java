@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 
 import org.ghotel.ghotel.dto.request.CustomerRequestDTO;
+import org.ghotel.ghotel.dto.response.CustomerReservationsResponseDTO;
 import org.ghotel.ghotel.dto.response.CustomerResponseDTO;
 import org.ghotel.ghotel.service.CustomerService;
 import org.springframework.context.annotation.Description;
@@ -56,10 +57,10 @@ public class CustomerController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @GetMapping("/rooms")
-    @Operation(description = "Get all customers including their rooms.")
-    public ResponseEntity<List<CustomerRoomsResponse>> getAllCustomersWithRooms() {
-        List<CustomerRoomsResponse> response = customerService.getAllCustomersWithRooms();
+    @GetMapping("/reservations")
+    @Operation(description = "Get all customers including their reservations.")
+    public ResponseEntity<List<CustomerReservationsResponseDTO>> getAllCustomersWithReservations() {
+        List<CustomerReservationsResponseDTO> response = customerService.getAllCustomersWithReservations();
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 

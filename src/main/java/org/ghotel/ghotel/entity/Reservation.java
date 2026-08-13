@@ -72,4 +72,21 @@ public class Reservation extends BaseEntity {
         room.removeReservation(this);
     }
 
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+        customer.addReservation(this);
+    }
+
+    public void unsetCustomer(Customer customer) {
+        this.customer = null;
+        customer.removeReservation(this);
+    }
+
+    public boolean containsRoom(Room room) {
+        return this.rooms.contains(room);
+    }
+
+    public boolean hasCustomer(Customer customer) {
+        return this.customer.equals(customer);
+    }
 }
