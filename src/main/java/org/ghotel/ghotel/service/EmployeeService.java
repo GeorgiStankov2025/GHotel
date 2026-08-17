@@ -40,7 +40,6 @@ public class EmployeeService {
 
     @Transactional
     public EmployeeResponseDTO editEmployee(UUID id, EmployeeRequestDTO request) {
-
         Employee employee = findByIdUndeleted(id);
         employee = employeeMapper.updateEmployee(request, employee);
         return employeeMapper.toEmployeeResponseDTO(employee);
@@ -58,8 +57,15 @@ public class EmployeeService {
         return employeeMapper.toEmployeeResponseDTO(employee);
     }
 
-    public List<EmployeeResponseDTO> getAllEmployees() {
+    public List<EmployeeResponseDTO> getEmployees() {
         List<Employee> employees = employeeRepository.getAllByDeletedFalse();
+        return employees.stream()
+                .map(employeeMapper::toEmployeeResponseDTO)
+                .toList();
+    }
+
+    public List<EmployeeResponseDTO> getAllEmployees() {
+        List<Employee> employees = employeeRepository.findAll();
         return employees.stream()
                 .map(employeeMapper::toEmployeeResponseDTO)
                 .toList();
@@ -70,5 +76,7 @@ public class EmployeeService {
                 .orElseThrow(() ->
                         new ResourceNotFoundException("Employee not found."));
     }
+
+
 
 }

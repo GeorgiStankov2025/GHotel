@@ -7,6 +7,7 @@ import org.ghotel.ghotel.dto.request.ReservationCustomerRequestDTO;
 import org.ghotel.ghotel.dto.request.ReservationRequestDTO;
 import org.ghotel.ghotel.dto.request.ReservationRoomRequestDTO;
 import org.ghotel.ghotel.dto.response.*;
+import org.ghotel.ghotel.service.ReservationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,9 +20,11 @@ import java.util.UUID;
 public class ReservationsController {
 
     private final ReservationFacade reservationFacade;
+    private final ReservationService reservationService;
 
-    public ReservationsController(ReservationFacade reservationFacade) {
+    public ReservationsController(ReservationFacade reservationFacade, ReservationService reservationService) {
         this.reservationFacade = reservationFacade;
+        this.reservationService = reservationService;
     }
 
     @PostMapping
@@ -37,7 +40,7 @@ public class ReservationsController {
     @Operation(description = "Get reservation by id.")
     public ResponseEntity<ReservationResponseDTO> getReservationById(
             @PathVariable UUID id) {
-        ReservationResponseDTO response = reservationFacade.getReservationById(id);
+        ReservationResponseDTO response = reservationService.getReservationById(id);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
@@ -45,7 +48,7 @@ public class ReservationsController {
     @Operation(description = "Get reservation by id with customer.")
     public ResponseEntity<ReservationCustomerResponseDTO> getReservationWithCustomerById(
             @PathVariable UUID id) {
-        ReservationCustomerResponseDTO response = reservationFacade.getReservationWithCustomerById(id);
+        ReservationCustomerResponseDTO response = reservationService.getReservationWithCustomerById(id);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
@@ -53,7 +56,7 @@ public class ReservationsController {
     @Operation(description = "Get reservation by id with rooms.")
     public ResponseEntity<ReservationRoomsResponseDTO> getReservationWithRoomsById(
             @PathVariable UUID id) {
-        ReservationRoomsResponseDTO response = reservationFacade.getReservationWithRoomsById(id);
+        ReservationRoomsResponseDTO response = reservationService.getReservationWithRoomsById(id);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
@@ -61,38 +64,69 @@ public class ReservationsController {
     @Operation(description = "Get reservation by id with rooms and customer.")
     public ResponseEntity<ReservationRoomsCustomerResponseDTO> getReservationWithRoomsAndCustomerById(
             @PathVariable UUID id) {
-        ReservationRoomsCustomerResponseDTO response = reservationFacade.getReservationWithRoomsAndCustomerById(id);
+        ReservationRoomsCustomerResponseDTO response = reservationService.getReservationWithRoomsAndCustomerById(id);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @GetMapping
     @Operation(description = "Get all reservations.")
-    public ResponseEntity<List<ReservationResponseDTO>> getAllReservations() {
-        List<ReservationResponseDTO> response = reservationFacade.getAllReservations();
+    public ResponseEntity<List<ReservationResponseDTO>> getReservations() {
+        List<ReservationResponseDTO> response = reservationService.getReservations();
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @GetMapping("/customer")
     @Operation(description = "Get all reservations with customer.")
-    public ResponseEntity<List<ReservationCustomerResponseDTO>> getAllReservationsWithCustomer() {
+    public ResponseEntity<List<ReservationCustomerResponseDTO>> getReservationsWithCustomer() {
         List<ReservationCustomerResponseDTO> response =
-                reservationFacade.getAllReservationsWithCustomer();
+                reservationService.getReservationsWithCustomer();
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @GetMapping("/rooms")
     @Operation(description = "Get all reservations with rooms.")
-    public ResponseEntity<List<ReservationRoomsResponseDTO>> getAllReservationsWithRooms() {
+    public ResponseEntity<List<ReservationRoomsResponseDTO>> getReservationsWithRooms() {
         List<ReservationRoomsResponseDTO> response =
-                reservationFacade.getAllReservationsWithRooms();
+                reservationService.getReservationsWithRooms();
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @GetMapping("/details")
-    @Operation(description = "Get all reservations with rooms.")
+    @Operation(description = "Get all reservations with rooms and customer.")
+    public ResponseEntity<List<ReservationRoomsCustomerResponseDTO>> getReservationsWithRoomsAndCustomer() {
+        List<ReservationRoomsCustomerResponseDTO> response =
+                reservationService.getReservationsWithRoomsAndCustomer();
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("/all")
+    @Operation(description = "Get all reservations including the soft deleted ones.")
+    public ResponseEntity<List<ReservationResponseDTO>> getAllReservations() {
+        List<ReservationResponseDTO> response = reservationService.getAllReservations();
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("/all/customer")
+    @Operation(description = "Get all reservations with customer including the soft deleted ones.")
+    public ResponseEntity<List<ReservationCustomerResponseDTO>> getAllReservationsWithCustomer() {
+        List<ReservationCustomerResponseDTO> response =
+                reservationService.getAllReservationsWithCustomer();
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("/all/rooms")
+    @Operation(description = "Get all reservations with rooms including the soft deleted ones.")
+    public ResponseEntity<List<ReservationRoomsResponseDTO>> getAllReservationsWithRooms() {
+        List<ReservationRoomsResponseDTO> response =
+                reservationService.getAllReservationsWithRooms();
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("/all/details")
+    @Operation(description = "Get all reservations with rooms and customer including the soft deleted ones.")
     public ResponseEntity<List<ReservationRoomsCustomerResponseDTO>> getAllReservationsWithRoomsAndCustomer() {
         List<ReservationRoomsCustomerResponseDTO> response =
-                reservationFacade.getAllReservationsWithRoomsAndCustomer();
+                reservationService.getAllReservationsWithRoomsAndCustomer();
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
@@ -101,7 +135,7 @@ public class ReservationsController {
     public ResponseEntity<ReservationResponseDTO> editReservation(
             @PathVariable UUID id,
             @Valid @RequestBody ReservationRequestDTO request) {
-        ReservationResponseDTO response = reservationFacade.editReservation(id, request);
+        ReservationResponseDTO response = reservationService.editReservation(id, request);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
@@ -109,7 +143,7 @@ public class ReservationsController {
     @Operation(description = "Delete reservation.")
     public ResponseEntity<DeletedDTO> deleteReservation(
             @PathVariable UUID id) {
-        DeletedDTO response = reservationFacade.deleteReservation(id);
+        DeletedDTO response = reservationService.deleteReservation(id);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 

@@ -3,7 +3,9 @@ package org.ghotel.ghotel.application;
 import org.ghotel.ghotel.dto.request.ReservationCustomerRequestDTO;
 import org.ghotel.ghotel.dto.request.ReservationRequestDTO;
 import org.ghotel.ghotel.dto.request.ReservationRoomRequestDTO;
-import org.ghotel.ghotel.dto.response.*;
+import org.ghotel.ghotel.dto.response.ReservationCustomerResponseDTO;
+import org.ghotel.ghotel.dto.response.ReservationResponseDTO;
+import org.ghotel.ghotel.dto.response.ReservationRoomsResponseDTO;
 import org.ghotel.ghotel.entity.Customer;
 import org.ghotel.ghotel.entity.Reservation;
 import org.ghotel.ghotel.entity.Room;
@@ -14,9 +16,6 @@ import org.ghotel.ghotel.service.ReservationService;
 import org.ghotel.ghotel.service.RoomService;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-import java.util.UUID;
 
 @Component
 @Transactional(readOnly = true)
@@ -84,53 +83,6 @@ public class ReservationFacade {
     public ReservationResponseDTO addReservation(ReservationRequestDTO request) {
         Customer customer = customerService.findCustomerById(request.customerId());
         return reservationService.addReservation(request, customer);
-    }
-
-
-    @Transactional
-    public ReservationResponseDTO editReservation(UUID id, ReservationRequestDTO request) {
-        return reservationService.editReservation(id, request);
-    }
-
-    @Transactional
-    public DeletedDTO deleteReservation(UUID id) {
-        return reservationService.deleteReservation(id);
-    }
-
-    //Reservation fields only
-    public ReservationResponseDTO getReservationById(UUID id) {
-        return reservationService.getReservationById(id);
-    }
-
-    public List<ReservationResponseDTO> getAllReservations() {
-        return reservationService.getAllReservations();
-    }
-
-    //With customer
-    public ReservationCustomerResponseDTO getReservationWithCustomerById(UUID id) {
-        return reservationService.getReservationWithCustomerById(id);
-    }
-
-    public List<ReservationCustomerResponseDTO> getAllReservationsWithCustomer() {
-        return reservationService.getAllReservationsWithCustomer();
-    }
-
-    //With rooms
-    public ReservationRoomsResponseDTO getReservationWithRoomsById(UUID id) {
-        return reservationService.getReservationWithRoomsById(id);
-    }
-
-    public List<ReservationRoomsResponseDTO> getAllReservationsWithRooms() {
-        return reservationService.getAllReservationsWithRooms();
-    }
-
-    //With rooms and customer.
-    public ReservationRoomsCustomerResponseDTO getReservationWithRoomsAndCustomerById(UUID id) {
-        return reservationService.getReservationWithRoomsAndCustomerById(id);
-    }
-
-    public List<ReservationRoomsCustomerResponseDTO> getAllReservationsWithRoomsAndCustomer() {
-        return reservationService.getAllReservationsWithRoomsAndCustomer();
     }
 
 }

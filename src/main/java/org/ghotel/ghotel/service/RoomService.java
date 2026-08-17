@@ -28,7 +28,6 @@ public class RoomService {
         this.roomMapper = roomMapper;
     }
 
-    //ToDo: Room number must be unique. Implement logic for that.
     @Transactional
     public RoomResponseDTO addRoom(RoomRequestDTO request) {
         if (roomRepository.existsByRoomNumber(request.roomNumber())) {
@@ -44,7 +43,7 @@ public class RoomService {
         return roomMapper.toRoomResponseDTO(room);
     }
 
-    public List<RoomResponseDTO> getAllRooms() {
+    public List<RoomResponseDTO> getRooms() {
         List<Room> rooms = roomRepository.getAllByDeletedFalse();
         return rooms
                 .stream()
@@ -62,8 +61,24 @@ public class RoomService {
         return roomMapper.toRoomReservationsResponseDTO(room);
     }
 
-    public List<RoomReservationsResponseDTO> getAllRoomsWithReservations() {
+    public List<RoomReservationsResponseDTO> getRoomsWithReservations() {
         List<Room> rooms = roomRepository.getAllWithReservationsByDeletedFalse();
+        return rooms
+                .stream()
+                .map(roomMapper::toRoomReservationsResponseDTO)
+                .toList();
+    }
+
+    public List<RoomResponseDTO> getAllRooms() {
+        List<Room> rooms = roomRepository.findAll();
+        return rooms
+                .stream()
+                .map(roomMapper::toRoomResponseDTO)
+                .toList();
+    }
+
+    public List<RoomReservationsResponseDTO> getAllRoomsWithReservations() {
+        List<Room> rooms = roomRepository.getAllWithReservationsBy();
         return rooms
                 .stream()
                 .map(roomMapper::toRoomReservationsResponseDTO)

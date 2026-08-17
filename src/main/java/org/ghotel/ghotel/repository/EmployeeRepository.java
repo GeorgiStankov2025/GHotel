@@ -9,14 +9,18 @@ import java.util.UUID;
 
 public interface EmployeeRepository extends JpaRepository<Employee, UUID> {
 
+    //Not deleted
     Optional<Employee> getEmployeeByIdAndDeletedFalse(UUID id);
 
     List<Employee> getAllByDeletedFalse();
 
-    boolean existsByUsername(String username);
-
+    //Deleted
     Optional<Employee> getEmployeeByIdAndDeletedTrue(UUID id);
 
     List<Employee> getAllByDeletedTrue();
 
+    //All
+    boolean existsByUsername(String username);
+
+//    List<Employee> getAll();
 }

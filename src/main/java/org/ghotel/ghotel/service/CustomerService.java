@@ -11,7 +11,6 @@ import org.ghotel.ghotel.repository.CustomerRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -40,7 +39,7 @@ public class CustomerService {
         return customerMapper.toCustomerResponseDTO(customer);
     }
 
-    public List<CustomerResponseDTO> getAllCustomers() {
+    public List<CustomerResponseDTO> getCustomers() {
         List<Customer> customers = customerRepository.getAllByDeletedFalse();
         return customers
                 .stream()
@@ -55,8 +54,24 @@ public class CustomerService {
         return customerMapper.toCustomerReservationsResponseDTO(customer);
     }
 
-    public List<CustomerReservationsResponseDTO> getAllCustomersWithReservations() {
+    public List<CustomerReservationsResponseDTO> getCustomersWithReservations() {
         List<Customer> customers = customerRepository.getAllWithReservationsByDeletedFalse();
+        return customers
+                .stream()
+                .map(customerMapper::toCustomerReservationsResponseDTO)
+                .toList();
+    }
+
+    public List<CustomerResponseDTO> getAllCustomers() {
+        List<Customer> customers = customerRepository.findAll();
+        return customers
+                .stream()
+                .map(customerMapper::toCustomerResponseDTO)
+                .toList();
+    }
+
+    public List<CustomerReservationsResponseDTO> getAllCustomersWithReservations() {
+        List<Customer> customers = customerRepository.findAllWithReservationsBy();
         return customers
                 .stream()
                 .map(customerMapper::toCustomerReservationsResponseDTO)

@@ -58,7 +58,7 @@ public class ReservationService {
         return reservationMapper.toReservationResponseDTO(reservation);
     }
 
-    public List<ReservationResponseDTO> getAllReservations() {
+    public List<ReservationResponseDTO> getReservations() {
         List<Reservation> reservations = reservationRepository.getReservationsByDeletedFalse();
         return reservations.stream()
                 .map(reservationMapper::toReservationResponseDTO)
@@ -71,7 +71,7 @@ public class ReservationService {
         return reservationMapper.toReservationCustomerResponseDTO(reservation);
     }
 
-    public List<ReservationCustomerResponseDTO> getAllReservationsWithCustomer() {
+    public List<ReservationCustomerResponseDTO> getReservationsWithCustomer() {
         List<Reservation> reservations =
                 reservationRepository.getReservationsAndCustomerByDeletedFalse();
         return reservations.stream()
@@ -85,7 +85,7 @@ public class ReservationService {
         return reservationMapper.toReservationRoomsResponseDTO(reservation);
     }
 
-    public List<ReservationRoomsResponseDTO> getAllReservationsWithRooms() {
+    public List<ReservationRoomsResponseDTO> getReservationsWithRooms() {
         List<Reservation> reservations =
                 reservationRepository.getReservationsAndRoomsByDeletedFalse();
         return reservations.stream()
@@ -99,9 +99,41 @@ public class ReservationService {
         return reservationMapper.toReservationRoomsCustomerResponseDTO(reservation);
     }
 
-    public List<ReservationRoomsCustomerResponseDTO> getAllReservationsWithRoomsAndCustomer() {
+    public List<ReservationRoomsCustomerResponseDTO> getReservationsWithRoomsAndCustomer() {
         List<Reservation> reservations =
                 reservationRepository.getReservationsAndRoomsAndCustomerByDeletedFalse();
+        return reservations.stream()
+                .map(reservationMapper::toReservationRoomsCustomerResponseDTO)
+                .toList();
+    }
+
+    //All.
+    public List<ReservationResponseDTO> getAllReservations() {
+        List<Reservation> reservations = reservationRepository.findAll();
+        return reservations.stream()
+                .map(reservationMapper::toReservationResponseDTO)
+                .toList();
+    }
+
+    public List<ReservationCustomerResponseDTO> getAllReservationsWithCustomer() {
+        List<Reservation> reservations =
+                reservationRepository.getReservationsAndCustomerBy();
+        return reservations.stream()
+                .map(reservationMapper::toReservationCustomerResponseDTO)
+                .toList();
+    }
+
+    public List<ReservationRoomsResponseDTO> getAllReservationsWithRooms() {
+        List<Reservation> reservations =
+                reservationRepository.getReservationsAndRoomsBy();
+        return reservations.stream()
+                .map(reservationMapper::toReservationRoomsResponseDTO)
+                .toList();
+    }
+
+    public List<ReservationRoomsCustomerResponseDTO> getAllReservationsWithRoomsAndCustomer() {
+        List<Reservation> reservations =
+                reservationRepository.getReservationsAndRoomsAndCustomerBy();
         return reservations.stream()
                 .map(reservationMapper::toReservationRoomsCustomerResponseDTO)
                 .toList();

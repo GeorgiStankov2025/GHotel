@@ -42,6 +42,13 @@ public class EmployeeController {
 
     @GetMapping
     @Operation(description = "Get all employees.")
+    public ResponseEntity<List<EmployeeResponseDTO>> getEmployees() {
+        List<EmployeeResponseDTO> response = employeeService.getEmployees();
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("/all")
+    @Operation(description = "Get all employees including soft deleted ones.")
     public ResponseEntity<List<EmployeeResponseDTO>> getAllEmployees() {
         List<EmployeeResponseDTO> response = employeeService.getAllEmployees();
         return new ResponseEntity<>(response, HttpStatus.OK);

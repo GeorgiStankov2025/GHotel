@@ -53,18 +53,31 @@ public class CustomerController {
 
     @GetMapping
     @Operation(description = "Get all customers.")
-    public ResponseEntity<List<CustomerResponseDTO>> getAllCustomers() {
-        List<CustomerResponseDTO> response = customerService.getAllCustomers();
+    public ResponseEntity<List<CustomerResponseDTO>> getCustomers() {
+        List<CustomerResponseDTO> response = customerService.getCustomers();
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @GetMapping("/reservations")
     @Operation(description = "Get all customers including their reservations.")
+    public ResponseEntity<List<CustomerReservationsResponseDTO>> getCustomersWithReservations() {
+        List<CustomerReservationsResponseDTO> response = customerService.getCustomersWithReservations();
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("/all")
+    @Operation(description = "Get all customers including soft deleted ones.")
+    public ResponseEntity<List<CustomerResponseDTO>> getAllCustomers() {
+        List<CustomerResponseDTO> response = customerService.getAllCustomers();
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("/all/reservations")
+    @Operation(description = "Get all customers including their reservations including soft deleted ones.")
     public ResponseEntity<List<CustomerReservationsResponseDTO>> getAllCustomersWithReservations() {
         List<CustomerReservationsResponseDTO> response = customerService.getAllCustomersWithReservations();
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
-
     @PutMapping("/{id}")
     @Operation(description = "Edit customer information.")
     public ResponseEntity<CustomerResponseDTO> editCustomer(

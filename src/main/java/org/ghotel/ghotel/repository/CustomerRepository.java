@@ -10,6 +10,7 @@ import java.util.UUID;
 
 public interface CustomerRepository extends JpaRepository<Customer, UUID> {
 
+    //Not deleted.
     Optional<Customer> getByIdAndDeletedFalse(UUID id);
 
     List<Customer> getAllByDeletedFalse();
@@ -20,8 +21,8 @@ public interface CustomerRepository extends JpaRepository<Customer, UUID> {
     @EntityGraph(value = "Customer.reservations")
     List<Customer> getAllWithReservationsByDeletedFalse();
 
+    //Deleted.
     Optional<Customer> getByIdAndDeletedTrue(UUID id);
-
     List<Customer> getAllByDeletedTrue();
 
     @EntityGraph(value = "Customer.reservations")
@@ -29,4 +30,10 @@ public interface CustomerRepository extends JpaRepository<Customer, UUID> {
 
     @EntityGraph(value = "Customer.reservations")
     List<Customer> getAllWithReservationsByDeletedTrue();
+
+    //All.
+    //List<Customer> getCustomers();
+
+    @EntityGraph(value = "Customer.reservations")
+    List<Customer> findAllWithReservationsBy();
 }

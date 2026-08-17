@@ -22,7 +22,6 @@ import java.util.List;
 )
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Room extends BaseEntity {
-    //ToDo: Room number must be unique. Implement logic for that.
     @Column(name = "room_number", nullable = false, unique = true)
     private long roomNumber;
 

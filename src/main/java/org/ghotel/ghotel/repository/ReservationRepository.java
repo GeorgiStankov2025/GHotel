@@ -54,4 +54,16 @@ public interface ReservationRepository extends JpaRepository<Reservation, UUID> 
 
     @EntityGraph(value = "Reservation.roomsAndCustomer")
     List<Reservation> getReservationsAndRoomsAndCustomerByDeletedTrue();
+
+    //All.
+    //List<Reservation> getReservations();
+
+    @EntityGraph(value = "Reservation.customer")
+    List<Reservation> getReservationsAndCustomerBy();
+
+    @EntityGraph(value = "Reservation.rooms")
+    List<Reservation> getReservationsAndRoomsBy();
+
+    @EntityGraph(value = "Reservation.roomsAndCustomer")
+    List<Reservation> getReservationsAndRoomsAndCustomerBy();
 }

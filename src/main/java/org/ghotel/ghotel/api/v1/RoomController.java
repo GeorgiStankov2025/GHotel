@@ -50,13 +50,27 @@ public class RoomController {
 
     @GetMapping
     @Operation(description = "Get all rooms.")
-    public ResponseEntity<List<RoomResponseDTO>> getAllRooms() {
-        List<RoomResponseDTO> response = roomService.getAllRooms();
+    public ResponseEntity<List<RoomResponseDTO>> getRooms() {
+        List<RoomResponseDTO> response = roomService.getRooms();
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @GetMapping("/reservations")
     @Operation(description = "Get all rooms with their reservations.")
+    public ResponseEntity<List<RoomReservationsResponseDTO>> getRoomsWithReservations() {
+        List<RoomReservationsResponseDTO> response = roomService.getRoomsWithReservations();
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("/all")
+    @Operation(description = "Get all rooms including soft deleted ones.")
+    public ResponseEntity<List<RoomResponseDTO>> getAllRooms() {
+        List<RoomResponseDTO> response = roomService.getAllRooms();
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("/all/reservations")
+    @Operation(description = "Get all rooms with their reservations including soft deleted ones.")
     public ResponseEntity<List<RoomReservationsResponseDTO>> getAllRoomsWithReservations() {
         List<RoomReservationsResponseDTO> response = roomService.getAllRoomsWithReservations();
         return new ResponseEntity<>(response, HttpStatus.OK);
