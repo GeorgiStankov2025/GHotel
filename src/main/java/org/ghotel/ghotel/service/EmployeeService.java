@@ -11,7 +11,6 @@ import org.ghotel.ghotel.repository.EmployeeRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -50,7 +49,6 @@ public class EmployeeService {
     @Transactional
     public DeletedDTO deleteEmployee(UUID id) {
         Employee employee = findByIdUndeleted(id);
-        employee.setUpdatedAt(OffsetDateTime.now());
         employee.setDeleted(true);
         return new DeletedDTO("Resource deleted successfully.");
     }

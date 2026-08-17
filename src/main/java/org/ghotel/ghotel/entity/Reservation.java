@@ -48,7 +48,7 @@ public class Reservation extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id")
     //ToDo: Soft delete case fix.
-    // If a customer is deleted this reservation has big problems.
+    // Defining behavior for when a customer is deleted.
     private Customer customer;
 
     public Reservation(

@@ -10,7 +10,6 @@ import org.ghotel.ghotel.repository.ReservationRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -21,7 +20,10 @@ public class ReservationService {
     private final ReservationRepository reservationRepository;
     private final ReservationMapper reservationMapper;
 
-    public ReservationService(ReservationRepository reservationRepository, ReservationMapper reservationMapper) {
+    public ReservationService(
+            ReservationRepository reservationRepository,
+            ReservationMapper reservationMapper
+    ) {
         this.reservationRepository = reservationRepository;
         this.reservationMapper = reservationMapper;
     }
@@ -34,7 +36,7 @@ public class ReservationService {
         return reservationMapper.toReservationResponseDTO(saved);
     }
 
-    //ToDo:Implement a DTO for editReservation which does not include customerId or else it blows.
+    //ToDo:Implement a DTO for editReservation which does not include customerId.
     @Transactional
     public ReservationResponseDTO editReservation(UUID id, ReservationRequestDTO request) {
 
@@ -46,7 +48,6 @@ public class ReservationService {
     @Transactional
     public DeletedDTO deleteReservation(UUID id) {
         Reservation reservation = findByIdUndeleted(id);
-        reservation.setUpdatedAt(OffsetDateTime.now());
         reservation.setDeleted(true);
         return new DeletedDTO("Resource deleted successfully.");
     }
@@ -71,7 +72,8 @@ public class ReservationService {
     }
 
     public List<ReservationCustomerResponseDTO> getAllReservationsWithCustomer() {
-        List<Reservation> reservations = reservationRepository.getReservationsAndCustomerByDeletedFalse();
+        List<Reservation> reservations =
+                reservationRepository.getReservationsAndCustomerByDeletedFalse();
         return reservations.stream()
                 .map(reservationMapper::toReservationCustomerResponseDTO)
                 .toList();
@@ -84,7 +86,8 @@ public class ReservationService {
     }
 
     public List<ReservationRoomsResponseDTO> getAllReservationsWithRooms() {
-        List<Reservation> reservations = reservationRepository.getReservationsAndRoomsByDeletedFalse();
+        List<Reservation> reservations =
+                reservationRepository.getReservationsAndRoomsByDeletedFalse();
         return reservations.stream()
                 .map(reservationMapper::toReservationRoomsResponseDTO)
                 .toList();
@@ -97,17 +100,12 @@ public class ReservationService {
     }
 
     public List<ReservationRoomsCustomerResponseDTO> getAllReservationsWithRoomsAndCustomer() {
-        List<Reservation> reservations = reservationRepository.getReservationsAndRoomsAndCustomerByDeletedFalse();
+        List<Reservation> reservations =
+                reservationRepository.getReservationsAndRoomsAndCustomerByDeletedFalse();
         return reservations.stream()
                 .map(reservationMapper::toReservationRoomsCustomerResponseDTO)
                 .toList();
     }
-
-    /*
-    ToDo:
-     Add room add and remove logic, as well as customer add and remove logic.
-     */
-
 
     private Reservation findByIdUndeleted(UUID id) {
         return reservationRepository.getReservationByIdAndDeletedFalse(id)

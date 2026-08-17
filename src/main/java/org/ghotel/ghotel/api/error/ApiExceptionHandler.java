@@ -17,9 +17,6 @@ import java.util.Map;
 
 @RestControllerAdvice
 public class ApiExceptionHandler {
-
-    //ToDO: Appropriate exception handling for updated exception classes.
-    // Return error messages with ProblemDetails as well as validation error messages fixes.
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ProblemDetail> handleValidationExceptions(MethodArgumentNotValidException ex) {
 

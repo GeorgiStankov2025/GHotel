@@ -5,6 +5,7 @@ import org.ghotel.ghotel.dto.response.DeletedDTO;
 import org.ghotel.ghotel.dto.response.RoomReservationsResponseDTO;
 import org.ghotel.ghotel.dto.response.RoomResponseDTO;
 import org.ghotel.ghotel.entity.Room;
+import org.ghotel.ghotel.exception.InvalidRequestException;
 import org.ghotel.ghotel.exception.ResourceNotFoundException;
 import org.ghotel.ghotel.mapper.RoomMapper;
 import org.ghotel.ghotel.repository.RoomRepository;
@@ -30,6 +31,9 @@ public class RoomService {
     //ToDo: Room number must be unique. Implement logic for that.
     @Transactional
     public RoomResponseDTO addRoom(RoomRequestDTO request) {
+        if (roomRepository.existsByRoomNumber(request.roomNumber())) {
+            throw new InvalidRequestException("Cannot add room.");
+        }
         Room room = roomMapper.toRoomEntity(request);
         Room saved = roomRepository.save(room);
         return roomMapper.toRoomResponseDTO(saved);
@@ -47,6 +51,11 @@ public class RoomService {
                 .map(roomMapper::toRoomResponseDTO)
                 .toList();
     }
+    //int pesho = 3;
+//    Stream<Room> rooms2=rooms.stream()
+//            .filter(x -> x.getRoomCapacity() == pesho)
+//            .peek(x->System.out.println(x.getRoomNumber()));
+//        return null;
 
     public RoomReservationsResponseDTO getRoomWithReservationById(UUID id) {
         Room room = findRoomWithReservationsById(id);

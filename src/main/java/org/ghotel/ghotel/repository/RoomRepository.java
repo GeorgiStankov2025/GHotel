@@ -30,4 +30,5 @@ public interface RoomRepository extends JpaRepository<Room, UUID> {
     @EntityGraph(value = "Room.reservations")
     List<Room> getAllWithReservationsByDeletedTrue();
 
+    boolean existsByRoomNumber(long roomNumber);
 }

@@ -3,15 +3,19 @@ package org.ghotel.ghotel.entity.base;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.SoftDelete;
 import org.hibernate.annotations.UuidGenerator;
 import org.hibernate.proxy.HibernateProxy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.time.LocalDateTime;
-import java.time.OffsetDateTime;
+import java.time.Instant;
 import java.util.UUID;
 
 @MappedSuperclass
 @Getter
+@EntityListeners(AuditingEntityListener.class)
 public abstract class BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -22,12 +26,14 @@ public abstract class BaseEntity {
     @Version
     private Long version;
 
+    @CreatedDate
     @Column(name = "created_at", nullable = false)
-    private OffsetDateTime createdAt = OffsetDateTime.now();
+    private Instant createdAt = Instant.now();
 
+    @LastModifiedDate
     @Setter
     @Column(name = "modified_at", nullable = false)
-    private OffsetDateTime updatedAt = OffsetDateTime.now();
+    private Instant updatedAt = Instant.now();
 
     @Setter
     @Column(name = "deleted", nullable = false)

@@ -75,21 +75,24 @@ public class ReservationsController {
     @GetMapping("/customer")
     @Operation(description = "Get all reservations with customer.")
     public ResponseEntity<List<ReservationCustomerResponseDTO>> getAllReservationsWithCustomer() {
-        List<ReservationCustomerResponseDTO> response = reservationFacade.getAllReservationsWithCustomer();
+        List<ReservationCustomerResponseDTO> response =
+                reservationFacade.getAllReservationsWithCustomer();
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @GetMapping("/rooms")
     @Operation(description = "Get all reservations with rooms.")
     public ResponseEntity<List<ReservationRoomsResponseDTO>> getAllReservationsWithRooms() {
-        List<ReservationRoomsResponseDTO> response = reservationFacade.getAllReservationsWithRooms();
+        List<ReservationRoomsResponseDTO> response =
+                reservationFacade.getAllReservationsWithRooms();
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @GetMapping("/details")
     @Operation(description = "Get all reservations with rooms.")
     public ResponseEntity<List<ReservationRoomsCustomerResponseDTO>> getAllReservationsWithRoomsAndCustomer() {
-        List<ReservationRoomsCustomerResponseDTO> response = reservationFacade.getAllReservationsWithRoomsAndCustomer();
+        List<ReservationRoomsCustomerResponseDTO> response =
+                reservationFacade.getAllReservationsWithRoomsAndCustomer();
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 

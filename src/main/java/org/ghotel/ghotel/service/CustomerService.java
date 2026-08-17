@@ -73,7 +73,6 @@ public class CustomerService {
     @Transactional
     public DeletedDTO deleteCustomer(UUID id) {
         Customer customer = findCustomerById(id);
-        customer.setUpdatedAt(OffsetDateTime.now());
         customer.setDeleted(true);
         return new DeletedDTO("Resource deleted successfully.");
     }
