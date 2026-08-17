@@ -130,12 +130,12 @@ public class CustomerService {
     public Customer findCustomerById(UUID id) {
         return customerRepository.getByIdAndDeletedFalse(id)
                 .orElseThrow(() ->
-                        new ResourceNotFoundException("Customer not found."));
+                        new ResourceNotFoundException("Customer not found with id: "+id));
     }
 
     public Customer findDeletedCustomerById(UUID id) {
         return customerRepository.getByIdAndDeletedTrue(id)
                 .orElseThrow(() ->
-                        new ResourceNotFoundException("Customer not found."));
+                        new ResourceNotFoundException("Customer not found with id: "+id));
     }
 }

@@ -134,23 +134,23 @@ public class RoomService {
 
     public Room findRoomById(UUID id) {
         return roomRepository.getRoomByIdAndDeletedFalse(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Room not found."));
+                .orElseThrow(() -> new ResourceNotFoundException("Room not found with id: " + id));
     }
 
     private Room findRoomWithReservationsById(UUID id) {
         return roomRepository.getRoomAndReservationsByIdAndDeletedFalse(id)
                 .orElseThrow(() ->
-                        new ResourceNotFoundException("Room not found."));
+                        new ResourceNotFoundException("Room not found with id: " + id));
     }
 
     public Room findDeletedRoomById(UUID id) {
         return roomRepository.getRoomByIdAndDeletedTrue(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Room not found."));
+                .orElseThrow(() -> new ResourceNotFoundException("Room not found with id: " + id));
     }
 
     private Room findDeletedRoomWithReservationsById(UUID id) {
         return roomRepository.getRoomAndReservationsByIdAndDeletedTrue(id)
                 .orElseThrow(() ->
-                        new ResourceNotFoundException("Room not found."));
+                        new ResourceNotFoundException("Room not found with id: " + id));
     }
 }

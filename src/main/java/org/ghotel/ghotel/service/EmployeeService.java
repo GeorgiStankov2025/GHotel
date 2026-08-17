@@ -93,13 +93,13 @@ public class EmployeeService {
     private Employee findById(UUID id) {
         return employeeRepository.getEmployeeByIdAndDeletedFalse(id)
                 .orElseThrow(() ->
-                        new ResourceNotFoundException("Employee not found."));
+                        new ResourceNotFoundException("Employee not found with id: " + id));
     }
 
     private Employee findByIdDeleted(UUID id) {
         return employeeRepository.getEmployeeByIdAndDeletedTrue(id)
                 .orElseThrow(() ->
-                        new ResourceNotFoundException("Employee not found."));
+                        new ResourceNotFoundException("Employee not found with id: " + id));
     }
 
 }

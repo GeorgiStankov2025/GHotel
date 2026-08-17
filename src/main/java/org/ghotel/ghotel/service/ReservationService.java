@@ -205,48 +205,48 @@ public class ReservationService {
     private Reservation findById(UUID id) {
         return reservationRepository.getReservationByIdAndDeletedFalse(id)
                 .orElseThrow(() ->
-                        new ResourceNotFoundException("Reservation not found."));
+                        new ResourceNotFoundException("Reservation not found with id: " + id));
     }
 
     public Reservation findWithCustomerById(UUID id) {
         return reservationRepository.getReservationAndCustomerByIdAndDeletedFalse(id)
                 .orElseThrow(() ->
-                        new ResourceNotFoundException("Reservation not found."));
+                        new ResourceNotFoundException("Reservation not found with id: " + id));
     }
 
     public Reservation findWithRoomsById(UUID id) {
         return reservationRepository.getReservationAndRoomsByIdAndDeletedFalse(id)
                 .orElseThrow(() ->
-                        new ResourceNotFoundException("Reservation not found."));
+                        new ResourceNotFoundException("Reservation not found with id: " + id));
     }
 
     private Reservation findWithRoomsAndCustomerByI(UUID id) {
         return reservationRepository.getReservationAndRoomsAndCustomerByIdAndDeletedFalse(id)
                 .orElseThrow(() ->
-                        new ResourceNotFoundException("Reservation not found."));
+                        new ResourceNotFoundException("Reservation not found with id: " + id));
     }
 
     private Reservation findByIdDeleted(UUID id) {
         return reservationRepository.getReservationByIdAndDeletedTrue(id)
                 .orElseThrow(() ->
-                        new ResourceNotFoundException("Reservation not found."));
+                        new ResourceNotFoundException("Reservation not found with id: " + id));
     }
 
     public Reservation findWithCustomerByIdDeleted(UUID id) {
         return reservationRepository.getReservationAndCustomerByIdAndDeletedTrue(id)
                 .orElseThrow(() ->
-                        new ResourceNotFoundException("Reservation not found."));
+                        new ResourceNotFoundException("Reservation not found with id: " + id));
     }
 
     public Reservation findWithRoomsByIdDeleted(UUID id) {
         return reservationRepository.getReservationAndRoomsByIdAndDeletedTrue(id)
                 .orElseThrow(() ->
-                        new ResourceNotFoundException("Reservation not found."));
+                        new ResourceNotFoundException("Reservation not found with id: " + id));
     }
 
     private Reservation findWithRoomsAndCustomerByIdDeleted(UUID id) {
         return reservationRepository.getReservationAndRoomsAndCustomerByIdAndDeletedTrue(id)
                 .orElseThrow(() ->
-                        new ResourceNotFoundException("Reservation not found."));
+                        new ResourceNotFoundException("Reservation not found with id: " + id));
     }
 }
