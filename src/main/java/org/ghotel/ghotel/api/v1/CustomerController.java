@@ -65,6 +65,36 @@ public class CustomerController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    @GetMapping("/deleted/{id}")
+    @Operation(description = "Get customer by id.")
+    public ResponseEntity<CustomerResponseDTO> getDeletedCustomerById(
+            @PathVariable UUID id) {
+        CustomerResponseDTO response = customerService.getDeletedCustomerById(id);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("/deleted/{id}/reservations")
+    @Operation(description = "Get customer with id including the reservations made by him.")
+    public ResponseEntity<CustomerReservationsResponseDTO> getDeletedCustomerWithReservationsById(
+            @PathVariable UUID id) {
+        CustomerReservationsResponseDTO response = customerService.getDeletedCustomerWithReservationsById(id);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("/deleted")
+    @Operation(description = "Get all customers.")
+    public ResponseEntity<List<CustomerResponseDTO>> getDeletedCustomers() {
+        List<CustomerResponseDTO> response = customerService.getDeletedCustomers();
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("/deleted/reservations")
+    @Operation(description = "Get all customers including their reservations.")
+    public ResponseEntity<List<CustomerReservationsResponseDTO>> getDeletedCustomersWithReservations() {
+        List<CustomerReservationsResponseDTO> response = customerService.getDeletedCustomersWithReservations();
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
     @GetMapping("/all")
     @Operation(description = "Get all customers including soft deleted ones.")
     public ResponseEntity<List<CustomerResponseDTO>> getAllCustomers() {

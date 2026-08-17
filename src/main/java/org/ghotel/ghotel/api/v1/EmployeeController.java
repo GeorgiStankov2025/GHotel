@@ -47,6 +47,21 @@ public class EmployeeController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    @GetMapping("/deleted/{id}")
+    @Operation(description = "Get deleted employee by id.")
+    public ResponseEntity<EmployeeResponseDTO> getDeletedEmployeeById(
+            @PathVariable UUID id) {
+        EmployeeResponseDTO response = employeeService.getDeletedEmployeeById(id);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("/deleted")
+    @Operation(description = "Get all deleted employees.")
+    public ResponseEntity<List<EmployeeResponseDTO>> getDeletedEmployees() {
+        List<EmployeeResponseDTO> response = employeeService.getDeletedEmployees();
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
     @GetMapping("/all")
     @Operation(description = "Get all employees including soft deleted ones.")
     public ResponseEntity<List<EmployeeResponseDTO>> getAllEmployees() {

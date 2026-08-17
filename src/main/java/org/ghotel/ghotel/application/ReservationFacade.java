@@ -56,7 +56,6 @@ public class ReservationFacade {
         return reservationMapper.toReservationRoomsResponseDTO(reservation);
     }
 
-    //ToDO: Make sure no customer is randomly removed/replaced.
     @Transactional
     public ReservationCustomerResponseDTO setReservationCustomer(ReservationCustomerRequestDTO request) {
         Reservation reservation = reservationService.findWithCustomerByIdUndeleted(request.reservationId());

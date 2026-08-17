@@ -78,6 +78,34 @@ public class CustomerService {
                 .toList();
     }
 
+    public CustomerResponseDTO getDeletedCustomerById(UUID id) {
+        Customer customer = findDeletedCustomerById(id);
+        return customerMapper.toCustomerResponseDTO(customer);
+    }
+
+    public List<CustomerResponseDTO> getDeletedCustomers() {
+        List<Customer> customers = customerRepository.getAllByDeletedTrue();
+        return customers
+                .stream()
+                .map(customerMapper::toCustomerResponseDTO)
+                .toList();
+    }
+
+    public CustomerReservationsResponseDTO getDeletedCustomerWithReservationsById(UUID id) {
+        Customer customer = customerRepository.getWithReservationsByIdAndDeletedTrue(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Customer not found."));
+        return customerMapper.toCustomerReservationsResponseDTO(customer);
+    }
+
+    public List<CustomerReservationsResponseDTO> getDeletedCustomersWithReservations() {
+        List<Customer> customers = customerRepository.getAllWithReservationsByDeletedTrue();
+        return customers
+                .stream()
+                .map(customerMapper::toCustomerReservationsResponseDTO)
+                .toList();
+    }
+
     @Transactional
     public CustomerResponseDTO editCustomer(UUID id, CustomerRequestDTO request) {
         Customer customer = findCustomerById(id);
@@ -94,6 +122,12 @@ public class CustomerService {
 
     public Customer findCustomerById(UUID id) {
         return customerRepository.getByIdAndDeletedFalse(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Customer not found."));
+    }
+
+    public Customer findDeletedCustomerById(UUID id) {
+        return customerRepository.getByIdAndDeletedTrue(id)
                 .orElseThrow(() ->
                         new ResourceNotFoundException("Customer not found."));
     }

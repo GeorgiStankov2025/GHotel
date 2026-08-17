@@ -139,6 +139,61 @@ public class ReservationService {
                 .toList();
     }
 
+    //Soft deleted
+    //Reservation fields only
+    public ReservationResponseDTO getDeletedReservationById(UUID id) {
+        Reservation reservation = findByIdDeleted(id);
+        return reservationMapper.toReservationResponseDTO(reservation);
+    }
+
+    public List<ReservationResponseDTO> getDeletedReservations() {
+        List<Reservation> reservations = reservationRepository.getReservationsByDeletedTrue();
+        return reservations.stream()
+                .map(reservationMapper::toReservationResponseDTO)
+                .toList();
+    }
+
+    //With customer
+    public ReservationCustomerResponseDTO getDeletedReservationWithCustomerById(UUID id) {
+        Reservation reservation = findWithCustomerByIdDeleted(id);
+        return reservationMapper.toReservationCustomerResponseDTO(reservation);
+    }
+
+    public List<ReservationCustomerResponseDTO> getDeletedReservationsWithCustomer() {
+        List<Reservation> reservations =
+                reservationRepository.getReservationsAndCustomerByDeletedTrue();
+        return reservations.stream()
+                .map(reservationMapper::toReservationCustomerResponseDTO)
+                .toList();
+    }
+
+    //With rooms
+    public ReservationRoomsResponseDTO getDeletedReservationWithRoomsById(UUID id) {
+        Reservation reservation = findWithRoomsByIdDeleted(id);
+        return reservationMapper.toReservationRoomsResponseDTO(reservation);
+    }
+
+    public List<ReservationRoomsResponseDTO> getDeletedReservationsWithRooms() {
+        List<Reservation> reservations =
+                reservationRepository.getReservationsAndRoomsByDeletedTrue();
+        return reservations.stream()
+                .map(reservationMapper::toReservationRoomsResponseDTO)
+                .toList();
+    }
+
+    //With rooms and customer.
+    public ReservationRoomsCustomerResponseDTO getDeletedReservationWithRoomsAndCustomerById(UUID id) {
+        Reservation reservation = findWithRoomsAndCustomerByIdDeleted(id);
+        return reservationMapper.toReservationRoomsCustomerResponseDTO(reservation);
+    }
+
+    public List<ReservationRoomsCustomerResponseDTO> getDeletedReservationsWithRoomsAndCustomer() {
+        List<Reservation> reservations =
+                reservationRepository.getReservationsAndRoomsAndCustomerByDeletedTrue();
+        return reservations.stream()
+                .map(reservationMapper::toReservationRoomsCustomerResponseDTO)
+                .toList();
+    }
     private Reservation findByIdUndeleted(UUID id) {
         return reservationRepository.getReservationByIdAndDeletedFalse(id)
                 .orElseThrow(() ->
@@ -159,6 +214,30 @@ public class ReservationService {
 
     private Reservation findWithRoomsAndCustomerByIdUndeleted(UUID id) {
         return reservationRepository.getReservationAndRoomsAndCustomerByIdAndDeletedFalse(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Reservation not found."));
+    }
+
+    private Reservation findByIdDeleted(UUID id) {
+        return reservationRepository.getReservationByIdAndDeletedTrue(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Reservation not found."));
+    }
+
+    public Reservation findWithCustomerByIdDeleted(UUID id) {
+        return reservationRepository.getReservationAndCustomerByIdAndDeletedTrue(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Reservation not found."));
+    }
+
+    public Reservation findWithRoomsByIdDeleted(UUID id) {
+        return reservationRepository.getReservationAndRoomsByIdAndDeletedTrue(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Reservation not found."));
+    }
+
+    private Reservation findWithRoomsAndCustomerByIdDeleted(UUID id) {
+        return reservationRepository.getReservationAndRoomsAndCustomerByIdAndDeletedTrue(id)
                 .orElseThrow(() ->
                         new ResourceNotFoundException("Reservation not found."));
     }

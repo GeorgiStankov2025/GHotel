@@ -99,6 +99,68 @@ public class ReservationsController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    @GetMapping("/deleted/{id}")
+    @Operation(description = "Get reservation by id.")
+    public ResponseEntity<ReservationResponseDTO> getDeletedReservationById(
+            @PathVariable UUID id) {
+        ReservationResponseDTO response = reservationService.getDeletedReservationById(id);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("/deleted/{id}/customer")
+    @Operation(description = "Get reservation by id with customer.")
+    public ResponseEntity<ReservationCustomerResponseDTO> getDeletedReservationWithCustomerById(
+            @PathVariable UUID id) {
+        ReservationCustomerResponseDTO response = reservationService.getDeletedReservationWithCustomerById(id);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("/deleted/{id}/rooms")
+    @Operation(description = "Get reservation by id with rooms.")
+    public ResponseEntity<ReservationRoomsResponseDTO> getDeletedReservationWithRoomsById(
+            @PathVariable UUID id) {
+        ReservationRoomsResponseDTO response = reservationService.getDeletedReservationWithRoomsById(id);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("/deleted/{id}/details")
+    @Operation(description = "Get reservation by id with rooms and customer.")
+    public ResponseEntity<ReservationRoomsCustomerResponseDTO> getDeletedReservationWithRoomsAndCustomerById(
+            @PathVariable UUID id) {
+        ReservationRoomsCustomerResponseDTO response = reservationService.getDeletedReservationWithRoomsAndCustomerById(id);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("/deleted")
+    @Operation(description = "Get all reservations.")
+    public ResponseEntity<List<ReservationResponseDTO>> getDeletedReservations() {
+        List<ReservationResponseDTO> response = reservationService.getDeletedReservations();
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("/deleted/customer")
+    @Operation(description = "Get all reservations with customer.")
+    public ResponseEntity<List<ReservationCustomerResponseDTO>> getDeletedReservationsWithCustomer() {
+        List<ReservationCustomerResponseDTO> response =
+                reservationService.getDeletedReservationsWithCustomer();
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("/deleted/rooms")
+    @Operation(description = "Get all reservations with rooms.")
+    public ResponseEntity<List<ReservationRoomsResponseDTO>> getDeletedReservationsWithRooms() {
+        List<ReservationRoomsResponseDTO> response =
+                reservationService.getDeletedReservationsWithRooms();
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("/deleted/details")
+    @Operation(description = "Get all reservations with rooms and customer.")
+    public ResponseEntity<List<ReservationRoomsCustomerResponseDTO>> getDeletedReservationsWithRoomsAndCustomer() {
+        List<ReservationRoomsCustomerResponseDTO> response =
+                reservationService.getDeletedReservationsWithRoomsAndCustomer();
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
     @GetMapping("/all")
     @Operation(description = "Get all reservations including the soft deleted ones.")
     public ResponseEntity<List<ReservationResponseDTO>> getAllReservations() {

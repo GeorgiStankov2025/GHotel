@@ -71,12 +71,28 @@ public class EmployeeService {
                 .toList();
     }
 
+    public EmployeeResponseDTO getDeletedEmployeeById(UUID id) {
+        Employee employee = findByIdDeleted(id);
+        return employeeMapper.toEmployeeResponseDTO(employee);
+    }
+
+    public List<EmployeeResponseDTO> getDeletedEmployees() {
+        List<Employee> employees = employeeRepository.getAllByDeletedTrue();
+        return employees.stream()
+                .map(employeeMapper::toEmployeeResponseDTO)
+                .toList();
+    }
+
     private Employee findByIdUndeleted(UUID id) {
         return employeeRepository.getEmployeeByIdAndDeletedFalse(id)
                 .orElseThrow(() ->
                         new ResourceNotFoundException("Employee not found."));
     }
 
-
+    private Employee findByIdDeleted(UUID id) {
+        return employeeRepository.getEmployeeByIdAndDeletedTrue(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Employee not found."));
+    }
 
 }
