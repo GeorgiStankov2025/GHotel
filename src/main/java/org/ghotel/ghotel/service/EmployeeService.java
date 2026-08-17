@@ -40,20 +40,27 @@ public class EmployeeService {
 
     @Transactional
     public EmployeeResponseDTO editEmployee(UUID id, EmployeeRequestDTO request) {
-        Employee employee = findByIdUndeleted(id);
+        Employee employee = findById(id);
         employee = employeeMapper.updateEmployee(request, employee);
         return employeeMapper.toEmployeeResponseDTO(employee);
     }
 
     @Transactional
     public DeletedDTO deleteEmployee(UUID id) {
-        Employee employee = findByIdUndeleted(id);
+        Employee employee = findById(id);
         employee.setDeleted(true);
         return new DeletedDTO("Resource deleted successfully.");
     }
 
+    @Transactional
+    public EmployeeResponseDTO restoreEmployee(UUID id) {
+        Employee employee = findByIdDeleted(id);
+        employee.setDeleted(false);
+        return employeeMapper.toEmployeeResponseDTO(employee);
+    }
+
     public EmployeeResponseDTO getEmployeeById(UUID id) {
-        Employee employee = findByIdUndeleted(id);
+        Employee employee = findById(id);
         return employeeMapper.toEmployeeResponseDTO(employee);
     }
 
@@ -83,7 +90,7 @@ public class EmployeeService {
                 .toList();
     }
 
-    private Employee findByIdUndeleted(UUID id) {
+    private Employee findById(UUID id) {
         return employeeRepository.getEmployeeByIdAndDeletedFalse(id)
                 .orElseThrow(() ->
                         new ResourceNotFoundException("Employee not found."));

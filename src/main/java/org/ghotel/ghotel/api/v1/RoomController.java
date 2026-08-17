@@ -123,4 +123,12 @@ public class RoomController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    @PatchMapping("/{id}/restore")
+    @Operation(description = "Restore room.")
+    public ResponseEntity<RoomResponseDTO> restoreRoom(
+            @PathVariable UUID id) {
+        RoomResponseDTO response = roomService.restoreRoom(id);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
 }

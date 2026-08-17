@@ -209,6 +209,14 @@ public class ReservationsController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    @PatchMapping("/{id}/restore")
+    @Operation(description = "Restore reservation.")
+    public ResponseEntity<ReservationResponseDTO> restoreReservation(
+            @PathVariable UUID id) {
+        ReservationResponseDTO response = reservationService.restoreReservation(id);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
     @PostMapping("/rooms")
     @Operation(description = "Add room to reservation")
     public ResponseEntity<ReservationRoomsResponseDTO> addRoomToReservation(

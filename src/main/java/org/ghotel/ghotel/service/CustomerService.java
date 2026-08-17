@@ -120,6 +120,13 @@ public class CustomerService {
         return new DeletedDTO("Resource deleted successfully.");
     }
 
+    @Transactional
+    public CustomerResponseDTO restoreCustomer(UUID id) {
+        Customer customer = findCustomerById(id);
+        customer.setDeleted(false);
+        return customerMapper.toCustomerResponseDTO(customer);
+    }
+
     public Customer findCustomerById(UUID id) {
         return customerRepository.getByIdAndDeletedFalse(id)
                 .orElseThrow(() ->

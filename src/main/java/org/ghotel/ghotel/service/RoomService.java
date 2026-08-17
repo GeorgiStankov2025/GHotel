@@ -99,6 +99,13 @@ public class RoomService {
         return new DeletedDTO("Resource deleted successfully.");
     }
 
+    @Transactional
+    public RoomResponseDTO restoreRoom(UUID id) {
+        Room room = findDeletedRoomById(id);
+        room.setDeleted(false);
+        return roomMapper.toRoomResponseDTO(room);
+    }
+
     public RoomResponseDTO getDeletedRoomById(UUID id) {
         Room room = findDeletedRoomById(id);
         return roomMapper.toRoomResponseDTO(room);

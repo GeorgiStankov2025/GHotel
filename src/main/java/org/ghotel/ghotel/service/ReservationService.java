@@ -40,21 +40,28 @@ public class ReservationService {
     @Transactional
     public ReservationResponseDTO editReservation(UUID id, ReservationRequestDTO request) {
 
-        Reservation reservation = findByIdUndeleted(id);
+        Reservation reservation = findById(id);
         reservation = reservationMapper.updateReservation(request, reservation);
         return reservationMapper.toReservationResponseDTO(reservation);
     }
 
     @Transactional
     public DeletedDTO deleteReservation(UUID id) {
-        Reservation reservation = findByIdUndeleted(id);
+        Reservation reservation = findById(id);
         reservation.setDeleted(true);
         return new DeletedDTO("Resource deleted successfully.");
     }
 
+    @Transactional
+    public ReservationResponseDTO restoreReservation(UUID id) {
+        Reservation reservation = findByIdDeleted(id);
+        reservation.setDeleted(false);
+        return reservationMapper.toReservationResponseDTO(reservation);
+    }
+
     //Reservation fields only
     public ReservationResponseDTO getReservationById(UUID id) {
-        Reservation reservation = findByIdUndeleted(id);
+        Reservation reservation = findById(id);
         return reservationMapper.toReservationResponseDTO(reservation);
     }
 
@@ -67,7 +74,7 @@ public class ReservationService {
 
     //With customer
     public ReservationCustomerResponseDTO getReservationWithCustomerById(UUID id) {
-        Reservation reservation = findWithCustomerByIdUndeleted(id);
+        Reservation reservation = findWithCustomerById(id);
         return reservationMapper.toReservationCustomerResponseDTO(reservation);
     }
 
@@ -81,7 +88,7 @@ public class ReservationService {
 
     //With rooms
     public ReservationRoomsResponseDTO getReservationWithRoomsById(UUID id) {
-        Reservation reservation = findWithRoomsByIdUndeleted(id);
+        Reservation reservation = findWithRoomsById(id);
         return reservationMapper.toReservationRoomsResponseDTO(reservation);
     }
 
@@ -95,7 +102,7 @@ public class ReservationService {
 
     //With rooms and customer.
     public ReservationRoomsCustomerResponseDTO getReservationWithRoomsAndCustomerById(UUID id) {
-        Reservation reservation = findWithRoomsAndCustomerByIdUndeleted(id);
+        Reservation reservation = findWithRoomsAndCustomerByI(id);
         return reservationMapper.toReservationRoomsCustomerResponseDTO(reservation);
     }
 
@@ -194,25 +201,26 @@ public class ReservationService {
                 .map(reservationMapper::toReservationRoomsCustomerResponseDTO)
                 .toList();
     }
-    private Reservation findByIdUndeleted(UUID id) {
+
+    private Reservation findById(UUID id) {
         return reservationRepository.getReservationByIdAndDeletedFalse(id)
                 .orElseThrow(() ->
                         new ResourceNotFoundException("Reservation not found."));
     }
 
-    public Reservation findWithCustomerByIdUndeleted(UUID id) {
+    public Reservation findWithCustomerById(UUID id) {
         return reservationRepository.getReservationAndCustomerByIdAndDeletedFalse(id)
                 .orElseThrow(() ->
                         new ResourceNotFoundException("Reservation not found."));
     }
 
-    public Reservation findWithRoomsByIdUndeleted(UUID id) {
+    public Reservation findWithRoomsById(UUID id) {
         return reservationRepository.getReservationAndRoomsByIdAndDeletedFalse(id)
                 .orElseThrow(() ->
                         new ResourceNotFoundException("Reservation not found."));
     }
 
-    private Reservation findWithRoomsAndCustomerByIdUndeleted(UUID id) {
+    private Reservation findWithRoomsAndCustomerByI(UUID id) {
         return reservationRepository.getReservationAndRoomsAndCustomerByIdAndDeletedFalse(id)
                 .orElseThrow(() ->
                         new ResourceNotFoundException("Reservation not found."));

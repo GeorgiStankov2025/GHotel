@@ -124,4 +124,12 @@ public class CustomerController {
         DeletedDTO response = customerService.deleteCustomer(id);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
+    @PatchMapping("/{id}/restore")
+    @Operation(description = "Restore customer.")
+    public ResponseEntity<CustomerResponseDTO> restoreCustomer(
+            @PathVariable UUID id) {
+        CustomerResponseDTO response = customerService.restoreCustomer(id);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 }

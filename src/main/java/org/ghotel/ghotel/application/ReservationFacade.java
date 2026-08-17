@@ -36,7 +36,7 @@ public class ReservationFacade {
     @Transactional
     public ReservationRoomsResponseDTO addRoomToReservation(ReservationRoomRequestDTO request) {
 
-        Reservation reservation = reservationService.findWithRoomsByIdUndeleted(request.reservationId());
+        Reservation reservation = reservationService.findWithRoomsById(request.reservationId());
         Room room = roomService.findRoomById(request.roomId());
         if (reservation.containsRoom(room)) {
             throw new InvalidRequestException("Cannot add room to reservation.");
@@ -47,7 +47,7 @@ public class ReservationFacade {
 
     @Transactional
     public ReservationRoomsResponseDTO removeRoomFromReservation(ReservationRoomRequestDTO request) {
-        Reservation reservation = reservationService.findWithRoomsByIdUndeleted(request.reservationId());
+        Reservation reservation = reservationService.findWithRoomsById(request.reservationId());
         Room room = roomService.findRoomById(request.roomId());
         if (!reservation.containsRoom(room)) {
             throw new InvalidRequestException("Room not in reservation.");
@@ -58,7 +58,7 @@ public class ReservationFacade {
 
     @Transactional
     public ReservationCustomerResponseDTO setReservationCustomer(ReservationCustomerRequestDTO request) {
-        Reservation reservation = reservationService.findWithCustomerByIdUndeleted(request.reservationId());
+        Reservation reservation = reservationService.findWithCustomerById(request.reservationId());
         Customer customer = customerService.findCustomerById(request.customerId());
         if (reservation.hasCustomer(customer)) {
             throw new InvalidRequestException("Cannot add customer");
@@ -69,7 +69,7 @@ public class ReservationFacade {
 
 //    @Transactional
 //    public ReservationCustomerResponseDTO removeCustomerFromReservation(UUID reservationId, UUID customerId) {
-//        Reservation reservation = reservationService.findWithCustomerByIdUndeleted(reservationId);
+//        Reservation reservation = reservationService.findWithCustomerById(reservationId);
 //        Customer customer = customerService.findCustomerById(customerId);
 //        if (!reservation.hasCustomer(customer)) {
 //            throw new InvalidRequestException("Customer not in reservation.");

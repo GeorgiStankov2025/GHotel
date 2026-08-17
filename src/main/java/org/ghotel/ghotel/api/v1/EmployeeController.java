@@ -85,4 +85,12 @@ public class EmployeeController {
         DeletedDTO response = employeeService.deleteEmployee(id);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
+    @PatchMapping("/{id}/restore")
+    @Operation(description = "Restore employee.")
+    public ResponseEntity<EmployeeResponseDTO> restoreEmployee(
+            @PathVariable UUID id) {
+        EmployeeResponseDTO response = employeeService.restoreEmployee(id);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 }
