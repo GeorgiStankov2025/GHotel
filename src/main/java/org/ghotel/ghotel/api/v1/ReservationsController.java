@@ -70,7 +70,8 @@ public class ReservationsController {
     @Operation(description = "Get reservation by id with rooms and customer.")
     public ResponseEntity<ReservationRoomsCustomerResponseDTO> getReservationWithRoomsAndCustomerById(
             @PathVariable UUID id) {
-        ReservationRoomsCustomerResponseDTO response = reservationService.getReservationWithRoomsAndCustomerById(id);
+        ReservationRoomsCustomerResponseDTO response = reservationService
+                .getReservationWithRoomsAndCustomerById(id);
         log.info("Found reservation with id: {} and its rooms and customer.", response.reservationId());
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -141,7 +142,8 @@ public class ReservationsController {
     @Operation(description = "Get reservation by id with rooms and customer.")
     public ResponseEntity<ReservationRoomsCustomerResponseDTO> getDeletedReservationWithRoomsAndCustomerById(
             @PathVariable UUID id) {
-        ReservationRoomsCustomerResponseDTO response = reservationService.getDeletedReservationWithRoomsAndCustomerById(id);
+        ReservationRoomsCustomerResponseDTO response =
+                reservationService.getDeletedReservationWithRoomsAndCustomerById(id);
         log.info("Found deleted reservation with id: {} and customer+rooms", response.reservationId());
         return new ResponseEntity<>(response, HttpStatus.OK);
     }

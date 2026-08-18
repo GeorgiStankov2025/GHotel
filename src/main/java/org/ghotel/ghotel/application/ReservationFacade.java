@@ -67,6 +67,12 @@ public class ReservationFacade {
         return reservationMapper.toReservationCustomerResponseDTO(reservation);
     }
 
+    @Transactional
+    public ReservationResponseDTO addReservation(ReservationRequestDTO request) {
+        Customer customer = customerService.findCustomerById(request.customerId());
+        return reservationService.addReservation(request, customer);
+    }
+
 //    @Transactional
 //    public ReservationCustomerResponseDTO removeCustomerFromReservation(UUID reservationId, UUID customerId) {
 //        Reservation reservation = reservationService.findWithCustomerById(reservationId);
@@ -76,12 +82,7 @@ public class ReservationFacade {
 //        }
 //        reservation.unsetCustomer(customer);
 //        return reservationMapper.toReservationCustomerResponseDTO(reservation);
-//    }
 
-    @Transactional
-    public ReservationResponseDTO addReservation(ReservationRequestDTO request) {
-        Customer customer = customerService.findCustomerById(request.customerId());
-        return reservationService.addReservation(request, customer);
-    }
+//    }
 
 }
