@@ -167,6 +167,7 @@ public class EmployeeServiceTest {
                 .thenReturn(true);
         InvalidRequestException exception = assertThrows(InvalidRequestException.class,
                 () -> employeeService.addEmployee(request));
+        assertEquals("Employee with username: " + request.username() + " already exists.",exception.getMessage());
         verify(employeeMapper, times(0)).toEmployeeEntity(request);
     }
 
