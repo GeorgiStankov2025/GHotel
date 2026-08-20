@@ -1,4 +1,4 @@
-package org.ghotel.ghotel.service;
+package org.ghotel.ghotel.service.room;
 
 import org.ghotel.ghotel.dto.request.RoomRequestDTO;
 import org.ghotel.ghotel.dto.response.DeletedDTO;
@@ -17,7 +17,7 @@ import java.util.UUID;
 
 @Service
 @Transactional(readOnly = true)
-public class RoomService {
+public class RoomService implements IRoomService {
     private final RoomRepository roomRepository;
     private final RoomMapper roomMapper;
 
@@ -29,6 +29,7 @@ public class RoomService {
     }
 
     @Transactional
+    @Override
     public RoomResponseDTO addRoom(RoomRequestDTO request) {
         if (roomRepository.existsByRoomNumber(request.roomNumber())) {
             throw new InvalidRequestException("Cannot add room.");
@@ -38,11 +39,13 @@ public class RoomService {
         return roomMapper.toRoomResponseDTO(saved);
     }
 
+    @Override
     public RoomResponseDTO getRoomById(UUID id) {
         Room room = findRoomById(id);
         return roomMapper.toRoomResponseDTO(room);
     }
 
+    @Override
     public List<RoomResponseDTO> getRooms() {
         List<Room> rooms = roomRepository.getAllByDeletedFalse();
         return rooms
@@ -56,11 +59,13 @@ public class RoomService {
 //            .peek(x->System.out.println(x.getRoomNumber()));
 //        return null;
 
+    @Override
     public RoomReservationsResponseDTO getRoomWithReservationById(UUID id) {
         Room room = findRoomWithReservationsById(id);
         return roomMapper.toRoomReservationsResponseDTO(room);
     }
 
+    @Override
     public List<RoomReservationsResponseDTO> getRoomsWithReservations() {
         List<Room> rooms = roomRepository.getAllWithReservationsByDeletedFalse();
         return rooms
@@ -69,6 +74,7 @@ public class RoomService {
                 .toList();
     }
 
+    @Override
     public List<RoomResponseDTO> getAllRooms() {
         List<Room> rooms = roomRepository.findAll();
         return rooms
@@ -77,6 +83,7 @@ public class RoomService {
                 .toList();
     }
 
+    @Override
     public List<RoomReservationsResponseDTO> getAllRoomsWithReservations() {
         List<Room> rooms = roomRepository.getAllWithReservationsBy();
         return rooms
@@ -86,6 +93,7 @@ public class RoomService {
     }
 
     @Transactional
+    @Override
     public RoomResponseDTO editRoom(UUID id, RoomRequestDTO request) {
         Room room = findRoomById(id);
         room = roomMapper.updateRoom(request, room);
@@ -93,6 +101,7 @@ public class RoomService {
     }
 
     @Transactional
+    @Override
     public DeletedDTO deleteRoom(UUID id) {
         Room room = findRoomById(id);
         room.setDeleted(true);
@@ -100,38 +109,41 @@ public class RoomService {
     }
 
     @Transactional
+    @Override
     public RoomResponseDTO restoreRoom(UUID id) {
         Room room = findDeletedRoomById(id);
         room.setDeleted(false);
         return roomMapper.toRoomResponseDTO(room);
     }
 
+    @Override
     public RoomResponseDTO getDeletedRoomById(UUID id) {
         Room room = findDeletedRoomById(id);
         return roomMapper.toRoomResponseDTO(room);
     }
 
-    public List<RoomResponseDTO> getDeletedRooms() {
-        List<Room> rooms = roomRepository.getAllByDeletedTrue();
-        return rooms
-                .stream()
-                .map(roomMapper::toRoomResponseDTO)
-                .toList();
-    }
+//    public List<RoomResponseDTO> getDeletedRooms() {
+//        List<Room> rooms = roomRepository.getAllByDeletedTrue();
+//        return rooms
+//                .stream()
+//                .map(roomMapper::toRoomResponseDTO)
+//                .toList();
+//    }
+//
+//    public RoomReservationsResponseDTO getDeletedRoomWithReservationById(UUID id) {
+//        Room room = findDeletedRoomWithReservationsById(id);
+//        return roomMapper.toRoomReservationsResponseDTO(room);
+//    }
+//
+//    public List<RoomReservationsResponseDTO> getDeletedRoomsWithReservations() {
+//        List<Room> rooms = roomRepository.getAllWithReservationsByDeletedTrue();
+//        return rooms
+//                .stream()
+//                .map(roomMapper::toRoomReservationsResponseDTO)
+//                .toList();
+//    }
 
-    public RoomReservationsResponseDTO getDeletedRoomWithReservationById(UUID id) {
-        Room room = findDeletedRoomWithReservationsById(id);
-        return roomMapper.toRoomReservationsResponseDTO(room);
-    }
-
-    public List<RoomReservationsResponseDTO> getDeletedRoomsWithReservations() {
-        List<Room> rooms = roomRepository.getAllWithReservationsByDeletedTrue();
-        return rooms
-                .stream()
-                .map(roomMapper::toRoomReservationsResponseDTO)
-                .toList();
-    }
-
+    @Override
     public Room findRoomById(UUID id) {
         return roomRepository.getRoomByIdAndDeletedFalse(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Room not found with id: " + id));
@@ -143,14 +155,15 @@ public class RoomService {
                         new ResourceNotFoundException("Room not found with id: " + id));
     }
 
+    @Override
     public Room findDeletedRoomById(UUID id) {
         return roomRepository.getRoomByIdAndDeletedTrue(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Room not found with id: " + id));
     }
 
-    private Room findDeletedRoomWithReservationsById(UUID id) {
-        return roomRepository.getRoomAndReservationsByIdAndDeletedTrue(id)
-                .orElseThrow(() ->
-                        new ResourceNotFoundException("Room not found with id: " + id));
-    }
+//    private Room findDeletedRoomWithReservationsById(UUID id) {
+//        return roomRepository.getRoomAndReservationsByIdAndDeletedTrue(id)
+//                .orElseThrow(() ->
+//                        new ResourceNotFoundException("Room not found with id: " + id));
+//    }
 }

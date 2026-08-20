@@ -7,6 +7,7 @@ import org.ghotel.ghotel.exception.InvalidRequestException;
 import org.ghotel.ghotel.exception.ResourceNotFoundException;
 import org.ghotel.ghotel.mapper.RoomMapper;
 import org.ghotel.ghotel.repository.RoomRepository;
+import org.ghotel.ghotel.service.room.RoomService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

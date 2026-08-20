@@ -6,7 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.ghotel.ghotel.dto.request.EmployeeRequestDTO;
 import org.ghotel.ghotel.dto.response.DeletedDTO;
 import org.ghotel.ghotel.dto.response.EmployeeResponseDTO;
-import org.ghotel.ghotel.service.EmployeeService;
+import org.ghotel.ghotel.service.employee.IEmployeeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,9 +19,9 @@ import java.util.UUID;
 @RequestMapping("/api/v1/employee")
 public class EmployeeController {
 
-    private final EmployeeService employeeService;
+    private final IEmployeeService employeeService;
 
-    public EmployeeController(EmployeeService employeeService) {
+    public EmployeeController(IEmployeeService employeeService) {
         this.employeeService = employeeService;
     }
 
@@ -61,13 +61,13 @@ public class EmployeeController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @GetMapping("/deleted")
-    @Operation(description = "Get all deleted employees.")
-    public ResponseEntity<List<EmployeeResponseDTO>> getDeletedEmployees() {
-        List<EmployeeResponseDTO> response = employeeService.getDeletedEmployees();
-        log.info("Found all deleted employees.");
-        return new ResponseEntity<>(response, HttpStatus.OK);
-    }
+//    @GetMapping("/deleted")
+//    @Operation(description = "Get all deleted employees.")
+//    public ResponseEntity<List<EmployeeResponseDTO>> getDeletedEmployees() {
+//        List<EmployeeResponseDTO> response = employeeService.getDeletedEmployees();
+//        log.info("Found all deleted employees.");
+//        return new ResponseEntity<>(response, HttpStatus.OK);
+//    }
 
     @GetMapping("/all")
     @Operation(description = "Get all employees including soft deleted ones.")

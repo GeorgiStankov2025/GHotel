@@ -2,13 +2,12 @@ package org.ghotel.ghotel.api.v1;
 
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
-
 import lombok.extern.slf4j.Slf4j;
 import org.ghotel.ghotel.dto.request.CustomerRequestDTO;
 import org.ghotel.ghotel.dto.response.CustomerReservationsResponseDTO;
 import org.ghotel.ghotel.dto.response.CustomerResponseDTO;
 import org.ghotel.ghotel.dto.response.DeletedDTO;
-import org.ghotel.ghotel.service.CustomerService;
+import org.ghotel.ghotel.service.customer.ICustomerService;
 import org.springframework.context.annotation.Description;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,9 +21,9 @@ import java.util.UUID;
 @RequestMapping("/api/v1/customer")
 @Description(value = "Used for managing Customer requests")
 public class CustomerController {
-    private final CustomerService customerService;
+    private final ICustomerService customerService;
 
-    public CustomerController(CustomerService customerService) {
+    public CustomerController(ICustomerService customerService) {
         this.customerService = customerService;
     }
 
@@ -81,30 +80,30 @@ public class CustomerController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @GetMapping("/deleted/{id}/reservations")
-    @Operation(description = "Get deleted customer with id including the reservations made by him.")
-    public ResponseEntity<CustomerReservationsResponseDTO> getDeletedCustomerWithReservationsById(
-            @PathVariable UUID id) {
-        CustomerReservationsResponseDTO response = customerService.getDeletedCustomerWithReservationsById(id);
-        log.info("Found deleted customer with id: {} and his reservations", id);
-        return new ResponseEntity<>(response, HttpStatus.OK);
-    }
-
-    @GetMapping("/deleted")
-    @Operation(description = "Get all deleted customers.")
-    public ResponseEntity<List<CustomerResponseDTO>> getDeletedCustomers() {
-        List<CustomerResponseDTO> response = customerService.getDeletedCustomers();
-        log.info("Found all deleted customers.");
-        return new ResponseEntity<>(response, HttpStatus.OK);
-    }
-
-    @GetMapping("/deleted/reservations")
-    @Operation(description = "Get all deleted customers including their reservations.")
-    public ResponseEntity<List<CustomerReservationsResponseDTO>> getDeletedCustomersWithReservations() {
-        List<CustomerReservationsResponseDTO> response = customerService.getDeletedCustomersWithReservations();
-        log.info("Found all deleted customers with their reservations.");
-        return new ResponseEntity<>(response, HttpStatus.OK);
-    }
+//    @GetMapping("/deleted/{id}/reservations")
+//    @Operation(description = "Get deleted customer with id including the reservations made by him.")
+//    public ResponseEntity<CustomerReservationsResponseDTO> getDeletedCustomerWithReservationsById(
+//            @PathVariable UUID id) {
+//        CustomerReservationsResponseDTO response = customerService.getDeletedCustomerWithReservationsById(id);
+//        log.info("Found deleted customer with id: {} and his reservations", id);
+//        return new ResponseEntity<>(response, HttpStatus.OK);
+//    }
+//
+//    @GetMapping("/deleted")
+//    @Operation(description = "Get all deleted customers.")
+//    public ResponseEntity<List<CustomerResponseDTO>> getDeletedCustomers() {
+//        List<CustomerResponseDTO> response = customerService.getDeletedCustomers();
+//        log.info("Found all deleted customers.");
+//        return new ResponseEntity<>(response, HttpStatus.OK);
+//    }
+//
+//    @GetMapping("/deleted/reservations")
+//    @Operation(description = "Get all deleted customers including their reservations.")
+//    public ResponseEntity<List<CustomerReservationsResponseDTO>> getDeletedCustomersWithReservations() {
+//        List<CustomerReservationsResponseDTO> response = customerService.getDeletedCustomersWithReservations();
+//        log.info("Found all deleted customers with their reservations.");
+//        return new ResponseEntity<>(response, HttpStatus.OK);
+//    }
 
     @GetMapping("/all")
     @Operation(description = "Get all customers including soft deleted ones.")

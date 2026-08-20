@@ -11,9 +11,9 @@ import org.ghotel.ghotel.entity.Reservation;
 import org.ghotel.ghotel.entity.Room;
 import org.ghotel.ghotel.exception.InvalidRequestException;
 import org.ghotel.ghotel.mapper.ReservationMapper;
-import org.ghotel.ghotel.service.CustomerService;
-import org.ghotel.ghotel.service.ReservationService;
-import org.ghotel.ghotel.service.RoomService;
+import org.ghotel.ghotel.service.customer.CustomerService;
+import org.ghotel.ghotel.service.reservation.IReservationService;
+import org.ghotel.ghotel.service.room.RoomService;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,12 +21,12 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(readOnly = true)
 public class ReservationFacade {
 
-    private final ReservationService reservationService;
+    private final IReservationService reservationService;
     private final CustomerService customerService;
     private final RoomService roomService;
     private final ReservationMapper reservationMapper;
 
-    public ReservationFacade(ReservationService reservationService, CustomerService customerService, RoomService roomService, ReservationMapper reservationMapper) {
+    public ReservationFacade(IReservationService reservationService, CustomerService customerService, RoomService roomService, ReservationMapper reservationMapper) {
         this.reservationService = reservationService;
         this.customerService = customerService;
         this.roomService = roomService;

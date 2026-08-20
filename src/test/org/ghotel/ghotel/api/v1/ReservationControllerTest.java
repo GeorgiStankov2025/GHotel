@@ -13,9 +13,9 @@ import org.ghotel.ghotel.mapper.RoomMapper;
 import org.ghotel.ghotel.repository.CustomerRepository;
 import org.ghotel.ghotel.repository.ReservationRepository;
 import org.ghotel.ghotel.repository.RoomRepository;
-import org.ghotel.ghotel.service.CustomerService;
-import org.ghotel.ghotel.service.ReservationService;
-import org.ghotel.ghotel.service.RoomService;
+import org.ghotel.ghotel.service.customer.CustomerService;
+import org.ghotel.ghotel.service.reservation.ReservationService;
+import org.ghotel.ghotel.service.room.RoomService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MediaType;
 import org.junit.jupiter.api.Test;
@@ -62,20 +62,20 @@ public class ReservationControllerTest {
     @Spy
     RoomMapper roomMapper = Mappers.getMapper(RoomMapper.class);
 
-    @Spy
-    CustomerService customerService = new CustomerService(customerRepository, customerMapper);
-
-    @Spy
-    ReservationService reservationService = new ReservationService(reservationRepository, reservationMapper);
-
-    @Spy
-    RoomService roomService = new RoomService(roomRepository, roomMapper);
-
-    @Spy
-    ReservationFacade reservationFacade = new ReservationFacade(reservationService, customerService, roomService, reservationMapper);
+    @InjectMocks
+    CustomerService customerService;
 
     @InjectMocks
-    ReservationsController reservationController = new ReservationsController(reservationFacade, reservationService);
+    ReservationService reservationService;
+
+    @InjectMocks
+    RoomService roomService;
+
+    @InjectMocks
+    ReservationFacade reservationFacade;
+
+    @InjectMocks
+    ReservationsController reservationController;
 
     OffsetDateTime nowInSofia = OffsetDateTime.now(ZoneId.of("Europe/Sofia"));
 
@@ -133,7 +133,7 @@ public class ReservationControllerTest {
 
     @Test
     void addReservation_Successful() throws Exception {
-        when(customerRepository.getByIdAndDeletedFalse(customerId))
+        when(customerRepository.getByIdAndDeletedFalse(any(UUID.class)))
                 .thenReturn(Optional.of(customer));
         when(reservationRepository.save(any(Reservation.class)))
                 .thenReturn(createdReservation);
@@ -147,7 +147,7 @@ public class ReservationControllerTest {
                 }
                 """;
 
-        mockMvc.perform(post("/reservation") // сложи твоя URL path
+        mockMvc.perform(post("/api/v1/reservation")
                         .contentType(String.valueOf(MediaType.APPLICATION_JSON))
                         .content(jsonRequest))
                 .andExpect(status().isCreated())

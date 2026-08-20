@@ -7,7 +7,7 @@ import org.ghotel.ghotel.dto.request.RoomRequestDTO;
 import org.ghotel.ghotel.dto.response.DeletedDTO;
 import org.ghotel.ghotel.dto.response.RoomReservationsResponseDTO;
 import org.ghotel.ghotel.dto.response.RoomResponseDTO;
-import org.ghotel.ghotel.service.RoomService;
+import org.ghotel.ghotel.service.room.IRoomService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,9 +19,9 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/v1/room")
 public class RoomController {
-    private final RoomService roomService;
+    private final IRoomService roomService;
 
-    public RoomController(RoomService roomService) {
+    public RoomController(IRoomService roomService) {
         this.roomService = roomService;
     }
 
@@ -77,30 +77,30 @@ public class RoomController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @GetMapping("/deleted/{id}/reservations")
-    @Operation(description = "Get a deleted room by id with its reservations.")
-    public ResponseEntity<RoomReservationsResponseDTO> getDeletedRoomByIdWithReservations(
-            @PathVariable UUID id) {
-        RoomReservationsResponseDTO response = roomService.getDeletedRoomWithReservationById(id);
-        log.info("Found deleted room with id: {}", id);
-        return new ResponseEntity<>(response, HttpStatus.OK);
-    }
-
-    @GetMapping("/deleted")
-    @Operation(description = "Get all deleted rooms.")
-    public ResponseEntity<List<RoomResponseDTO>> getDeletedRooms() {
-        List<RoomResponseDTO> response = roomService.getDeletedRooms();
-        log.info("Found all deleted rooms.");
-        return new ResponseEntity<>(response, HttpStatus.OK);
-    }
-
-    @GetMapping("/deleted/reservations")
-    @Operation(description = "Get all deleted rooms with their reservations.")
-    public ResponseEntity<List<RoomReservationsResponseDTO>> getDeletedRoomsWithReservations() {
-        List<RoomReservationsResponseDTO> response = roomService.getDeletedRoomsWithReservations();
-        log.info("Found all deleted rooms with reservations.");
-        return new ResponseEntity<>(response, HttpStatus.OK);
-    }
+//    @GetMapping("/deleted/{id}/reservations")
+//    @Operation(description = "Get a deleted room by id with its reservations.")
+//    public ResponseEntity<RoomReservationsResponseDTO> getDeletedRoomByIdWithReservations(
+//            @PathVariable UUID id) {
+//        RoomReservationsResponseDTO response = roomService.getDeletedRoomWithReservationById(id);
+//        log.info("Found deleted room with id: {}", id);
+//        return new ResponseEntity<>(response, HttpStatus.OK);
+//    }
+//
+//    @GetMapping("/deleted")
+//    @Operation(description = "Get all deleted rooms.")
+//    public ResponseEntity<List<RoomResponseDTO>> getDeletedRooms() {
+//        List<RoomResponseDTO> response = roomService.getDeletedRooms();
+//        log.info("Found all deleted rooms.");
+//        return new ResponseEntity<>(response, HttpStatus.OK);
+//    }
+//
+//    @GetMapping("/deleted/reservations")
+//    @Operation(description = "Get all deleted rooms with their reservations.")
+//    public ResponseEntity<List<RoomReservationsResponseDTO>> getDeletedRoomsWithReservations() {
+//        List<RoomReservationsResponseDTO> response = roomService.getDeletedRoomsWithReservations();
+//        log.info("Found all deleted rooms with reservations.");
+//        return new ResponseEntity<>(response, HttpStatus.OK);
+//    }
 
     @GetMapping("/all")
     @Operation(description = "Get all rooms including soft deleted ones.")
