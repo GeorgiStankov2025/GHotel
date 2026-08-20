@@ -47,8 +47,6 @@ public class Reservation extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id")
-    //ToDo: Soft delete case fix.
-    // Defining behavior for when a customer is deleted.
     private Customer customer;
 
     public Reservation(
@@ -69,8 +67,15 @@ public class Reservation extends BaseEntity {
             inverseJoinColumns = @JoinColumn(name = "room_id")
     )
     @Setter(AccessLevel.NONE)
-    //ToDo: Soft delete case fix. If a room is deleted it should not appear here.
     private List<Room> rooms = new ArrayList<>();
+
+    protected Reservation(Builder builder) {
+        this.details = builder.details;
+        this.checkIn = builder.checkIn;
+        this.checkOut = builder.checkOut;
+        this.customer = builder.customer;
+        this.rooms = builder.rooms;
+    }
 
     public List<Room> getRooms() {
         return Collections.unmodifiableList(rooms);
@@ -102,5 +107,47 @@ public class Reservation extends BaseEntity {
 
     public boolean hasCustomer(Customer customer) {
         return this.customer.equals(customer);
+    }
+
+    public static Reservation.Builder builder() {
+        return new Reservation.Builder();
+    }
+
+    public static class Builder extends BaseEntity.Builder<Reservation, Builder> {
+        private String details = "defaultDetails";
+        private OffsetDateTime checkIn = OffsetDateTime.now();
+        private OffsetDateTime checkOut = OffsetDateTime.now().plusDays(1);
+        private Customer customer = new Customer("Totio", "Totiov");
+        private final List<Room> rooms = new ArrayList<>();
+
+        public Builder details(String details) {
+            this.details = details;
+            return self();
+        }
+
+        public Builder checkIn(OffsetDateTime checkIn) {
+            this.checkIn = checkIn;
+            return self();
+        }
+
+        public Builder checkOut(OffsetDateTime checkOut) {
+            this.checkOut = checkOut;
+            return self();
+        }
+
+        public Builder customer(Customer customer) {
+            this.customer = customer;
+            return self();
+        }
+
+        public Builder room(Room room) { // 👈 Полезен helper в builder-a за Unit тестове
+            this.rooms.add(room);
+            return self();
+        }
+
+        @Override
+        public Reservation build() {
+            return new Reservation(this);
+        }
     }
 }

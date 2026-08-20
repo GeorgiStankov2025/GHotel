@@ -30,7 +30,7 @@ public class EmployeeService {
     public EmployeeResponseDTO addEmployee(EmployeeRequestDTO request) {
         if (employeeRepository.existsByUsername(request.username())) {
             throw new InvalidRequestException
-                    ("Invalid username.");
+                    ("Employee with username: " + request.username() + " already exists.");
         }
         Employee employee = employeeMapper.toEmployeeEntity(request);
         Employee saved = employeeRepository.save(employee);
@@ -90,13 +90,13 @@ public class EmployeeService {
                 .toList();
     }
 
-    private Employee findById(UUID id) {
+    public Employee findById(UUID id) {
         return employeeRepository.getEmployeeByIdAndDeletedFalse(id)
                 .orElseThrow(() ->
                         new ResourceNotFoundException("Employee not found with id: " + id));
     }
 
-    private Employee findByIdDeleted(UUID id) {
+    public Employee findByIdDeleted(UUID id) {
         return employeeRepository.getEmployeeByIdAndDeletedTrue(id)
                 .orElseThrow(() ->
                         new ResourceNotFoundException("Employee not found with id: " + id));

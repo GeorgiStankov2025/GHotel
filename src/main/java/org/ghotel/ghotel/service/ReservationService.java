@@ -39,7 +39,6 @@ public class ReservationService {
     //ToDo:Implement a DTO for editReservation which does not include customerId.
     @Transactional
     public ReservationResponseDTO editReservation(UUID id, ReservationRequestDTO request) {
-
         Reservation reservation = findById(id);
         reservation = reservationMapper.updateReservation(request, reservation);
         return reservationMapper.toReservationResponseDTO(reservation);

@@ -3,6 +3,7 @@ package org.ghotel.ghotel.entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,7 +11,7 @@ import org.ghotel.ghotel.entity.base.BaseEntity;
 
 @Entity
 @Table(name = "employee")
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Setter
 public class Employee extends BaseEntity {
@@ -23,7 +24,6 @@ public class Employee extends BaseEntity {
 
     @Column(name = "username", nullable = false, length = 25,unique = true)
     private String username;
-
     @Column(name = "password", nullable = false, length = 255)
     private String password;
 
@@ -34,4 +34,47 @@ public class Employee extends BaseEntity {
         this.password = password;
     }
 
+    private Employee(Employee.Builder builder) {
+        super(builder);
+        this.firstName = builder.firstName;
+        this.lastName = builder.lastName;
+        this.username = builder.username;
+        this.password = builder.password;
+    }
+
+    public static Employee.Builder builder() {
+        return new Employee.Builder();
+    }
+
+    public static class Builder extends BaseEntity.Builder<Employee, Employee.Builder> {
+        private String firstName = "defaultFirstName";
+        private String lastName = "defaultLastName";
+        private String username = "defaultUsername";
+        private String password = "defaultPassword";
+
+        public Employee.Builder firstName(String firstName) {
+            this.firstName = firstName;
+            return self();
+        }
+
+        public Employee.Builder lastName(String lastName) {
+            this.lastName = lastName;
+            return self();
+        }
+
+        public Employee.Builder username(String username) {
+            this.username = username;
+            return self();
+        }
+
+        public Employee.Builder password(String password) {
+            this.password = password;
+            return self();
+        }
+
+        @Override
+        public Employee build() {
+            return new Employee(this);
+        }
+    }
 }

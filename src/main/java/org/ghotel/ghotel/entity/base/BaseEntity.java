@@ -1,9 +1,10 @@
 package org.ghotel.ghotel.entity.base;
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.SoftDelete;
 import org.hibernate.annotations.UuidGenerator;
 import org.hibernate.proxy.HibernateProxy;
 import org.springframework.data.annotation.CreatedDate;
@@ -16,6 +17,7 @@ import java.util.UUID;
 @MappedSuperclass
 @Getter
 @EntityListeners(AuditingEntityListener.class)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public abstract class BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -39,6 +41,39 @@ public abstract class BaseEntity {
     @Column(name = "deleted", nullable = false)
     private boolean deleted = false;
 
+    protected BaseEntity(Builder<?, ?> builder) {
+        this.id = builder.id;
+        this.version = builder.version;
+        this.deleted=builder.deleted;
+    }
+
+    protected abstract static class Builder<C extends BaseEntity, B extends Builder<C, B>> {
+        private UUID id = UUID.randomUUID();
+        private Long version = 0L;
+        private boolean deleted = false;
+
+        @SuppressWarnings("unchecked")
+        protected B self() {
+            return (B) this;
+        }
+
+        public B id(UUID id) {
+            this.id = id;
+            return self();
+        }
+
+        public B version(Long version) {
+            this.version = version;
+            return self();
+        }
+
+        public B deleted(boolean deleted) {
+            this.deleted = deleted;
+            return self();
+        }
+
+        protected abstract C build();
+    }
 
     @Override
     public final boolean equals(Object o) {

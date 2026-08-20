@@ -37,6 +37,36 @@ public class Room extends BaseEntity {
         this.roomCapacity = roomCapacity;
     }
 
+    private Room(Room.Builder builder) {
+        super(builder);
+        this.roomNumber = builder.roomNumber;
+        this.roomCapacity = builder.roomCapacity;
+    }
+
+    public static Room.Builder builder() {
+        return new Room.Builder();
+    }
+
+    public static class Builder extends BaseEntity.Builder<Room, Room.Builder> {
+        private long roomNumber = 0L;
+        private int roomCapacity = 0;
+
+        public Room.Builder roomNumber(long roomNumber) {
+            this.roomNumber = roomNumber;
+            return self();
+        }
+
+        public Room.Builder roomCapacity(int roomCapacity) {
+            this.roomCapacity = roomCapacity;
+            return self();
+        }
+
+        @Override
+        public Room build() {
+            return new Room(this);
+        }
+    }
+
     public List<Reservation> getReservations() {
         return Collections.unmodifiableList(reservations);
     }
