@@ -17,7 +17,7 @@ public interface IReservationService {
 
     List<ReservationResponseDTO> getReservations();
 
-    ReservationRoomsCustomerResponseDTO getReservationWithRoomsAndCustomerById(UUID id);
+    ReservationRoomsCustomerResponseDTO getReservationWithDetailsById(UUID id);
 
     List<ReservationRoomsCustomerResponseDTO> getReservationsWithRoomsAndCustomer();
 

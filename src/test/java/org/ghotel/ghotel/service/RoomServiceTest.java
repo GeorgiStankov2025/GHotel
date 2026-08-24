@@ -51,7 +51,7 @@ public class RoomServiceTest {
         addResponse = new RoomResponseDTO(id, 4, 10);
         updateResponse = new RoomResponseDTO(id, 3, 12);
         addedRoom = new Room(10, 4);
-        invalidRequestException = new InvalidRequestException("Cannot add room.");
+        invalidRequestException = new InvalidRequestException("Cannot add room with number: " + addRequest.roomNumber());
         getResponse = new RoomResponseDTO(id, 4, 10);
         foundRoom = new Room(10, 3);
     }

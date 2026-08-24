@@ -23,4 +23,6 @@ public interface EmployeeRepository extends JpaRepository<Employee, UUID> {
     boolean existsByUsername(String username);
 
 //    List<Employee> getAll();
+
+    Optional<Employee> getEmployeeByUsernameAndDeletedFalse(String username);
 }

@@ -5,6 +5,7 @@ import org.ghotel.ghotel.dto.request.ReservationRequestDTO;
 import org.ghotel.ghotel.dto.request.ReservationRoomRequestDTO;
 import org.ghotel.ghotel.dto.response.ReservationCustomerResponseDTO;
 import org.ghotel.ghotel.dto.response.ReservationResponseDTO;
+import org.ghotel.ghotel.dto.response.ReservationRoomsCustomerResponseDTO;
 import org.ghotel.ghotel.dto.response.ReservationRoomsResponseDTO;
 import org.ghotel.ghotel.entity.Customer;
 import org.ghotel.ghotel.entity.Reservation;
@@ -57,14 +58,14 @@ public class ReservationFacade {
     }
 
     @Transactional
-    public ReservationCustomerResponseDTO setReservationCustomer(ReservationCustomerRequestDTO request) {
+    public ReservationRoomsCustomerResponseDTO setReservationCustomer(ReservationCustomerRequestDTO request) {
         Reservation reservation = reservationService.findWithCustomerById(request.reservationId());
         Customer customer = customerService.findCustomerById(request.customerId());
         if (reservation.hasCustomer(customer)) {
             throw new InvalidRequestException("Cannot add customer");
         }
         reservation.setCustomer(customer);
-        return reservationMapper.toReservationCustomerResponseDTO(reservation);
+        return reservationMapper.toReservationRoomsCustomerResponseDTO(reservation);
     }
 
     @Transactional

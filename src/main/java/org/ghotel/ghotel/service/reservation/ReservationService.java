@@ -106,8 +106,8 @@ public class ReservationService implements IReservationService {
 
     //With rooms and customer.
     @Override
-    public ReservationRoomsCustomerResponseDTO getReservationWithRoomsAndCustomerById(UUID id) {
-        Reservation reservation = findWithRoomsAndCustomerByI(id);
+    public ReservationRoomsCustomerResponseDTO getReservationWithDetailsById(UUID id) {
+        Reservation reservation = findWithRoomsAndCustomerById(id);
         return reservationMapper.toReservationRoomsCustomerResponseDTO(reservation);
     }
 
@@ -233,7 +233,7 @@ public class ReservationService implements IReservationService {
                         new ResourceNotFoundException("Reservation not found with id: " + id));
     }
 
-    private Reservation findWithRoomsAndCustomerByI(UUID id) {
+    private Reservation findWithRoomsAndCustomerById(UUID id) {
         return reservationRepository.getReservationAndRoomsAndCustomerByIdAndDeletedFalse(id)
                 .orElseThrow(() ->
                         new ResourceNotFoundException("Reservation not found with id: " + id));

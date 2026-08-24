@@ -10,7 +10,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 
-@Mapper(componentModel = "spring", uses = {CustomerMapper.class, RoomMapper.class})
+@Mapper(componentModel = "spring", uses = {CustomerMapper.class, RoomMapper.class},builder = @org.mapstruct.Builder(disableBuilder = true))
 public interface ReservationMapper {
 
     Reservation toReservationEntity(ReservationRequestDTO request);

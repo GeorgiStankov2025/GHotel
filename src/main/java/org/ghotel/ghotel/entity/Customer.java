@@ -5,6 +5,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 import org.ghotel.ghotel.entity.base.BaseEntity;
 
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "customer")
+@SuperBuilder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @NamedEntityGraph(
         name = "Customer.reservations",
@@ -32,35 +34,35 @@ public class Customer extends BaseEntity {
         this.lastName = lastName;
     }
 
-    private Customer(Builder builder) {
-        super(builder);
-        this.firstName = builder.firstName;
-        this.lastName = builder.lastName;
-    }
-
-    public static Customer.Builder builder() {
-        return new Customer.Builder();
-    }
-
-    public static class Builder extends BaseEntity.Builder<Customer, Builder> {
-        private String firstName = "defaultFirstName";
-        private String lastName = "defaultLastName";
-
-        public Builder firstName(String firstName) {
-            this.firstName = firstName;
-            return self();
-        }
-
-        public Builder lastName(String lastName) {
-            this.lastName = lastName;
-            return self();
-        }
-
-        @Override
-        public Customer build() {
-            return new Customer(this);
-        }
-    }
+//    private Customer(Builder builder) {
+//        super(builder);
+//        this.firstName = builder.firstName;
+//        this.lastName = builder.lastName;
+//    }
+//
+//    public static Customer.Builder builder() {
+//        return new Customer.Builder();
+//    }
+//
+//    public static class Builder extends BaseEntity.Builder<Customer, Builder> {
+//        private String firstName = "defaultFirstName";
+//        private String lastName = "defaultLastName";
+//
+//        public Builder firstName(String firstName) {
+//            this.firstName = firstName;
+//            return self();
+//        }
+//
+//        public Builder lastName(String lastName) {
+//            this.lastName = lastName;
+//            return self();
+//        }
+//
+//        @Override
+//        public Customer build() {
+//            return new Customer(this);
+//        }
+//    }
 
     @OneToMany(mappedBy = "customer", cascade = {CascadeType.DETACH, CascadeType.MERGE})
     @Setter(AccessLevel.NONE)

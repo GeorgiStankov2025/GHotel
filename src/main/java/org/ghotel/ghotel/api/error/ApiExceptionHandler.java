@@ -3,6 +3,7 @@ package org.ghotel.ghotel.api.error;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AccessLevel;
 import lombok.extern.slf4j.Slf4j;
+import org.ghotel.ghotel.exception.BadCredentialsException;
 import org.ghotel.ghotel.exception.InvalidRequestException;
 import org.ghotel.ghotel.exception.ResourceNotFoundException;
 import org.springframework.dao.OptimisticLockingFailureException;
@@ -95,6 +96,25 @@ public class ApiExceptionHandler {
         return new ResponseEntity<>(problemDetail, HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(BadCredentialsException.class)
+    public ResponseEntity<ProblemDetail> handleBadCredentials(
+            BadCredentialsException ex,
+            HttpServletRequest request) {
+
+        ProblemDetail problemDetail = ProblemDetail.forStatus(
+                HttpStatus.BAD_REQUEST
+        );
+        problemDetail.setTitle("Request error.");
+        problemDetail.setProperty("timestamp", OffsetDateTime.now());
+
+        String path = request.getRequestURI();
+        String method = request.getMethod();
+        String errorId = UUID.randomUUID().toString().substring(0, 8);
+
+        log.warn("Warn [{}]: Unable to process data from login HTTP request during [{}]: '{}'-{}", errorId, method, path, ex.getMessage());
+        return new ResponseEntity<>(problemDetail, HttpStatus.BAD_REQUEST);
+    }
+
     @ExceptionHandler(OptimisticLockingFailureException.class)
     public ResponseEntity<ProblemDetail> handleOptimisticLockingFailure(
             OptimisticLockingFailureException ex,
@@ -123,7 +143,7 @@ public class ApiExceptionHandler {
         String path = request.getRequestURI();
         String method = request.getMethod();
         String errorId = UUID.randomUUID().toString().substring(0, 8);
-
+        ex.printStackTrace();
         log.error("Error [{}]: Internal server error: [{}]: '{}'-{}",
                 errorId, method, path, ex.getMessage());
         return new ResponseEntity<>(problemDetail, HttpStatus.INTERNAL_SERVER_ERROR);

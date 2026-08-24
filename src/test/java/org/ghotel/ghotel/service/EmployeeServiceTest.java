@@ -4,6 +4,7 @@ import org.ghotel.ghotel.dto.request.EmployeeRequestDTO;
 import org.ghotel.ghotel.dto.response.DeletedDTO;
 import org.ghotel.ghotel.dto.response.EmployeeResponseDTO;
 import org.ghotel.ghotel.entity.Employee;
+import org.ghotel.ghotel.entity.base.BaseEntity;
 import org.ghotel.ghotel.exception.InvalidRequestException;
 import org.ghotel.ghotel.exception.ResourceNotFoundException;
 import org.ghotel.ghotel.mapper.EmployeeMapper;

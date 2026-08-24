@@ -5,6 +5,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 import org.ghotel.ghotel.entity.base.BaseEntity;
 
 import java.time.OffsetDateTime;
@@ -15,6 +16,7 @@ import java.util.List;
 @Entity
 @Table(name = "reservation")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@SuperBuilder
 @Getter
 @Setter
 @NamedEntityGraphs({
@@ -69,13 +71,13 @@ public class Reservation extends BaseEntity {
     @Setter(AccessLevel.NONE)
     private List<Room> rooms = new ArrayList<>();
 
-    protected Reservation(Builder builder) {
-        this.details = builder.details;
-        this.checkIn = builder.checkIn;
-        this.checkOut = builder.checkOut;
-        this.customer = builder.customer;
-        this.rooms = builder.rooms;
-    }
+//    protected Reservation(Builder builder) {
+//        this.details = builder.details;
+//        this.checkIn = builder.checkIn;
+//        this.checkOut = builder.checkOut;
+//        this.customer = builder.customer;
+//        this.rooms = builder.rooms;
+//    }
 
     public List<Room> getRooms() {
         return Collections.unmodifiableList(rooms);
@@ -109,45 +111,45 @@ public class Reservation extends BaseEntity {
         return this.customer.equals(customer);
     }
 
-    public static Reservation.Builder builder() {
-        return new Reservation.Builder();
-    }
-
-    public static class Builder extends BaseEntity.Builder<Reservation, Builder> {
-        private String details = "defaultDetails";
-        private OffsetDateTime checkIn = OffsetDateTime.now();
-        private OffsetDateTime checkOut = OffsetDateTime.now().plusDays(1);
-        private Customer customer = new Customer("Totio", "Totiov");
-        private final List<Room> rooms = new ArrayList<>();
-
-        public Builder details(String details) {
-            this.details = details;
-            return self();
-        }
-
-        public Builder checkIn(OffsetDateTime checkIn) {
-            this.checkIn = checkIn;
-            return self();
-        }
-
-        public Builder checkOut(OffsetDateTime checkOut) {
-            this.checkOut = checkOut;
-            return self();
-        }
-
-        public Builder customer(Customer customer) {
-            this.customer = customer;
-            return self();
-        }
-
-        public Builder room(Room room) { // 👈 Полезен helper в builder-a за Unit тестове
-            this.rooms.add(room);
-            return self();
-        }
-
-        @Override
-        public Reservation build() {
-            return new Reservation(this);
-        }
-    }
+//    public static Reservation.Builder builder() {
+//        return new Reservation.Builder();
+//    }
+//
+//    public static class Builder extends BaseEntity.Builder<Reservation, Builder> {
+//        private String details = "defaultDetails";
+//        private OffsetDateTime checkIn = OffsetDateTime.now();
+//        private OffsetDateTime checkOut = OffsetDateTime.now().plusDays(1);
+//        private Customer customer = new Customer("Totio", "Totiov");
+//        public final List<Room> rooms = new ArrayList<>();
+//
+//        public Builder details(String details) {
+//            this.details = details;
+//            return self();
+//        }
+//
+//        public Builder checkIn(OffsetDateTime checkIn) {
+//            this.checkIn = checkIn;
+//            return self();
+//        }
+//
+//        public Builder checkOut(OffsetDateTime checkOut) {
+//            this.checkOut = checkOut;
+//            return self();
+//        }
+//
+//        public Builder customer(Customer customer) {
+//            this.customer = customer;
+//            return self();
+//        }
+//
+//        public Builder addRoom(Room room) {
+//            this.rooms.add(room);
+//            return self();
+//        }
+//
+//        @Override
+//        public Reservation build() {
+//            return new Reservation(this);
+//        }
+//    }
 }

@@ -32,7 +32,7 @@ public class RoomService implements IRoomService {
     @Override
     public RoomResponseDTO addRoom(RoomRequestDTO request) {
         if (roomRepository.existsByRoomNumber(request.roomNumber())) {
-            throw new InvalidRequestException("Cannot add room.");
+            throw new InvalidRequestException("Cannot add room with number: " + request.roomNumber());
         }
         Room room = roomMapper.toRoomEntity(request);
         Room saved = roomRepository.save(room);

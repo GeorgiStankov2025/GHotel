@@ -25,15 +25,15 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
-    @PostMapping
-    @Operation(description = "Add employee.")
-    public ResponseEntity<EmployeeResponseDTO> addEmployee(
-            @Valid
-            @RequestBody EmployeeRequestDTO request) {
-        EmployeeResponseDTO response = employeeService.addEmployee(request);
-        log.info("Created employee with id: {}", response.id());
-        return new ResponseEntity<>(response, HttpStatus.CREATED);
-    }
+//    @PostMapping
+//    @Operation(description = "Add employee.")
+//    public ResponseEntity<EmployeeResponseDTO> addEmployee(
+//            @Valid
+//            @RequestBody EmployeeRequestDTO request) {
+//        EmployeeResponseDTO response = employeeService.addEmployee(request);
+//        log.info("Created employee with id: {}", response.id());
+//        return new ResponseEntity<>(response, HttpStatus.CREATED);
+//    }
 
     @GetMapping("/{id}")
     @Operation(description = "Get employee by id.")
@@ -76,15 +76,15 @@ public class EmployeeController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @PutMapping("/{id}")
-    @Operation(description = "Edit employee information.")
-    public ResponseEntity<EmployeeResponseDTO> editEmployee(
-            @PathVariable UUID id,
-            @Valid @RequestBody EmployeeRequestDTO request) {
-        EmployeeResponseDTO response = employeeService.editEmployee(id, request);
-        log.info("Modified employee with id: {} ", id);
-        return new ResponseEntity<>(response, HttpStatus.OK);
-    }
+//    @PutMapping("/{id}")
+//    @Operation(description = "Edit employee information.")
+//    public ResponseEntity<EmployeeResponseDTO> editEmployee(
+//            @PathVariable UUID id,
+//            @Valid @RequestBody EmployeeRequestDTO request) {
+//        EmployeeResponseDTO response = employeeService.editEmployee(id, request);
+//        log.info("Modified employee with id: {} ", id);
+//        return new ResponseEntity<>(response, HttpStatus.OK);
+//    }
 
     @DeleteMapping("/{id}")
     @Operation(description = "Delete employee.")

@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.UUID;
 
 public interface IEmployeeService {
-    EmployeeResponseDTO addEmployee(EmployeeRequestDTO request);
+//    EmployeeResponseDTO addEmployee(EmployeeRequestDTO request);
 
     EmployeeResponseDTO getEmployeeById(UUID id);
 
@@ -19,7 +19,7 @@ public interface IEmployeeService {
 
     EmployeeResponseDTO getDeletedEmployeeById(UUID id);
 
-    EmployeeResponseDTO editEmployee(UUID id, EmployeeRequestDTO request);
+//    EmployeeResponseDTO editEmployee(UUID id, EmployeeRequestDTO request);
 
     DeletedDTO deleteEmployee(UUID id);
 

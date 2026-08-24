@@ -68,10 +68,10 @@ public class ReservationsController {
 
     @GetMapping("/{id}/details")
     @Operation(description = "Get reservation by id with rooms and customer.")
-    public ResponseEntity<ReservationRoomsCustomerResponseDTO> getReservationWithRoomsAndCustomerById(
+    public ResponseEntity<ReservationRoomsCustomerResponseDTO> getReservationWithDetailsById(
             @PathVariable UUID id) {
         ReservationRoomsCustomerResponseDTO response = reservationService
-                .getReservationWithRoomsAndCustomerById(id);
+                .getReservationWithDetailsById(id);
         log.info("Found reservation with id: {} and its rooms and customer.", response.reservationId());
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -264,9 +264,9 @@ public class ReservationsController {
 
     @PutMapping("/customer")
     @Operation(description = "Set reservation customer")
-    public ResponseEntity<ReservationCustomerResponseDTO> setReservationCustomer(
+    public ResponseEntity<ReservationRoomsCustomerResponseDTO> setReservationCustomer(
             @Valid @RequestBody ReservationCustomerRequestDTO request) {
-        ReservationCustomerResponseDTO response = reservationFacade.setReservationCustomer(request);
+        ReservationRoomsCustomerResponseDTO response = reservationFacade.setReservationCustomer(request);
         log.info("Set customer with id: {} to reservation with id: {} ", request.customerId(), response.reservationId());
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
