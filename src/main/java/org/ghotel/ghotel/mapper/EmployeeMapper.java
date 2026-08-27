@@ -2,7 +2,6 @@ package org.ghotel.ghotel.mapper;
 
 import org.ghotel.ghotel.dto.request.EmployeeRequestDTO;
 import org.ghotel.ghotel.dto.response.EmployeeResponseDTO;
-import org.ghotel.ghotel.dto.response.LoginResponseDTO;
 import org.ghotel.ghotel.entity.Employee;
 import org.mapstruct.Mapper;
 
@@ -13,6 +12,4 @@ public interface EmployeeMapper {
     EmployeeResponseDTO toEmployeeResponseDTO(Employee employee);
 
 //    Employee updateEmployee(EmployeeRequestDTO request, @MappingTarget Employee employee);
-
-    LoginResponseDTO toLoginResponseDTO(String token);
 }

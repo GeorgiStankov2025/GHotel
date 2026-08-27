@@ -1,4 +1,4 @@
-package org.ghotel.ghotel.common.security;
+package org.ghotel.ghotel.common.security.service;
 
 import org.ghotel.ghotel.entity.Employee;
 import org.ghotel.ghotel.repository.EmployeeRepository;

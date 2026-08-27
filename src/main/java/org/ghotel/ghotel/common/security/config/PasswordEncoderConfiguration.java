@@ -1,4 +1,4 @@
-package org.ghotel.ghotel.common.security;
+package org.ghotel.ghotel.common.security.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,10 +1,13 @@
 package org.ghotel.ghotel.api.error;
 
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.JwtException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AccessLevel;
 import lombok.extern.slf4j.Slf4j;
 import org.ghotel.ghotel.exception.BadCredentialsException;
 import org.ghotel.ghotel.exception.InvalidRequestException;
+import org.ghotel.ghotel.exception.InvalidTokenException;
 import org.ghotel.ghotel.exception.ResourceNotFoundException;
 import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.http.HttpStatus;
@@ -131,6 +134,59 @@ public class ApiExceptionHandler {
         log.warn("Warn [{}]: Cannot use requested resource from HTTP request during [{}]: '{}'-{}"
                 , errorId, method, path, ex.getMessage());
         return new ResponseEntity<>(problemDetail, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(ExpiredJwtException.class)
+    public ResponseEntity<ProblemDetail> handleExpiredJwtException(
+            ExpiredJwtException ex,
+            HttpServletRequest request) {
+
+        ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.UNAUTHORIZED);
+        problemDetail.setTitle("Session expired.");
+        problemDetail.setProperty("timestamp", OffsetDateTime.now());
+
+        String path = request.getRequestURI();
+        String method = request.getMethod();
+        String errorId = UUID.randomUUID().toString().substring(0, 8);
+
+        log.warn("Warn [{}]: Expired JWT token during [{}] '{}': {}", errorId, method, path, ex.getMessage());
+        return new ResponseEntity<>(problemDetail, HttpStatus.UNAUTHORIZED);
+    }
+
+    @ExceptionHandler(JwtException.class)
+    public ResponseEntity<ProblemDetail> handleJwtException(
+            JwtException ex,
+            HttpServletRequest request) {
+
+        ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.UNAUTHORIZED);
+        problemDetail.setTitle("Invalid token.");
+        problemDetail.setProperty("timestamp", OffsetDateTime.now());
+
+        String path = request.getRequestURI();
+        String method = request.getMethod();
+        String errorId = UUID.randomUUID().toString().substring(0, 8);
+
+        log.warn("Warn [{}]: Invalid JWT token during [{}] '{}': {}", errorId, method, path, ex.getMessage());
+        return new ResponseEntity<>(problemDetail, HttpStatus.UNAUTHORIZED);
+    }
+
+    @ExceptionHandler(InvalidTokenException.class)
+    public ResponseEntity<ProblemDetail> handleInvalidTokenException(
+            InvalidTokenException ex,
+            HttpServletRequest request) {
+
+        ProblemDetail problemDetail = ProblemDetail.forStatus(
+                HttpStatus.BAD_REQUEST
+        );
+        problemDetail.setTitle("Invalid token type.");
+        problemDetail.setProperty("timestamp", OffsetDateTime.now());
+
+        String path = request.getRequestURI();
+        String method = request.getMethod();
+        String errorId = UUID.randomUUID().toString().substring(0, 8);
+
+        log.warn("Warn [{}]: Invalid token type during [{}] '{}': {}", errorId, method, path, ex.getMessage());
+        return new ResponseEntity<>(problemDetail, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(Exception.class)

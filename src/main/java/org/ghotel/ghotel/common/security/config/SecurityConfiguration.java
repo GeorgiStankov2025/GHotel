@@ -1,7 +1,7 @@
-package org.ghotel.ghotel.common.config;
+package org.ghotel.ghotel.common.security.config;
 
 import jakarta.servlet.http.HttpServletResponse;
-import org.ghotel.ghotel.common.security.JwtFilter;
+import org.ghotel.ghotel.common.security.service.JwtFilter;
 import org.ghotel.ghotel.entity.EmployeeRole;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

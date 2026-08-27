@@ -1,10 +1,11 @@
-package org.ghotel.ghotel.common.security;
+package org.ghotel.ghotel.common.security.service;
 
 import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.jspecify.annotations.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -15,6 +16,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 import java.util.List;
 
+@Slf4j
 @Component
 public class JwtFilter extends OncePerRequestFilter {
 
@@ -41,7 +43,8 @@ public class JwtFilter extends OncePerRequestFilter {
                 String username = jwtUtils.extractUsername(token);
                 String role = jwtUtils.extractRole(token);
 
-                if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+                if (username != null && jwtUtils.extractType(token).equals("ACCESS") &&
+                        SecurityContextHolder.getContext().getAuthentication() == null) {
                     SimpleGrantedAuthority authority = new SimpleGrantedAuthority(role);
 
                     SecurityContextHolder.getContext().setAuthentication(
@@ -49,12 +52,13 @@ public class JwtFilter extends OncePerRequestFilter {
                     );
                 }
             } catch (ExpiredJwtException ex) {
-                logger.warn("JWT token expired: " + ex.getMessage());
+                log.warn("JWT token expired: {}", ex.getMessage());
             } catch (Exception ex) {
-                logger.warn("Invalid JWT token: " + ex.getMessage());
+                log.warn("Invalid JWT token: {}", ex.getMessage());
             }
         }
 
         filterChain.doFilter(request, response);
     }
+
 }

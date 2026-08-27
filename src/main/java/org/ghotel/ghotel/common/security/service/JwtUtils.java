@@ -1,9 +1,8 @@
-package org.ghotel.ghotel.common.security;
+package org.ghotel.ghotel.common.security.service;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
-import org.ghotel.ghotel.entity.EmployeeRole;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -24,12 +23,26 @@ public class JwtUtils {
         this.key = Keys.hmacShaKeyFor(jwtSecret.getBytes(StandardCharsets.UTF_8));
     }
 
-    public String generateToken(String username, EmployeeRole role) {
+    public String generateToken(String username, String role, long minutes) {
         return Jwts.builder()
                 .subject(username)
-                .claim("role", role.name())
+                .claim("role", role)
+                .claim("type", "ACCESS")
                 .issuedAt(Date.from(Instant.now()))
-                .expiration(Date.from(Instant.now().plus(10, ChronoUnit.MINUTES)))
+                .expiration(Date.from(Instant.now().plus(minutes, ChronoUnit.MINUTES)))
+                .issuer(path)
+                .audience().add(path).and()
+                .signWith(key)
+                .compact();
+    }
+
+    public String generateRefreshToken(String username, String role) {
+        return Jwts.builder()
+                .subject(username)
+                .claim("role", role)
+                .claim("type", "REFRESH")
+                .issuedAt(Date.from(Instant.now()))
+                .expiration(Date.from(Instant.now().plus(4, ChronoUnit.DAYS)))
                 .issuer(path)
                 .audience().add(path).and()
                 .signWith(key)
@@ -52,4 +65,11 @@ public class JwtUtils {
         return getClaims(token).get("role", String.class);
     }
 
+    public String extractType(String token) {
+        return getClaims(token).get("type", String.class);
+    }
+
+    public Instant extractExpiration(String token) {
+        return getClaims(token).getExpiration().toInstant();
+    }
 }

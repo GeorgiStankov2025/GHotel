@@ -5,10 +5,10 @@ import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.ghotel.ghotel.dto.request.EmployeeRequestDTO;
 import org.ghotel.ghotel.dto.request.LoginRequestDTO;
+import org.ghotel.ghotel.dto.request.TokenRequestDTO;
+import org.ghotel.ghotel.dto.response.AuthResponseDTO;
 import org.ghotel.ghotel.dto.response.EmployeeResponseDTO;
-import org.ghotel.ghotel.dto.response.LoginResponseDTO;
 import org.ghotel.ghotel.service.auth.AuthService;
-import org.ghotel.ghotel.service.auth.AuthServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,11 +39,21 @@ public class AuthController {
 
     @PostMapping("/login")
     @Operation(description = "Login endpoint for employees/users.")
-    public ResponseEntity<LoginResponseDTO> login(
+    public ResponseEntity<AuthResponseDTO> login(
             @Valid
             @RequestBody LoginRequestDTO request) {
-        LoginResponseDTO response = authService.login(request);
+        AuthResponseDTO response = authService.login(request);
         log.info("Employee with username: {} logged in", request.username());
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @PostMapping("/refresh")
+    @Operation(description = "Refresh access token with refresh token.")
+    public ResponseEntity<AuthResponseDTO> refresh(
+            @Valid
+            @RequestBody TokenRequestDTO request
+    ) {
+        AuthResponseDTO response = authService.refresh(request);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
