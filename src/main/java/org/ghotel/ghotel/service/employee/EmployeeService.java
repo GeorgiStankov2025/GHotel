@@ -1,114 +1,30 @@
 package org.ghotel.ghotel.service.employee;
 
-import org.ghotel.ghotel.dto.request.EmployeeRequestDTO;
 import org.ghotel.ghotel.dto.response.DeletedDTO;
 import org.ghotel.ghotel.dto.response.EmployeeResponseDTO;
 import org.ghotel.ghotel.entity.Employee;
-import org.ghotel.ghotel.exception.InvalidRequestException;
-import org.ghotel.ghotel.exception.ResourceNotFoundException;
-import org.ghotel.ghotel.mapper.EmployeeMapper;
-import org.ghotel.ghotel.repository.EmployeeRepository;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
 
-@Service
-@Transactional(readOnly = true)
-public class EmployeeService implements IEmployeeService {
+public interface EmployeeService {
+//    EmployeeResponseDTO addEmployee(EmployeeRequestDTO request);
 
-    private final EmployeeRepository employeeRepository;
-    private final EmployeeMapper employeeMapper;
+    EmployeeResponseDTO getEmployeeById(UUID id);
 
-    public EmployeeService(EmployeeRepository employeeRepository, EmployeeMapper employeeMapper) {
-        this.employeeRepository = employeeRepository;
-        this.employeeMapper = employeeMapper;
-    }
+    List<EmployeeResponseDTO> getEmployees();
 
-//    @Transactional
-//    @Override
-//    public EmployeeResponseDTO addEmployee(EmployeeRequestDTO request) {
-//        if (employeeRepository.existsByUsername(request.username())) {
-//            throw new InvalidRequestException
-//                    ("Employee with username: " + request.username() + " already exists.");
-//        }
-//        Employee employee = employeeMapper.toEmployeeEntity(request);
-//        Employee saved = employeeRepository.save(employee);
-//        return employeeMapper.toEmployeeResponseDTO(saved);
-//    }
+    List<EmployeeResponseDTO> getAllEmployees();
 
-//    @Transactional
-//    @Override
-//    public EmployeeResponseDTO editEmployee(UUID id, EmployeeRequestDTO request) {
-//        Employee employee = findById(id);
-//        employee = employeeMapper.updateEmployee(request, employee);
-//        return employeeMapper.toEmployeeResponseDTO(employee);
-//    }
+    EmployeeResponseDTO getDeletedEmployeeById(UUID id);
 
-    @Transactional
-    @Override
-    public DeletedDTO deleteEmployee(UUID id) {
-        Employee employee = findById(id);
-        employee.setDeleted(true);
-        return new DeletedDTO("Resource deleted successfully.");
-    }
+//    EmployeeResponseDTO editEmployee(UUID id, EmployeeRequestDTO request);
 
-    @Transactional
-    @Override
-    public EmployeeResponseDTO restoreEmployee(UUID id) {
-        Employee employee = findByIdDeleted(id);
-        employee.setDeleted(false);
-        return employeeMapper.toEmployeeResponseDTO(employee);
-    }
+    DeletedDTO deleteEmployee(UUID id);
 
-    @Override
-    public EmployeeResponseDTO getEmployeeById(UUID id) {
-        Employee employee = findById(id);
-        return employeeMapper.toEmployeeResponseDTO(employee);
-    }
+    EmployeeResponseDTO restoreEmployee(UUID id);
 
-    @Override
-    public List<EmployeeResponseDTO> getEmployees() {
-        List<Employee> employees = employeeRepository.getAllByDeletedFalse();
-        return employees.stream()
-                .map(employeeMapper::toEmployeeResponseDTO)
-                .toList();
-    }
+    Employee findById(UUID id);
 
-    @Override
-    public List<EmployeeResponseDTO> getAllEmployees() {
-        List<Employee> employees = employeeRepository.findAll();
-        return employees.stream()
-                .map(employeeMapper::toEmployeeResponseDTO)
-                .toList();
-    }
-
-    @Override
-    public EmployeeResponseDTO getDeletedEmployeeById(UUID id) {
-        Employee employee = findByIdDeleted(id);
-        return employeeMapper.toEmployeeResponseDTO(employee);
-    }
-
-//    public List<EmployeeResponseDTO> getDeletedEmployees() {
-//        List<Employee> employees = employeeRepository.getAllByDeletedTrue();
-//        return employees.stream()
-//                .map(employeeMapper::toEmployeeResponseDTO)
-//                .toList();
-//    }
-
-    @Override
-    public Employee findById(UUID id) {
-        return employeeRepository.getEmployeeByIdAndDeletedFalse(id)
-                .orElseThrow(() ->
-                        new ResourceNotFoundException("Employee not found with id: " + id));
-    }
-
-    @Override
-    public Employee findByIdDeleted(UUID id) {
-        return employeeRepository.getEmployeeByIdAndDeletedTrue(id)
-                .orElseThrow(() ->
-                        new ResourceNotFoundException("Employee not found with id: " + id));
-    }
-
+    Employee findByIdDeleted(UUID id);
 }

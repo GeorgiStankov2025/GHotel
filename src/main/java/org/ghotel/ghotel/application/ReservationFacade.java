@@ -3,7 +3,6 @@ package org.ghotel.ghotel.application;
 import org.ghotel.ghotel.dto.request.ReservationCustomerRequestDTO;
 import org.ghotel.ghotel.dto.request.ReservationRequestDTO;
 import org.ghotel.ghotel.dto.request.ReservationRoomRequestDTO;
-import org.ghotel.ghotel.dto.response.ReservationCustomerResponseDTO;
 import org.ghotel.ghotel.dto.response.ReservationResponseDTO;
 import org.ghotel.ghotel.dto.response.ReservationRoomsCustomerResponseDTO;
 import org.ghotel.ghotel.dto.response.ReservationRoomsResponseDTO;
@@ -13,7 +12,7 @@ import org.ghotel.ghotel.entity.Room;
 import org.ghotel.ghotel.exception.InvalidRequestException;
 import org.ghotel.ghotel.mapper.ReservationMapper;
 import org.ghotel.ghotel.service.customer.CustomerService;
-import org.ghotel.ghotel.service.reservation.IReservationService;
+import org.ghotel.ghotel.service.reservation.ReservationService;
 import org.ghotel.ghotel.service.room.RoomService;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,12 +21,12 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(readOnly = true)
 public class ReservationFacade {
 
-    private final IReservationService reservationService;
+    private final ReservationService reservationService;
     private final CustomerService customerService;
     private final RoomService roomService;
     private final ReservationMapper reservationMapper;
 
-    public ReservationFacade(IReservationService reservationService, CustomerService customerService, RoomService roomService, ReservationMapper reservationMapper) {
+    public ReservationFacade(ReservationService reservationService, CustomerService customerService, RoomService roomService, ReservationMapper reservationMapper) {
         this.reservationService = reservationService;
         this.customerService = customerService;
         this.roomService = roomService;

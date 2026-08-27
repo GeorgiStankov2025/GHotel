@@ -1,4 +1,4 @@
-package org.ghotel.ghotel.security;
+package org.ghotel.ghotel.common.config;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;

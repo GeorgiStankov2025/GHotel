@@ -30,7 +30,7 @@ public class Employee extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)
-    private EmployeeRole role = EmployeeRole.USER;
+    private EmployeeRole role = EmployeeRole.ROLE_RECEPTIONIST;
 
     public Employee(String firstName, String lastName, String username, String password) {
         this.firstName = firstName;

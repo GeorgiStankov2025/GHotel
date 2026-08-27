@@ -1,12 +1,10 @@
 package org.ghotel.ghotel.api.v1;
 
 import io.swagger.v3.oas.annotations.Operation;
-import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
-import org.ghotel.ghotel.dto.request.EmployeeRequestDTO;
 import org.ghotel.ghotel.dto.response.DeletedDTO;
 import org.ghotel.ghotel.dto.response.EmployeeResponseDTO;
-import org.ghotel.ghotel.service.employee.IEmployeeService;
+import org.ghotel.ghotel.service.employee.EmployeeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,9 +17,9 @@ import java.util.UUID;
 @RequestMapping("/api/v1/employee")
 public class EmployeeController {
 
-    private final IEmployeeService employeeService;
+    private final EmployeeService employeeService;
 
-    public EmployeeController(IEmployeeService employeeService) {
+    public EmployeeController(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
 

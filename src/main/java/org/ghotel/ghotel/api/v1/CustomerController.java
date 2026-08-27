@@ -7,7 +7,7 @@ import org.ghotel.ghotel.dto.request.CustomerRequestDTO;
 import org.ghotel.ghotel.dto.response.CustomerReservationsResponseDTO;
 import org.ghotel.ghotel.dto.response.CustomerResponseDTO;
 import org.ghotel.ghotel.dto.response.DeletedDTO;
-import org.ghotel.ghotel.service.customer.ICustomerService;
+import org.ghotel.ghotel.service.customer.CustomerService;
 import org.springframework.context.annotation.Description;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,9 +21,9 @@ import java.util.UUID;
 @RequestMapping("/api/v1/customer")
 @Description(value = "Used for managing Customer requests")
 public class CustomerController {
-    private final ICustomerService customerService;
+    private final CustomerService customerService;
 
-    public CustomerController(ICustomerService customerService) {
+    public CustomerController(CustomerService customerService) {
         this.customerService = customerService;
     }
 

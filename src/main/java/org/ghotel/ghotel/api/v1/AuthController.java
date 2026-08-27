@@ -8,6 +8,7 @@ import org.ghotel.ghotel.dto.request.LoginRequestDTO;
 import org.ghotel.ghotel.dto.response.EmployeeResponseDTO;
 import org.ghotel.ghotel.dto.response.LoginResponseDTO;
 import org.ghotel.ghotel.service.auth.AuthService;
+import org.ghotel.ghotel.service.auth.AuthServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,7 +44,7 @@ public class AuthController {
             @RequestBody LoginRequestDTO request) {
         LoginResponseDTO response = authService.login(request);
         log.info("Employee with username: {} logged in", request.username());
-        return new ResponseEntity<>(response, HttpStatus.CREATED);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
 }

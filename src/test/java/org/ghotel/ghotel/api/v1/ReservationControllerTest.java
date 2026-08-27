@@ -11,8 +11,8 @@ import org.ghotel.ghotel.mapper.RoomMapper;
 import org.ghotel.ghotel.repository.CustomerRepository;
 import org.ghotel.ghotel.repository.ReservationRepository;
 import org.ghotel.ghotel.repository.RoomRepository;
-import org.ghotel.ghotel.service.customer.CustomerService;
-import org.ghotel.ghotel.service.reservation.ReservationService;
+import org.ghotel.ghotel.service.customer.CustomerServiceImpl;
+import org.ghotel.ghotel.service.reservation.ReservationServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,7 +71,7 @@ public class ReservationControllerTest {
     private CustomerMapper customerMapper;
 
     @Autowired
-    private CustomerService customerService;
+    private CustomerServiceImpl customerService;
 
     @Autowired
     private ReservationFacade reservationFacade;
@@ -80,7 +80,7 @@ public class ReservationControllerTest {
     private RoomMapper roomMapper;
 
     @Autowired
-    private ReservationService reservationService;
+    private ReservationServiceImpl reservationService;
 
     @Autowired
     private ObjectMapper objectMapper;

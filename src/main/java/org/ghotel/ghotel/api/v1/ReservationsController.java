@@ -8,7 +8,7 @@ import org.ghotel.ghotel.dto.request.ReservationCustomerRequestDTO;
 import org.ghotel.ghotel.dto.request.ReservationRequestDTO;
 import org.ghotel.ghotel.dto.request.ReservationRoomRequestDTO;
 import org.ghotel.ghotel.dto.response.*;
-import org.ghotel.ghotel.service.reservation.IReservationService;
+import org.ghotel.ghotel.service.reservation.ReservationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,9 +22,9 @@ import java.util.UUID;
 public class ReservationsController {
 
     private final ReservationFacade reservationFacade;
-    private final IReservationService reservationService;
+    private final ReservationService reservationService;
 
-    public ReservationsController(ReservationFacade reservationFacade, IReservationService reservationService) {
+    public ReservationsController(ReservationFacade reservationFacade, ReservationService reservationService) {
         this.reservationFacade = reservationFacade;
         this.reservationService = reservationService;
     }

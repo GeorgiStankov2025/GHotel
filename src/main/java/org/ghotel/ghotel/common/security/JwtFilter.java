@@ -1,4 +1,4 @@
-package org.ghotel.ghotel.security;
+package org.ghotel.ghotel.common.security;
 
 import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
@@ -7,28 +7,27 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.jspecify.annotations.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.List;
 
 @Component
 public class JwtFilter extends OncePerRequestFilter {
 
     private final JwtUtils jwtUtils;
-    private final UserDetailsService userDetailsService;
+    private final String prefix = "Bearer ";
 
-    public JwtFilter(JwtUtils jwtUtils, UserDetailsService userDetailsService) {
+    public JwtFilter(JwtUtils jwtUtils) {
         this.jwtUtils = jwtUtils;
-        this.userDetailsService = userDetailsService;
     }
 
 
     @Override
-    protected void doFilterInternal(
+    public void doFilterInternal(
             HttpServletRequest request,
             @NonNull HttpServletResponse response,
             @NonNull FilterChain filterChain)
@@ -37,13 +36,16 @@ public class JwtFilter extends OncePerRequestFilter {
         String header = request.getHeader("Authorization");
 
         if (header != null && header.startsWith("Bearer ")) {
-            String username = jwtUtils.extractUsername(header.substring(7));
             try {
+                String token = header.substring(prefix.length());
+                String username = jwtUtils.extractUsername(token);
+                String role = jwtUtils.extractRole(token);
 
                 if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-                    UserDetails user = userDetailsService.loadUserByUsername(username);
+                    SimpleGrantedAuthority authority = new SimpleGrantedAuthority(role);
+
                     SecurityContextHolder.getContext().setAuthentication(
-                            new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities())
+                            new UsernamePasswordAuthenticationToken(username, null, List.of(authority))
                     );
                 }
             } catch (ExpiredJwtException ex) {
@@ -52,6 +54,7 @@ public class JwtFilter extends OncePerRequestFilter {
                 logger.warn("Invalid JWT token: " + ex.getMessage());
             }
         }
+
         filterChain.doFilter(request, response);
     }
 }

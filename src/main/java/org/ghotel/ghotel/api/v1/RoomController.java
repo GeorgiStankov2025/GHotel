@@ -7,7 +7,7 @@ import org.ghotel.ghotel.dto.request.RoomRequestDTO;
 import org.ghotel.ghotel.dto.response.DeletedDTO;
 import org.ghotel.ghotel.dto.response.RoomReservationsResponseDTO;
 import org.ghotel.ghotel.dto.response.RoomResponseDTO;
-import org.ghotel.ghotel.service.room.IRoomService;
+import org.ghotel.ghotel.service.room.RoomService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,9 +19,9 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/v1/room")
 public class RoomController {
-    private final IRoomService roomService;
+    private final RoomService roomService;
 
-    public RoomController(IRoomService roomService) {
+    public RoomController(RoomService roomService) {
         this.roomService = roomService;
     }
 
