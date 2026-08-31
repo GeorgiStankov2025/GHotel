@@ -9,12 +9,12 @@ import lombok.experimental.SuperBuilder;
 import org.ghotel.ghotel.entity.base.BaseEntity;
 
 @Entity
-@Table(name = "employee")
+@Table(name = "users")
 @SuperBuilder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Setter
-public class Employee extends BaseEntity {
+public class User extends BaseEntity {
 
     @Column(name = "first_name", nullable = false, length = 30)
     private String firstName;
@@ -30,9 +30,9 @@ public class Employee extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)
-    private EmployeeRole role = EmployeeRole.ROLE_RECEPTIONIST;
+    private UserRole role = UserRole.ROLE_RECEPTIONIST;
 
-    public Employee(String firstName, String lastName, String username, String password) {
+    public User(String firstName, String lastName, String username, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;

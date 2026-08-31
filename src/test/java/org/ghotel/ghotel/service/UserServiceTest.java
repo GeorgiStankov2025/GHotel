@@ -1,13 +1,13 @@
 package org.ghotel.ghotel.service;
 
-import org.ghotel.ghotel.dto.request.EmployeeRequestDTO;
+import org.ghotel.ghotel.dto.request.UserRequestDTO;
 import org.ghotel.ghotel.dto.response.DeletedDTO;
-import org.ghotel.ghotel.dto.response.EmployeeResponseDTO;
-import org.ghotel.ghotel.entity.Employee;
+import org.ghotel.ghotel.dto.response.UserResponseDTO;
+import org.ghotel.ghotel.entity.User;
 import org.ghotel.ghotel.exception.ResourceNotFoundException;
-import org.ghotel.ghotel.mapper.EmployeeMapper;
-import org.ghotel.ghotel.repository.EmployeeRepository;
-import org.ghotel.ghotel.service.employee.EmployeeServiceImpl;
+import org.ghotel.ghotel.mapper.UserMapper;
+import org.ghotel.ghotel.repository.UserRepository;
+import org.ghotel.ghotel.service.user.UserServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -26,31 +26,31 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class EmployeeServiceTest {
+public class UserServiceTest {
 
 
     @Mock
-    private EmployeeRepository employeeRepository;
+    private UserRepository userRepository;
 
     @Spy
-    private EmployeeMapper employeeMapper = Mappers.getMapper(EmployeeMapper.class);
+    private UserMapper userMapper = Mappers.getMapper(UserMapper.class);
 
     @InjectMocks
-    private EmployeeServiceImpl employeeService;
+    private UserServiceImpl employeeService;
 
-    EmployeeRequestDTO request;
-    Employee employee;
-    Employee updatedEmployee;
-    EmployeeResponseDTO expectedResponseAdded;
-    EmployeeResponseDTO expectedResponseUpdated;
-    EmployeeRequestDTO updateRequest;
+    UserRequestDTO request;
+    User user;
+    User updatedUser;
+    UserResponseDTO expectedResponseAdded;
+    UserResponseDTO expectedResponseUpdated;
+    UserRequestDTO updateRequest;
     DeletedDTO deletedResponse;
     UUID id;
-    Employee deletedEmployee;
+    User deletedUser;
 
     @BeforeEach
     void setUp() {
-        request = new EmployeeRequestDTO(
+        request = new UserRequestDTO(
                 "Ivancho123",
                 "Ivan",
                 "Draganov",
@@ -64,14 +64,14 @@ public class EmployeeServiceTest {
 //                "123456"
 //        );
 
-        employee = Employee.builder()
+        user = User.builder()
                 .id(UUID.randomUUID())
                 .firstName("Ivan")
                 .lastName("Draganov")
                 .username("Ivancho123")
                 .build();
 
-        expectedResponseAdded = new EmployeeResponseDTO(
+        expectedResponseAdded = new UserResponseDTO(
                 UUID.randomUUID(),
                 "Ivancho123",
                 "Ivan",
@@ -85,20 +85,20 @@ public class EmployeeServiceTest {
 //                "123456"
 //        );
 
-        updatedEmployee = Employee.builder()
+        updatedUser = User.builder()
                 .firstName("Dragan")
                 .lastName("Ivanov")
                 .username("Dragancho123")
                 .build();
 
-        expectedResponseUpdated = new EmployeeResponseDTO(
+        expectedResponseUpdated = new UserResponseDTO(
                 UUID.randomUUID(),
                 "Dragancho123",
                 "Dragan",
                 "Ivanov"
         );
 
-        updateRequest = new EmployeeRequestDTO(
+        updateRequest = new UserRequestDTO(
                 "Dragancho123",
                 "Dragan",
                 "Ivanov",
@@ -109,30 +109,30 @@ public class EmployeeServiceTest {
 
         deletedResponse = new DeletedDTO("Resource deleted successfully.");
 
-        deletedEmployee = Employee.builder()
+        deletedUser = User.builder()
                 .deleted(true)
                 .build();
     }
 
     @Test
-    void getEmployeeById_Successful() {
-        Employee mockEmployee = Employee.builder()
+    void getUserById_Successful() {
+        User mockUser = User.builder()
                 .firstName("Georgi")
                 .build();
         //Should return existing object with the id.
-        when(employeeRepository.getEmployeeByIdAndDeletedFalse(id))
-                .thenReturn(Optional.of(mockEmployee));
+        when(userRepository.getUserByIdAndDeletedFalse(id))
+                .thenReturn(Optional.of(mockUser));
 
-        Employee employee = employeeService.findById(id);
-        assertNotNull(employee);
-        assertEquals(mockEmployee.getFirstName(), employee.getFirstName());
+        User user = employeeService.findById(id);
+        assertNotNull(user);
+        assertEquals(mockUser.getFirstName(), user.getFirstName());
     }
 
     @Test
     void getEmployee_Unsuccessful() {
         //Should throw a ResourceNotFoundException.
         UUID id = UUID.fromString("01a01482-6f95-7472-bae6-8279297087c2");
-        when(employeeRepository.getEmployeeByIdAndDeletedFalse(id))
+        when(userRepository.getUserByIdAndDeletedFalse(id))
                 .thenReturn(Optional.empty());
 
         ResourceNotFoundException ex = assertThrows(

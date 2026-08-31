@@ -1,4 +1,4 @@
-CREATE TABLE employee
+CREATE TABLE user
 (
     id          UUID                        NOT NULL,
     version     BIGINT,
@@ -13,5 +13,5 @@ CREATE TABLE employee
     CONSTRAINT pk_employee PRIMARY KEY (id)
 );
 
-ALTER TABLE employee
+ALTER TABLE user
     ADD CONSTRAINT uc_employee_username UNIQUE (username);

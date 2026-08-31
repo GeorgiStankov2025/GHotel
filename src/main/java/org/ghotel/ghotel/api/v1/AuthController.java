@@ -3,11 +3,11 @@ package org.ghotel.ghotel.api.v1;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
-import org.ghotel.ghotel.dto.request.EmployeeRequestDTO;
+import org.ghotel.ghotel.dto.request.UserRequestDTO;
 import org.ghotel.ghotel.dto.request.LoginRequestDTO;
 import org.ghotel.ghotel.dto.request.TokenRequestDTO;
 import org.ghotel.ghotel.dto.response.AuthResponseDTO;
-import org.ghotel.ghotel.dto.response.EmployeeResponseDTO;
+import org.ghotel.ghotel.dto.response.UserResponseDTO;
 import org.ghotel.ghotel.service.auth.AuthService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,10 +29,10 @@ public class AuthController {
 
     @PostMapping("/register")
     @Operation(description = "Register employee.")
-    public ResponseEntity<EmployeeResponseDTO> register(
+    public ResponseEntity<UserResponseDTO> register(
             @Valid
-            @RequestBody EmployeeRequestDTO request) {
-        EmployeeResponseDTO response = authService.register(request);
+            @RequestBody UserRequestDTO request) {
+        UserResponseDTO response = authService.register(request);
         log.info("Registered employee with username: {}", response.username());
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }

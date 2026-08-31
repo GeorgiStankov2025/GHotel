@@ -17,7 +17,7 @@ public class JwtUtils {
 
     private final SecretKey key;
 
-    private final String path = "http://localhost:8084/";
+    private final String uri = "http://localhost:8084/";
 
     public JwtUtils(@Value("${JWT_SECRET}") String jwtSecret) {
         this.key = Keys.hmacShaKeyFor(jwtSecret.getBytes(StandardCharsets.UTF_8));
@@ -30,8 +30,8 @@ public class JwtUtils {
                 .claim("type", "ACCESS")
                 .issuedAt(Date.from(Instant.now()))
                 .expiration(Date.from(Instant.now().plus(minutes, ChronoUnit.MINUTES)))
-                .issuer(path)
-                .audience().add(path).and()
+                .issuer(uri)
+                .audience().add(uri).and()
                 .signWith(key)
                 .compact();
     }
@@ -43,8 +43,8 @@ public class JwtUtils {
                 .claim("type", "REFRESH")
                 .issuedAt(Date.from(Instant.now()))
                 .expiration(Date.from(Instant.now().plus(4, ChronoUnit.DAYS)))
-                .issuer(path)
-                .audience().add(path).and()
+                .issuer(uri)
+                .audience().add(uri).and()
                 .signWith(key)
                 .compact();
     }

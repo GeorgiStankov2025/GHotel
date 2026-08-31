@@ -1,6 +1,6 @@
 package org.ghotel.ghotel.entity;
 
-public enum EmployeeRole {
+public enum UserRole {
     ROLE_ADMIN,
     ROLE_RECEPTIONIST
 }

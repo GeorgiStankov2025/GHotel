@@ -1,11 +1,11 @@
-package org.ghotel.ghotel.service.employee;
+package org.ghotel.ghotel.service.user;
 
 import org.ghotel.ghotel.dto.response.DeletedDTO;
-import org.ghotel.ghotel.dto.response.EmployeeResponseDTO;
-import org.ghotel.ghotel.entity.Employee;
+import org.ghotel.ghotel.dto.response.UserResponseDTO;
+import org.ghotel.ghotel.entity.User;
 import org.ghotel.ghotel.exception.ResourceNotFoundException;
-import org.ghotel.ghotel.mapper.EmployeeMapper;
-import org.ghotel.ghotel.repository.EmployeeRepository;
+import org.ghotel.ghotel.mapper.UserMapper;
+import org.ghotel.ghotel.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,14 +14,14 @@ import java.util.UUID;
 
 @Service
 @Transactional(readOnly = true)
-public class EmployeeServiceImpl implements EmployeeService {
+public class UserServiceImpl implements UserService {
 
-    private final EmployeeRepository employeeRepository;
-    private final EmployeeMapper employeeMapper;
+    private final UserRepository userRepository;
+    private final UserMapper userMapper;
 
-    public EmployeeServiceImpl(EmployeeRepository employeeRepository, EmployeeMapper employeeMapper) {
-        this.employeeRepository = employeeRepository;
-        this.employeeMapper = employeeMapper;
+    public UserServiceImpl(UserRepository userRepository, UserMapper userMapper) {
+        this.userRepository = userRepository;
+        this.userMapper = userMapper;
     }
 
 //    @Transactional
@@ -46,46 +46,46 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Transactional
     @Override
-    public DeletedDTO deleteEmployee(UUID id) {
-        Employee employee = findById(id);
-        employee.setDeleted(true);
+    public DeletedDTO deleteUser(UUID id) {
+        User user = findById(id);
+        user.setDeleted(true);
         return new DeletedDTO("Resource deleted successfully.");
     }
 
     @Transactional
     @Override
-    public EmployeeResponseDTO restoreEmployee(UUID id) {
-        Employee employee = findByIdDeleted(id);
-        employee.setDeleted(false);
-        return employeeMapper.toEmployeeResponseDTO(employee);
+    public UserResponseDTO restoreUser(UUID id) {
+        User user = findByIdDeleted(id);
+        user.setDeleted(false);
+        return userMapper.toUserResponseDTO(user);
     }
 
     @Override
-    public EmployeeResponseDTO getEmployeeById(UUID id) {
-        Employee employee = findById(id);
-        return employeeMapper.toEmployeeResponseDTO(employee);
+    public UserResponseDTO getUserById(UUID id) {
+        User user = findById(id);
+        return userMapper.toUserResponseDTO(user);
     }
 
     @Override
-    public List<EmployeeResponseDTO> getEmployees() {
-        List<Employee> employees = employeeRepository.getAllByDeletedFalse();
-        return employees.stream()
-                .map(employeeMapper::toEmployeeResponseDTO)
+    public List<UserResponseDTO> getUsers() {
+        List<User> users = userRepository.getAllByDeletedFalse();
+        return users.stream()
+                .map(userMapper::toUserResponseDTO)
                 .toList();
     }
 
     @Override
-    public List<EmployeeResponseDTO> getAllEmployees() {
-        List<Employee> employees = employeeRepository.findAll();
-        return employees.stream()
-                .map(employeeMapper::toEmployeeResponseDTO)
+    public List<UserResponseDTO> getAllUsers() {
+        List<User> users = userRepository.findAll();
+        return users.stream()
+                .map(userMapper::toUserResponseDTO)
                 .toList();
     }
 
     @Override
-    public EmployeeResponseDTO getDeletedEmployeeById(UUID id) {
-        Employee employee = findByIdDeleted(id);
-        return employeeMapper.toEmployeeResponseDTO(employee);
+    public UserResponseDTO getDeletedUserById(UUID id) {
+        User user = findByIdDeleted(id);
+        return userMapper.toUserResponseDTO(user);
     }
 
 //    public List<EmployeeResponseDTO> getDeletedEmployees() {
@@ -96,15 +96,15 @@ public class EmployeeServiceImpl implements EmployeeService {
 //    }
 
     @Override
-    public Employee findById(UUID id) {
-        return employeeRepository.getEmployeeByIdAndDeletedFalse(id)
+    public User findById(UUID id) {
+        return userRepository.getUserByIdAndDeletedFalse(id)
                 .orElseThrow(() ->
                         new ResourceNotFoundException("Employee not found with id: " + id));
     }
 
     @Override
-    public Employee findByIdDeleted(UUID id) {
-        return employeeRepository.getEmployeeByIdAndDeletedTrue(id)
+    public User findByIdDeleted(UUID id) {
+        return userRepository.getUserByIdAndDeletedTrue(id)
                 .orElseThrow(() ->
                         new ResourceNotFoundException("Employee not found with id: " + id));
     }

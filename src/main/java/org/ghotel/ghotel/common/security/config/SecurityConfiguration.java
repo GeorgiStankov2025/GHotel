@@ -2,7 +2,7 @@ package org.ghotel.ghotel.common.security.config;
 
 import jakarta.servlet.http.HttpServletResponse;
 import org.ghotel.ghotel.common.security.service.JwtFilter;
-import org.ghotel.ghotel.entity.EmployeeRole;
+import org.ghotel.ghotel.entity.UserRole;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -52,13 +52,13 @@ public class SecurityConfiguration {
                                 "/swagger-ui/**",
                                 "/swagger-ui.html"
                         ).permitAll()
-                        .requestMatchers("/api/v1/employee/**").hasAnyAuthority(EmployeeRole.ROLE_ADMIN.name())
+                        .requestMatchers("/api/v1/user/**").hasAnyAuthority(UserRole.ROLE_ADMIN.name())
                         .requestMatchers("/api/v1/reservation/**").hasAnyAuthority(
-                                EmployeeRole.ROLE_RECEPTIONIST.name(), EmployeeRole.ROLE_ADMIN.name())
+                                UserRole.ROLE_RECEPTIONIST.name(), UserRole.ROLE_ADMIN.name())
                         .requestMatchers("/api/v1/room/**").hasAnyAuthority(
-                                EmployeeRole.ROLE_RECEPTIONIST.name(), EmployeeRole.ROLE_ADMIN.name())
+                                UserRole.ROLE_RECEPTIONIST.name(), UserRole.ROLE_ADMIN.name())
                         .requestMatchers("/api/v1/customer/**").hasAnyAuthority(
-                                EmployeeRole.ROLE_RECEPTIONIST.name(), EmployeeRole.ROLE_ADMIN.name())
+                                UserRole.ROLE_RECEPTIONIST.name(), UserRole.ROLE_ADMIN.name())
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
