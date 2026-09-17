@@ -1,11 +1,14 @@
 package org.ghotel.ghotel.service.user;
 
+import org.ghotel.ghotel.dto.request.UserRequestDTO;
 import org.ghotel.ghotel.dto.response.DeletedDTO;
 import org.ghotel.ghotel.dto.response.UserResponseDTO;
 import org.ghotel.ghotel.entity.User;
+import org.ghotel.ghotel.exception.InvalidRequestException;
 import org.ghotel.ghotel.exception.ResourceNotFoundException;
 import org.ghotel.ghotel.mapper.UserMapper;
 import org.ghotel.ghotel.repository.UserRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,30 +21,33 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final UserMapper userMapper;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository userRepository, UserMapper userMapper) {
+    public UserServiceImpl(UserRepository userRepository, UserMapper userMapper, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
+        this.passwordEncoder = passwordEncoder;
+    }
+
+    @Transactional
+    @Override
+    public UserResponseDTO addUser(UserRequestDTO request) {
+        if (existsByUsername(request.username())) {
+            throw new InvalidRequestException
+                    ("User with username: " + request.username() + " already exists.");
+        }
+        User user = userMapper.toUserEntity(request);
+        user.setPassword(passwordEncoder.encode(request.password()));
+        User saved = userRepository.save(user);
+        return userMapper.toUserResponseDTO(saved);
     }
 
 //    @Transactional
 //    @Override
-//    public EmployeeResponseDTO addEmployee(EmployeeRequestDTO request) {
-//        if (employeeRepository.existsByUsername(request.username())) {
-//            throw new InvalidRequestException
-//                    ("Employee with username: " + request.username() + " already exists.");
-//        }
-//        Employee employee = employeeMapper.toEmployeeEntity(request);
-//        Employee saved = employeeRepository.save(employee);
-//        return employeeMapper.toEmployeeResponseDTO(saved);
-//    }
-
-//    @Transactional
-//    @Override
-//    public EmployeeResponseDTO editEmployee(UUID id, EmployeeRequestDTO request) {
-//        Employee employee = findById(id);
-//        employee = employeeMapper.updateEmployee(request, employee);
-//        return employeeMapper.toEmployeeResponseDTO(employee);
+//    public UserResponseDTO editUser(UUID id, UserRequestDTO request) {
+//        User user = findById(id);
+//        user = userMapper.updateUser(request, user);
+//        return userMapper.toUserResponseDTO(user);
 //    }
 
     @Transactional
@@ -88,10 +94,10 @@ public class UserServiceImpl implements UserService {
         return userMapper.toUserResponseDTO(user);
     }
 
-//    public List<EmployeeResponseDTO> getDeletedEmployees() {
-//        List<Employee> employees = employeeRepository.getAllByDeletedTrue();
-//        return employees.stream()
-//                .map(employeeMapper::toEmployeeResponseDTO)
+//    public List<UserResponseDTO> getDeletedUsers() {
+//        List<User> users = userRepository.getAllByDeletedTrue();
+//        return users.stream()
+//                .map(userMapper::toUserResponseDTO)
 //                .toList();
 //    }
 
@@ -99,14 +105,25 @@ public class UserServiceImpl implements UserService {
     public User findById(UUID id) {
         return userRepository.getUserByIdAndDeletedFalse(id)
                 .orElseThrow(() ->
-                        new ResourceNotFoundException("Employee not found with id: " + id));
+                        new ResourceNotFoundException("User not found with id: " + id));
     }
 
     @Override
     public User findByIdDeleted(UUID id) {
         return userRepository.getUserByIdAndDeletedTrue(id)
                 .orElseThrow(() ->
-                        new ResourceNotFoundException("Employee not found with id: " + id));
+                        new ResourceNotFoundException("User not found with id: " + id));
+    }
+
+    @Override
+    public User findByUsername(String username) {
+        return userRepository.getUserByUsername(username)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("User not found with username: " + username));
+    }
+
+    private boolean existsByUsername(String username) {
+        return userRepository.existsByUsername(username);
     }
 
 }

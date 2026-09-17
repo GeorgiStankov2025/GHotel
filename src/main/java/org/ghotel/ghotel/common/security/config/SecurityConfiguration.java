@@ -54,11 +54,11 @@ public class SecurityConfiguration {
                         ).permitAll()
                         .requestMatchers("/api/v1/user/**").hasAnyAuthority(UserRole.ROLE_ADMIN.name())
                         .requestMatchers("/api/v1/reservation/**").hasAnyAuthority(
-                                UserRole.ROLE_RECEPTIONIST.name(), UserRole.ROLE_ADMIN.name())
+                                UserRole.ROLE_USER.name(), UserRole.ROLE_ADMIN.name())
                         .requestMatchers("/api/v1/room/**").hasAnyAuthority(
-                                UserRole.ROLE_RECEPTIONIST.name(), UserRole.ROLE_ADMIN.name())
+                                UserRole.ROLE_USER.name(), UserRole.ROLE_ADMIN.name())
                         .requestMatchers("/api/v1/customer/**").hasAnyAuthority(
-                                UserRole.ROLE_RECEPTIONIST.name(), UserRole.ROLE_ADMIN.name())
+                                UserRole.ROLE_USER.name(), UserRole.ROLE_ADMIN.name())
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)

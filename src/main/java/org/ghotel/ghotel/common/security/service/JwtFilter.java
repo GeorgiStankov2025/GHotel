@@ -20,11 +20,11 @@ import java.util.List;
 @Component
 public class JwtFilter extends OncePerRequestFilter {
 
-    private final JwtUtils jwtUtils;
+    private final JwtService jwtService;
     private final String prefix = "Bearer ";
 
-    public JwtFilter(JwtUtils jwtUtils) {
-        this.jwtUtils = jwtUtils;
+    public JwtFilter(JwtService jwtService) {
+        this.jwtService = jwtService;
     }
 
 
@@ -40,10 +40,10 @@ public class JwtFilter extends OncePerRequestFilter {
         if (header != null && header.startsWith("Bearer ")) {
             try {
                 String token = header.substring(prefix.length());
-                String username = jwtUtils.extractUsername(token);
-                String role = jwtUtils.extractRole(token);
+                String username = jwtService.extractUsername(token);
+                String role = jwtService.extractRole(token);
 
-                if (username != null && jwtUtils.extractType(token).equals("ACCESS") &&
+                if (username != null && jwtService.extractType(token).equals("ACCESS") &&
                         SecurityContextHolder.getContext().getAuthentication() == null) {
                     SimpleGrantedAuthority authority = new SimpleGrantedAuthority(role);
 
