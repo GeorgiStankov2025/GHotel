@@ -45,3 +45,194 @@
 2026-09-17 10:08:16.013 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
 2026-09-17 10:08:16.150 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 2026-09-17 10:08:16.196 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-09-17 12:47:39.645 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 9.1.0.Final
+2026-09-17 12:47:39.811 [main] INFO  org.ghotel.ghotel.GHotelApplication - Starting GHotelApplication using Java 24.0.2 with PID 14872 (D:\ПУ\DREAM\Spring\GHotel\target\classes started by User in D:\ПУ\DREAM\Spring\GHotel)
+2026-09-17 12:47:39.814 [main] INFO  org.ghotel.ghotel.GHotelApplication - No active profile set, falling back to 1 default profile: "default"
+2026-09-17 12:47:42.476 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-09-17 12:47:42.664 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 162 ms. Found 4 JPA repository interfaces.
+2026-09-17 12:47:44.465 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8084 (http)
+2026-09-17 12:47:44.504 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8084"]
+2026-09-17 12:47:44.510 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-09-17 12:47:44.511 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.22]
+2026-09-17 12:47:44.667 [main] INFO  o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 4673 ms
+2026-09-17 12:47:45.194 [main] INFO  org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-09-17 12:47:45.354 [main] INFO  org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.4.1.Final
+2026-09-17 12:47:46.465 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-09-17 12:47:46.564 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-09-17 12:47:47.106 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@b3a8455
+2026-09-17 12:47:47.111 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-09-17 12:47:47.226 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-09-17 12:47:47.320 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost/HotelDB]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.0
+	Default catalog/schema: HotelDB/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-09-17 12:47:51.139 [main] INFO  org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-09-17 12:47:51.804 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-09-17 12:47:52.275 [main] INFO  o.s.d.j.r.q.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-09-17 12:47:54.692 [main] WARN  o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-09-17 12:47:55.657 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2026-09-17 12:47:57.759 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8084"]
+2026-09-17 12:47:57.813 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8084 (http) with context path '/'
+2026-09-17 12:47:57.832 [main] INFO  org.ghotel.ghotel.GHotelApplication - Started GHotelApplication in 19.876 seconds (process running for 22.511)
+2026-09-17 12:48:01.173 [http-nio-8084-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-09-17 12:48:01.173 [http-nio-8084-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-09-17 12:48:01.175 [http-nio-8084-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2026-09-17 12:50:43.150 [SpringApplicationShutdownHook] INFO  o.s.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-09-17 12:50:43.368 [tomcat-shutdown] INFO  o.s.boot.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-09-17 12:50:43.410 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-09-17 12:50:43.457 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-09-17 12:50:43.499 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-09-17 12:50:59.230 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 9.1.0.Final
+2026-09-17 12:50:59.421 [main] INFO  org.ghotel.ghotel.GHotelApplication - Starting GHotelApplication using Java 24.0.2 with PID 1544 (D:\ПУ\DREAM\Spring\GHotel\target\classes started by User in D:\ПУ\DREAM\Spring\GHotel)
+2026-09-17 12:50:59.425 [main] INFO  org.ghotel.ghotel.GHotelApplication - No active profile set, falling back to 1 default profile: "default"
+2026-09-17 12:51:03.220 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-09-17 12:51:03.475 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 229 ms. Found 4 JPA repository interfaces.
+2026-09-17 12:51:05.836 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8084 (http)
+2026-09-17 12:51:05.867 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8084"]
+2026-09-17 12:51:05.870 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-09-17 12:51:05.871 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.22]
+2026-09-17 12:51:06.059 [main] INFO  o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 6374 ms
+2026-09-17 12:51:06.628 [main] INFO  org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-09-17 12:51:06.936 [main] INFO  org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.4.1.Final
+2026-09-17 12:51:08.993 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-09-17 12:51:09.093 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-09-17 12:51:09.661 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@28295554
+2026-09-17 12:51:09.664 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-09-17 12:51:09.767 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-09-17 12:51:09.852 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost/HotelDB]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.0
+	Default catalog/schema: HotelDB/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-09-17 12:51:18.617 [main] INFO  org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-09-17 12:51:19.005 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-09-17 12:51:19.268 [main] INFO  o.s.d.j.r.q.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-09-17 12:51:20.459 [main] WARN  o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-09-17 12:51:20.715 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2026-09-17 12:51:22.541 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8084"]
+2026-09-17 12:51:22.582 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8084 (http) with context path '/'
+2026-09-17 12:51:22.595 [main] INFO  org.ghotel.ghotel.GHotelApplication - Started GHotelApplication in 25.724 seconds (process running for 29.668)
+2026-09-17 12:51:25.405 [http-nio-8084-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-09-17 12:51:25.405 [http-nio-8084-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-09-17 12:51:25.407 [http-nio-8084-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2026-09-17 12:52:16.539 [http-nio-8084-exec-8] INFO  o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 1601 ms
+2026-09-17 12:52:50.267 [http-nio-8084-exec-9] WARN  o.g.g.api.error.ApiExceptionHandler - Warn [9f50231a]: Validation violation for request [userRequestDTO]: {password=Password can be between 8 and 15 characters long}
+2026-09-17 12:52:59.358 [http-nio-8084-exec-1] INFO  o.g.g.service.auth.AuthServiceImpl - Registered user with username: gergi.
+2026-09-17 12:53:00.982 [http-nio-8084-exec-1] INFO  o.g.ghotel.api.v1.AuthController - Registered employee with username: gergi
+2026-09-17 13:02:51.349 [SpringApplicationShutdownHook] INFO  o.s.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-09-17 13:02:51.401 [tomcat-shutdown] INFO  o.s.boot.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-09-17 13:02:51.461 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-09-17 13:02:51.523 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-09-17 13:02:51.577 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-09-17 13:03:05.083 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 9.1.0.Final
+2026-09-17 13:03:05.143 [main] INFO  org.ghotel.ghotel.GHotelApplication - Starting GHotelApplication using Java 24.0.2 with PID 11924 (D:\ПУ\DREAM\Spring\GHotel\target\classes started by User in D:\ПУ\DREAM\Spring\GHotel)
+2026-09-17 13:03:05.144 [main] INFO  org.ghotel.ghotel.GHotelApplication - No active profile set, falling back to 1 default profile: "default"
+2026-09-17 13:03:06.328 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-09-17 13:03:06.399 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 62 ms. Found 4 JPA repository interfaces.
+2026-09-17 13:03:07.966 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8084 (http)
+2026-09-17 13:03:07.996 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8084"]
+2026-09-17 13:03:07.999 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-09-17 13:03:07.999 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.22]
+2026-09-17 13:03:08.159 [main] INFO  o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 2946 ms
+2026-09-17 13:03:08.799 [main] INFO  org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-09-17 13:03:08.962 [main] INFO  org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.4.1.Final
+2026-09-17 13:03:10.138 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-09-17 13:03:10.216 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-09-17 13:03:10.576 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@34eb5d01
+2026-09-17 13:03:10.579 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-09-17 13:03:10.677 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-09-17 13:03:10.760 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost/HotelDB]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.0
+	Default catalog/schema: HotelDB/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-09-17 13:03:13.692 [main] INFO  org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-09-17 13:03:14.018 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-09-17 13:03:14.500 [main] INFO  o.s.d.j.r.q.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-09-17 13:03:15.681 [main] WARN  o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-09-17 13:03:15.947 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2026-09-17 13:03:17.732 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8084"]
+2026-09-17 13:03:17.772 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8084 (http) with context path '/'
+2026-09-17 13:03:17.786 [main] INFO  org.ghotel.ghotel.GHotelApplication - Started GHotelApplication in 13.402 seconds (process running for 15.425)
+2026-09-17 13:04:08.377 [http-nio-8084-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-09-17 13:04:08.378 [http-nio-8084-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-09-17 13:04:08.381 [http-nio-8084-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2026-09-17 13:04:08.787 [http-nio-8084-exec-2] WARN  o.g.g.api.error.ApiExceptionHandler - Warn [20d250d0]: Validation violation for request [loginRequestDTO]: {rawPassword=Password is required}
+2026-09-17 13:04:43.415 [http-nio-8084-exec-4] INFO  o.g.g.service.auth.AuthServiceImpl - Registered user with username: gergi.
+2026-09-17 13:04:44.975 [http-nio-8084-exec-4] INFO  o.g.ghotel.api.v1.AuthController - Registered employee with username: gergi
+2026-09-17 13:04:50.511 [http-nio-8084-exec-5] WARN  o.g.g.api.error.ApiExceptionHandler - Warn [4c42a00c]: Validation violation for request [loginRequestDTO]: {rawPassword=Password is required}
+2026-09-17 13:05:05.898 [http-nio-8084-exec-6] WARN  o.g.g.api.error.ApiExceptionHandler - Warn [df145e8e]: Validation violation for request [loginRequestDTO]: {rawPassword=Password is required}
+2026-09-17 13:06:09.738 [http-nio-8084-exec-9] INFO  o.g.g.service.auth.AuthServiceImpl - User with username: gergi logged in.
+2026-09-17 13:06:09.956 [http-nio-8084-exec-9] INFO  o.g.ghotel.api.v1.AuthController - Employee with username: gergi logged in
+2026-09-17 13:06:15.089 [http-nio-8084-exec-1] WARN  o.g.g.api.error.ApiExceptionHandler - Warn [bb3d9012]: Validation violation for request [loginRequestDTO]: {rawPassword=Password is required}
+2026-09-17 13:09:09.507 [http-nio-8084-exec-3] INFO  o.g.g.service.auth.AuthServiceImpl - User with username: gergi logged in.
+2026-09-17 13:09:09.533 [http-nio-8084-exec-3] INFO  o.g.ghotel.api.v1.AuthController - Employee with username: gergi logged in
+2026-09-17 13:09:43.497 [http-nio-8084-exec-7] WARN  o.g.g.api.error.ApiExceptionHandler - Warn [63173938]: Unable to process data from login HTTP request during [POST]: '/api/v1/auth/login'-Login failed: Wrong username or password.
+2026-09-17 13:17:29.204 [http-nio-8084-exec-8] WARN  o.g.g.api.error.ApiExceptionHandler - Warn [67bfd94e]: Unable to process data from login HTTP request during [POST]: '/api/v1/auth/login'-Login failed: Wrong username or password.
+2026-09-17 13:17:49.636 [http-nio-8084-exec-10] INFO  o.g.g.service.auth.AuthServiceImpl - User with username: gergi logged in.
+2026-09-17 13:17:49.644 [http-nio-8084-exec-10] INFO  o.g.ghotel.api.v1.AuthController - Employee with username: gergi logged in
+2026-09-17 13:29:50.406 [http-nio-8084-exec-4] WARN  o.g.g.c.security.service.JwtFilter - JWT token expired: JWT expired 121262 milliseconds ago at 2026-09-17T10:27:49.000Z. Current time: 2026-09-17T10:29:50.262Z. Allowed clock skew: 0 milliseconds.
+2026-09-17 13:29:50.549 [http-nio-8084-exec-4] INFO  o.g.g.service.auth.AuthServiceImpl - Registered user with username: RaliDrum.
+2026-09-17 13:29:51.148 [http-nio-8084-exec-4] INFO  o.g.ghotel.api.v1.AuthController - Registered employee with username: RaliDrum
+2026-09-17 13:30:00.528 [http-nio-8084-exec-5] WARN  o.g.g.c.security.service.JwtFilter - JWT token expired: JWT expired 131528 milliseconds ago at 2026-09-17T10:27:49.000Z. Current time: 2026-09-17T10:30:00.528Z. Allowed clock skew: 0 milliseconds.
+2026-09-17 13:30:00.567 [http-nio-8084-exec-5] WARN  o.g.g.api.error.ApiExceptionHandler - Warn [05abdbd4]: Validation violation for request [userRequestDTO]: {password=Password can be between 8 and 15 characters long}
+2026-09-17 13:30:50.345 [http-nio-8084-exec-6] WARN  o.g.g.c.security.service.JwtFilter - JWT token expired: JWT expired 181345 milliseconds ago at 2026-09-17T10:27:49.000Z. Current time: 2026-09-17T10:30:50.345Z. Allowed clock skew: 0 milliseconds.
+2026-09-17 13:30:50.528 [http-nio-8084-exec-6] INFO  o.g.g.service.auth.AuthServiceImpl - User with username: RaliDrum logged in.
+2026-09-17 13:30:50.539 [http-nio-8084-exec-6] INFO  o.g.ghotel.api.v1.AuthController - Employee with username: RaliDrum logged in
+2026-09-17 13:54:06.450 [http-nio-8084-exec-10] WARN  o.g.g.c.security.service.JwtFilter - JWT token expired: JWT expired 796446 milliseconds ago at 2026-09-17T10:40:50.000Z. Current time: 2026-09-17T10:54:06.446Z. Allowed clock skew: 0 milliseconds.
+2026-09-17 13:54:06.547 [http-nio-8084-exec-10] INFO  o.g.g.service.auth.AuthServiceImpl - Registered user with username: AnnaGenova.
+2026-09-17 13:54:06.766 [http-nio-8084-exec-10] INFO  o.g.ghotel.api.v1.AuthController - Registered employee with username: AnnaGenova
+2026-09-17 13:54:48.748 [http-nio-8084-exec-2] WARN  o.g.g.c.security.service.JwtFilter - JWT token expired: JWT expired 838747 milliseconds ago at 2026-09-17T10:40:50.000Z. Current time: 2026-09-17T10:54:48.747Z. Allowed clock skew: 0 milliseconds.
+2026-09-17 13:54:48.871 [http-nio-8084-exec-2] INFO  o.g.g.service.auth.AuthServiceImpl - User with username: AnnaGenova logged in.
+2026-09-17 13:54:48.881 [http-nio-8084-exec-2] INFO  o.g.ghotel.api.v1.AuthController - Employee with username: AnnaGenova logged in
+2026-09-17 14:08:57.265 [http-nio-8084-exec-5] WARN  o.g.g.c.security.service.JwtFilter - JWT token expired: JWT expired 249261 milliseconds ago at 2026-09-17T11:04:48.000Z. Current time: 2026-09-17T11:08:57.261Z. Allowed clock skew: 0 milliseconds.
+2026-09-17 14:08:57.429 [http-nio-8084-exec-5] WARN  o.g.g.api.error.ApiExceptionHandler - Warn [64221bdb]: Validation violation for request [loginRequestDTO]: {rawPassword=Wrong username or password., username=Wrong username or password.}
+2026-09-17 14:08:57.985 [http-nio-8084-exec-7] WARN  o.g.g.c.security.service.JwtFilter - JWT token expired: JWT expired 249983 milliseconds ago at 2026-09-17T11:04:48.000Z. Current time: 2026-09-17T11:08:57.983Z. Allowed clock skew: 0 milliseconds.
+2026-09-17 14:08:57.990 [http-nio-8084-exec-7] WARN  o.g.g.api.error.ApiExceptionHandler - Warn [ed189d8c]: Validation violation for request [loginRequestDTO]: {rawPassword=Password is required, username=Username is required}
+2026-09-17 14:08:58.326 [http-nio-8084-exec-6] WARN  o.g.g.c.security.service.JwtFilter - JWT token expired: JWT expired 250325 milliseconds ago at 2026-09-17T11:04:48.000Z. Current time: 2026-09-17T11:08:58.325Z. Allowed clock skew: 0 milliseconds.
+2026-09-17 14:08:58.332 [http-nio-8084-exec-6] WARN  o.g.g.api.error.ApiExceptionHandler - Warn [cfc2f2e6]: Validation violation for request [loginRequestDTO]: {rawPassword=Password is required, username=Username is required}
+2026-09-17 14:08:58.603 [http-nio-8084-exec-8] WARN  o.g.g.c.security.service.JwtFilter - JWT token expired: JWT expired 250602 milliseconds ago at 2026-09-17T11:04:48.000Z. Current time: 2026-09-17T11:08:58.602Z. Allowed clock skew: 0 milliseconds.
+2026-09-17 14:08:58.607 [http-nio-8084-exec-8] WARN  o.g.g.api.error.ApiExceptionHandler - Warn [0d91752e]: Validation violation for request [loginRequestDTO]: {rawPassword=Wrong username or password., username=Wrong username or password.}
+2026-09-17 14:08:58.917 [http-nio-8084-exec-9] WARN  o.g.g.c.security.service.JwtFilter - JWT token expired: JWT expired 250917 milliseconds ago at 2026-09-17T11:04:48.000Z. Current time: 2026-09-17T11:08:58.917Z. Allowed clock skew: 0 milliseconds.
+2026-09-17 14:08:58.923 [http-nio-8084-exec-9] WARN  o.g.g.api.error.ApiExceptionHandler - Warn [76ceceab]: Validation violation for request [loginRequestDTO]: {rawPassword=Wrong username or password., username=Wrong username or password.}
+2026-09-17 14:11:12.657 [http-nio-8084-exec-1] WARN  o.g.g.c.security.service.JwtFilter - JWT token expired: JWT expired 384656 milliseconds ago at 2026-09-17T11:04:48.000Z. Current time: 2026-09-17T11:11:12.656Z. Allowed clock skew: 0 milliseconds.
+2026-09-17 14:11:12.884 [http-nio-8084-exec-1] INFO  o.g.g.service.auth.AuthServiceImpl - User with username: AnnaGenova logged in.
+2026-09-17 14:11:12.895 [http-nio-8084-exec-1] INFO  o.g.ghotel.api.v1.AuthController - Employee with username: AnnaGenova logged in
+2026-09-17 14:40:41.296 [http-nio-8084-exec-3] WARN  o.g.g.c.security.service.JwtFilter - JWT token expired: JWT expired 1169291 milliseconds ago at 2026-09-17T11:21:12.000Z. Current time: 2026-09-17T11:40:41.291Z. Allowed clock skew: 0 milliseconds.
+2026-09-17 14:40:41.498 [http-nio-8084-exec-3] WARN  o.g.g.api.error.ApiExceptionHandler - Warn [086a5aa7]: Validation violation for request [loginRequestDTO]: {rawPassword=Wrong username or password., username=Wrong username or password.}
+2026-09-17 14:40:41.990 [http-nio-8084-exec-5] WARN  o.g.g.c.security.service.JwtFilter - JWT token expired: JWT expired 1169990 milliseconds ago at 2026-09-17T11:21:12.000Z. Current time: 2026-09-17T11:40:41.990Z. Allowed clock skew: 0 milliseconds.
+2026-09-17 14:40:41.994 [http-nio-8084-exec-5] WARN  o.g.g.api.error.ApiExceptionHandler - Warn [21c920f9]: Validation violation for request [loginRequestDTO]: {rawPassword=Wrong username or password., username=Username is required}
+2026-09-17 15:10:06.695 [http-nio-8084-exec-6] WARN  o.g.g.c.security.service.JwtFilter - JWT token expired: JWT expired 2934693 milliseconds ago at 2026-09-17T11:21:12.000Z. Current time: 2026-09-17T12:10:06.693Z. Allowed clock skew: 0 milliseconds.
+2026-09-17 15:10:07.042 [http-nio-8084-exec-6] INFO  o.g.g.service.auth.AuthServiceImpl - User with username: RaliDrum logged in.
+2026-09-17 15:10:07.058 [http-nio-8084-exec-6] INFO  o.g.ghotel.api.v1.AuthController - Employee with username: RaliDrum logged in
+2026-09-17 15:15:17.960 [http-nio-8084-exec-10] INFO  o.g.g.service.auth.AuthServiceImpl - User with username: AnnaGenova logged in.
+2026-09-17 15:15:17.983 [http-nio-8084-exec-10] INFO  o.g.ghotel.api.v1.AuthController - Employee with username: AnnaGenova logged in
+2026-09-17 15:25:01.994 [http-nio-8084-exec-4] INFO  o.g.g.service.auth.AuthServiceImpl - User with username: RaliDrum logged in.
+2026-09-17 15:25:02.008 [http-nio-8084-exec-4] INFO  o.g.ghotel.api.v1.AuthController - Employee with username: RaliDrum logged in
+2026-09-17 15:26:58.406 [http-nio-8084-exec-7] INFO  o.g.g.service.auth.AuthServiceImpl - User with username: gergi logged in.
+2026-09-17 15:26:58.419 [http-nio-8084-exec-7] INFO  o.g.ghotel.api.v1.AuthController - Employee with username: gergi logged in
+2026-09-17 15:27:21.146 [http-nio-8084-exec-8] WARN  o.g.g.api.error.ApiExceptionHandler - Warn [2dacd50b]: Validation violation for request [loginRequestDTO]: {rawPassword=Wrong username or password., username=Wrong username or password.}
+2026-09-17 15:40:03.534 [http-nio-8084-exec-10] INFO  o.g.g.service.auth.AuthServiceImpl - User with username: AnnaGenova logged in.
+2026-09-17 15:40:03.570 [http-nio-8084-exec-10] INFO  o.g.ghotel.api.v1.AuthController - Employee with username: AnnaGenova logged in

@@ -2,7 +2,7 @@ import {inject, Service} from '@angular/core';
 import {UserRequestDTO} from '../model/userRequestDTO';
 import {UserResponseDTO} from '../model/userResponseDTO';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {Observable, tap} from 'rxjs';
 import {LoginRequestDTO} from '../model/loginRequestDTO';
 import {AuthResponseDTO} from '../model/authResponseDTO';
 
@@ -18,6 +18,25 @@ export class AuthService {
   }
 
   public login(request: LoginRequestDTO): Observable<AuthResponseDTO> {
-    return this.httpClient.post<AuthResponseDTO>(this.url+'/login',request)
+    return this.httpClient.post<AuthResponseDTO>(`${this.url}/login`, request).pipe(
+      tap((res) => {
+        if (res.accessToken) {
+          localStorage.setItem('access_token', res.accessToken);
+        }
+      })
+    );
   }
+
+  public logout(): void {
+    localStorage.removeItem('access_token');
+  }
+
+  public getToken(): string | null {
+    return localStorage.getItem('access_token');
+  }
+
+  public isLoggedIn(): boolean {
+    return !!this.getToken();
+  }
+
 }
