@@ -1,0 +1,17 @@
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <div class="card shadow-lg p-3 p-md-4 rounded-4 login-card">
+    <form class="row g-3" [formGroup]="loginForm"
+          (ngSubmit)="onLogin()">
+      <h3 class="text-center mb-4">Login</h3>
+      <mat-form-field class="w-100 mb-2">
+        <mat-label>Username</mat-label>
+        <input matInput type="text" formControlName="username">
+      </mat-form-field>
+      <mat-form-field class="w-100 mb-2">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="rawPassword">
+      </mat-form-field>
+      <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+  </div>
+</div>

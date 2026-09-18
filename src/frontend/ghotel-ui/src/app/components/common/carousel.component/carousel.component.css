@@ -1,0 +1,15 @@
+h2{
+  text-align: center;
+}
+.carousel-container {
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-top:5%;
+  margin-bottom: 5%;
+  margin-right: 2%;
+  justify-content: center;
+  gap: 5%;
+  text-align: center;
+}

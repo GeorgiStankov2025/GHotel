@@ -1,0 +1,25 @@
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <div class="card shadow-lg p-3 p-md-4 rounded-4" style="max-width: 450px; width: 50%;">
+    <form class="row g-3" [formGroup]="registerForm"
+          (ngSubmit)="onRegister()">
+      <h3 class="text-center mb-4">Register</h3>
+      <mat-form-field>
+        <mat-label>Username</mat-label>
+        <input matInput type="text" formControlName="username">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>First Name</mat-label>
+        <input matInput type="text" formControlName="firstName">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Last Name</mat-label>
+        <input matInput type="text" formControlName="lastName">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password">
+      </mat-form-field>
+      <button class="btn btn-primary" type="submit">Register</button>
+    </form>
+  </div>
+</div>

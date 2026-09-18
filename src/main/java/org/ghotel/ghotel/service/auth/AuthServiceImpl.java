@@ -33,13 +33,11 @@ public class AuthServiceImpl implements AuthService {
         if (!passwordEncoder.matches(request.rawPassword(), user.getPassword())) {
             throw new BadCredentialsException("Login failed: Wrong username or password.");
         }
-        log.info("User with username: {} logged in.", request.username());
         return jwtService.generateTokenPair(user.getUsername(), user.getRole().toString());
     }
 
     @Override
     public UserResponseDTO register(UserRequestDTO request) {
-        log.info("Registered user with username: {}.", request.username());
         return userService.addUser(request);
     }
 

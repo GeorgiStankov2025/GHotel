@@ -28,22 +28,22 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    @Operation(description = "Register employee.")
+    @Operation(description = "Register user.")
     public ResponseEntity<UserResponseDTO> register(
             @Valid
             @RequestBody UserRequestDTO request) {
         UserResponseDTO response = authService.register(request);
-        log.info("Registered employee with username: {}", response.username());
+        log.info("Registered user with username: {}", response.username());
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
     @PostMapping("/login")
-    @Operation(description = "Login endpoint for employees/users.")
+    @Operation(description = "Login endpoint for users/users.")
     public ResponseEntity<AuthResponseDTO> login(
             @Valid
             @RequestBody LoginRequestDTO request) {
         AuthResponseDTO response = authService.login(request);
-        log.info("Employee with username: {} logged in", request.username());
+        log.info("User with username: {} logged in", request.username());
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
