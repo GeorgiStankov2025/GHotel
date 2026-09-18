@@ -3,7 +3,7 @@ import {LoginComponent} from './components/auth/login.component/login.component'
 import {RegisterComponent} from './components/auth/register.component/register.component';
 import {LogoutComponent} from './components/auth/logout.component/logout.component';
 import {HomeComponent} from './components/common/home.component/home.component';
-import {RoomListComponent} from './components/rooms/room-list.component/room-list.component';
+import {RoomListComponent} from './components/room/room-list.component/room-list.component';
 
 export const routes: Routes = [
   {path: 'home', component: HomeComponent},

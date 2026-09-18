@@ -1,8 +1,17 @@
 <div class="room-card">
-  <div class="card" style="width: 18rem;">
-    <div class="card-body">
-      <h2>Room number: {{ room()?.roomNumber }}</h2>
-      <p>Room capacity: {{ room()?.roomCapacity }}</p>
+  <div class="card bg-brown text-light shadow-sm border-0 mb-3">
+    <div class="row g-0 align-items-center justify-content-center">
+      <div class="col-md-4">
+        <img src="assets/4.png" class="img-fluid rounded-start w-100" alt="Room Image">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h2>Room number: {{ room()?.roomNumber }}</h2>
+          <p class="mb-0">Room capacity: {{ room()?.roomCapacity }}</p>
+          <p>[price placeholder]$ per night</p>
+          <button class="btn btn-secondary">Check details</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

@@ -1,7 +1,7 @@
 import {Component, inject, OnInit, Signal, signal, WritableSignal} from '@angular/core';
 import {RoomResponseDTO} from '../../../model/roomResponseDTO';
 import {RoomService} from '../../../services/room.service';
-import {RoomCardComponent} from '../../room/room-card.component/room-card.component';
+import {RoomCardComponent} from '../room-card.component/room-card.component';
 
 @Component({
   selector: 'app-room-list',

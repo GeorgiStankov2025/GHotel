@@ -1,11 +1,6 @@
 .room-card{
-  display:flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  margin-top:5%;
-  margin-bottom: 5%;
-  justify-content: center;
-
-  gap: 5%;
-  align-items: stretch;
+  text-align: right;
+}
+.bg-brown {
+  background-color: #4A3B32;
 }
