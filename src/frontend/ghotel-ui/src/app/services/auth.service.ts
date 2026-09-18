@@ -5,6 +5,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable, tap} from 'rxjs';
 import {LoginRequestDTO} from '../model/loginRequestDTO';
 import {AuthResponseDTO} from '../model/authResponseDTO';
+import {TokenRequestDTO} from '../model/tokenRequestDTO';
 
 @Service()
 export class AuthService {
@@ -14,29 +15,42 @@ export class AuthService {
   private readonly httpClient: HttpClient = inject(HttpClient)
 
   public register(request: UserRequestDTO): Observable<UserResponseDTO> {
-    return this.httpClient.post<UserResponseDTO>(this.url+'/register', request);
+    return this.httpClient.post<UserResponseDTO>(`${this.url}/register`, request);
   }
 
   public login(request: LoginRequestDTO): Observable<AuthResponseDTO> {
     return this.httpClient.post<AuthResponseDTO>(`${this.url}/login`, request).pipe(
       tap((res) => {
-        if (res.accessToken) {
-          localStorage.setItem('access_token', res.accessToken);
+        if (res.accessToken && res.refreshToken) {
+          this.saveTokens(res.accessToken, res.refreshToken)
         }
       })
     );
   }
 
-  public logout(): void {
-    localStorage.removeItem('access_token');
+  public refreshToken(request: TokenRequestDTO): Observable<AuthResponseDTO> {
+    return this.httpClient.post<AuthResponseDTO>(`${this.url}/refresh`, request);
   }
 
-  public getToken(): string | null {
+  public logout(): void {
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('refresh_token')
+  }
+
+  public getAccessToken(): string | null {
     return localStorage.getItem('access_token');
   }
 
-  public isLoggedIn(): boolean {
-    return !!this.getToken();
+  public getRefreshToken(): string | null {
+    return localStorage.getItem('refresh_token');
   }
 
+  public isLoggedIn(): boolean {
+    return !!this.getAccessToken();
+  }
+
+  public saveTokens(accessToken: string, refreshToken: string) {
+    localStorage.setItem('access_token', accessToken);
+    localStorage.setItem('refresh_token', refreshToken);
+  }
 }
