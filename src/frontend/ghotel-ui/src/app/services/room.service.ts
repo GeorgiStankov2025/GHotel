@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {RoomResponseDTO} from '../model/roomResponseDTO';
 import {RoomRequestDTO} from '../model/roomRequestDTO';
 import {DeletedDTO} from '../model/deletedDTO';
+import {RoomReservationsResponseDTO} from '../model/roomReservationsResponseDTO';
 
 @Service()
 export class RoomService {
@@ -21,6 +22,10 @@ export class RoomService {
 
   public getRooms(): Observable<RoomResponseDTO[]> {
     return this.httpClient.get<RoomResponseDTO[]>(this.url)
+  }
+
+  public getRoomWithDetails(id: string): Observable<RoomReservationsResponseDTO> {
+    return this.httpClient.get<RoomReservationsResponseDTO>(`${this.url}/${id}/reservations`)
   }
 
   public editRoom(id: string, request: RoomRequestDTO): Observable<RoomResponseDTO> {

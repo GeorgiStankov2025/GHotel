@@ -1,10 +1,8 @@
 import {Component, inject, Signal, signal, WritableSignal} from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatButton} from '@angular/material/button';
 import {MatFormField, MatInput, MatLabel} from '@angular/material/input';
 import {AuthService} from '../../../services/auth.service';
 import {Router} from '@angular/router';
-import {LoginRequestDTO} from '../../../model/loginRequestDTO';
 import {HttpErrorResponse} from '@angular/common/http';
 import {UserRequestDTO} from '../../../model/userRequestDTO';
 import {UserResponseDTO} from '../../../model/userResponseDTO';
@@ -12,7 +10,6 @@ import {UserResponseDTO} from '../../../model/userResponseDTO';
 @Component({
   imports: [
     FormsModule,
-    MatButton,
     MatFormField,
     MatInput,
     MatLabel,

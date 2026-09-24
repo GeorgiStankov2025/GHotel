@@ -1,6 +1,7 @@
 import {Component, inject, input, InputSignal, OnInit, Signal, signal, WritableSignal} from '@angular/core';
 import {RoomResponseDTO} from '../../../model/roomResponseDTO';
 import {RoomService} from '../../../services/room.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-room-card',
@@ -15,7 +16,9 @@ export class RoomCardComponent implements OnInit {
   protected room: Signal<RoomResponseDTO | undefined> = this._room.asReadonly();
   public id: InputSignal<string> = input.required<string>()
 
-  roomService: RoomService = inject(RoomService)
+  private readonly roomService: RoomService = inject(RoomService)
+
+  private readonly router: Router = inject(Router)
 
   ngOnInit(): void {
     this.roomService.getRoom(this.id()).subscribe({
@@ -26,5 +29,9 @@ export class RoomCardComponent implements OnInit {
         console.log(err.message)
       }
     })
+  }
+
+  onSubmit(): void {
+    this.router.navigate(["/rooms/" + this.id()])
   }
 }

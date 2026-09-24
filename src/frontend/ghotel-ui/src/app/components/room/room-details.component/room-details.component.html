@@ -1,0 +1,35 @@
+<div class="room-card">
+  <div class="card bg-brown text-light shadow-sm border-0 mb-3">
+    <div class="row g-0 align-items-center justify-content-center">
+      <div class="col-md-4">
+        <img src="assets/4.png" class="img-fluid rounded-start w-100" alt="Room Image">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h2>Room number: {{ roomDetails()?.room?.roomNumber }}</h2>
+          <p class="mb-0">Room capacity: {{ roomDetails()?.room?.roomCapacity }}</p>
+          <p>[price placeholder]$ per night</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="border border-gray-200 rounded-xl divide-y divide-gray-200 bg-white max-w-xl mx-auto">
+  <h3>Reservations</h3>
+  @for (reservation of roomDetails()?.reservations; track reservation?.id) {
+    <div class="p-5 space-y-1">
+      <p class="text-xl font-bold text-gray-900">
+        {{ '[Customer full name placeholder]'}}
+      </p>
+
+      <p class="text-lg text-gray-700">
+        {{ reservation.details || 'Taking the dog as well' }}
+      </p>
+
+      <p class="text-base font-mono text-gray-600 pt-1">
+        {{ reservation.checkIn | date:'dd.MM.yyyy HH:mm' }} — {{ reservation.checkOut | date:'dd.MM.yyyy HH:mm' }}
+      </p>
+    </div>
+  }
+</div>
+
