@@ -9,7 +9,9 @@
           <h2>Room number: {{ room()?.roomNumber }}</h2>
           <p class="mb-0">Room capacity: {{ room()?.roomCapacity }}</p>
           <p>[price placeholder]$ per night</p>
+          @if (detailsIsAvailable()) {
           <button class="btn btn-secondary" (click)="onSubmit()">Check details</button>
+          }
         </div>
       </div>
     </div>

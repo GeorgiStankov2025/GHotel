@@ -1,0 +1,17 @@
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <div class="card shadow-lg p-3 p-md-4 rounded-4 customer-card">
+    <form class="row g-3" [formGroup]="customerForm"
+          (ngSubmit)="onSubmit()">
+      <h3 class="text-center mb-4">Customer information</h3>
+      <mat-form-field>
+        <mat-label>First Name</mat-label>
+        <input matInput type="text" formControlName="firstName">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Last Name</mat-label>
+        <input matInput type="text" formControlName="lastName">
+      </mat-form-field>
+      <button class="btn bg-brown btn-primary" type="submit">Next</button>
+    </form>
+  </div>
+</div>

@@ -1,21 +1,21 @@
-2026-09-18 09:05:47.602 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 9.1.0.Final
-2026-09-18 09:05:47.751 [main] INFO  org.ghotel.ghotel.GHotelApplication - Starting GHotelApplication using Java 24.0.2 with PID 11260 (D:\ПУ\DREAM\Spring\GHotel\target\classes started by User in D:\ПУ\DREAM\Spring\GHotel)
-2026-09-18 09:05:47.754 [main] INFO  org.ghotel.ghotel.GHotelApplication - No active profile set, falling back to 1 default profile: "default"
-2026-09-18 09:05:49.453 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-09-18 09:05:49.529 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 66 ms. Found 4 JPA repository interfaces.
-2026-09-18 09:05:50.270 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8084 (http)
-2026-09-18 09:05:50.285 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8084"]
-2026-09-18 09:05:50.286 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2026-09-18 09:05:50.287 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.22]
-2026-09-18 09:05:50.352 [main] INFO  o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 2456 ms
-2026-09-18 09:05:50.631 [main] INFO  org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
-2026-09-18 09:05:50.703 [main] INFO  org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.4.1.Final
-2026-09-18 09:05:51.206 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-09-18 09:05:51.246 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2026-09-18 09:05:51.485 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@6d9ee75a
-2026-09-18 09:05:51.487 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2026-09-18 09:05:51.548 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2026-09-18 09:05:51.585 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+2026-09-25 09:43:11.274 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 9.1.0.Final
+2026-09-25 09:43:11.809 [main] INFO  org.ghotel.ghotel.GHotelApplication - Starting GHotelApplication using Java 24.0.2 with PID 7720 (D:\ПУ\DREAM\Spring\GHotel\target\classes started by User in D:\ПУ\DREAM\Spring\GHotel)
+2026-09-25 09:43:11.813 [main] INFO  org.ghotel.ghotel.GHotelApplication - No active profile set, falling back to 1 default profile: "default"
+2026-09-25 09:43:16.785 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-09-25 09:43:16.982 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 170 ms. Found 4 JPA repository interfaces.
+2026-09-25 09:43:18.411 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8084 (http)
+2026-09-25 09:43:18.444 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8084"]
+2026-09-25 09:43:18.449 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-09-25 09:43:18.449 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.22]
+2026-09-25 09:43:18.552 [main] INFO  o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 6431 ms
+2026-09-25 09:43:18.807 [main] INFO  org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-09-25 09:43:18.899 [main] INFO  org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.4.1.Final
+2026-09-25 09:43:19.485 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-09-25 09:43:19.530 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-09-25 09:43:19.824 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@1dadd172
+2026-09-25 09:43:19.827 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-09-25 09:43:19.900 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-09-25 09:43:19.953 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
 	Database JDBC URL [jdbc:postgresql://localhost/HotelDB]
 	Database driver: PostgreSQL JDBC Driver
 	Database dialect: PostgreSQLDialect
@@ -27,277 +27,152 @@
 	Pool: DataSourceConnectionProvider
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-2026-09-18 09:05:53.694 [main] INFO  org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-09-18 09:05:53.710 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-09-18 09:05:53.941 [main] INFO  o.s.d.j.r.q.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
-2026-09-18 09:05:55.047 [main] WARN  o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-09-18 09:05:55.338 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
-2026-09-18 09:05:56.335 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8084"]
-2026-09-18 09:05:56.362 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8084 (http) with context path '/'
-2026-09-18 09:05:56.369 [main] INFO  org.ghotel.ghotel.GHotelApplication - Started GHotelApplication in 10.418 seconds (process running for 12.036)
-2026-09-18 09:10:32.935 [http-nio-8084-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-09-18 09:10:32.936 [http-nio-8084-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2026-09-18 09:10:32.939 [http-nio-8084-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
-2026-09-18 09:10:35.033 [http-nio-8084-exec-2] INFO  o.g.ghotel.api.v1.AuthController - User with username: gergi logged in
-2026-09-18 09:10:35.164 [http-nio-8084-exec-3] INFO  o.g.ghotel.api.v1.AuthController - User with username: gergi logged in
-2026-09-18 10:30:25.399 [http-nio-8084-exec-7] INFO  o.g.ghotel.api.v1.AuthController - User with username: AnnaGenova logged in
-2026-09-18 10:32:57.989 [http-nio-8084-exec-2] INFO  o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 857 ms
-2026-09-18 11:19:00.454 [http-nio-8084-exec-4] INFO  o.g.ghotel.api.v1.AuthController - User with username: gergi logged in
-2026-09-18 11:19:38.725 [http-nio-8084-exec-7] INFO  o.g.ghotel.api.v1.AuthController - User with username: AnnaGenova logged in
-2026-09-18 11:19:50.633 [http-nio-8084-exec-9] INFO  o.g.ghotel.api.v1.AuthController - User with username: AnnaGenova logged in
-2026-09-18 11:27:24.701 [http-nio-8084-exec-1] INFO  o.g.ghotel.api.v1.AuthController - User with username: AnnaGenova logged in
-2026-09-18 11:38:00.069 [http-nio-8084-exec-10] WARN  o.g.g.c.security.service.JwtFilter - JWT token expired: JWT expired 36059 milliseconds ago at 2026-09-18T08:37:24.000Z. Current time: 2026-09-18T08:38:00.059Z. Allowed clock skew: 0 milliseconds.
-2026-09-18 11:38:18.408 [http-nio-8084-exec-2] INFO  o.g.ghotel.api.v1.AuthController - User with username: AnnaGenova logged in
-2026-09-18 11:38:41.587 [http-nio-8084-exec-3] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
-2026-09-18 11:39:01.390 [http-nio-8084-exec-5] INFO  o.g.ghotel.api.v1.RoomController - Created room with id: 01a0b3ab-44e6-76d0-835d-13adfacf19a5
-2026-09-18 11:39:05.119 [http-nio-8084-exec-4] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
-2026-09-18 11:44:47.529 [SpringApplicationShutdownHook] INFO  o.s.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
-2026-09-18 11:44:47.907 [tomcat-shutdown] INFO  o.s.boot.tomcat.GracefulShutdown - Graceful shutdown complete
-2026-09-18 11:44:48.037 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2026-09-18 11:44:48.137 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2026-09-18 11:44:48.220 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2026-09-18 11:45:05.632 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 9.1.0.Final
-2026-09-18 11:45:05.806 [main] INFO  org.ghotel.ghotel.GHotelApplication - Starting GHotelApplication using Java 24.0.2 with PID 16136 (D:\ПУ\DREAM\Spring\GHotel\target\classes started by User in D:\ПУ\DREAM\Spring\GHotel)
-2026-09-18 11:45:05.809 [main] INFO  org.ghotel.ghotel.GHotelApplication - No active profile set, falling back to 1 default profile: "default"
-2026-09-18 11:45:09.122 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-09-18 11:45:09.308 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 166 ms. Found 4 JPA repository interfaces.
-2026-09-18 11:45:10.798 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8084 (http)
-2026-09-18 11:45:10.813 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8084"]
-2026-09-18 11:45:10.814 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2026-09-18 11:45:10.815 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.22]
-2026-09-18 11:45:10.885 [main] INFO  o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 4825 ms
-2026-09-18 11:45:11.174 [main] INFO  org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
-2026-09-18 11:45:11.254 [main] INFO  org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.4.1.Final
-2026-09-18 11:45:11.804 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-09-18 11:45:11.851 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2026-09-18 11:45:12.078 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@61d6c8c4
-2026-09-18 11:45:12.080 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2026-09-18 11:45:12.141 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2026-09-18 11:45:12.176 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
-	Database JDBC URL [jdbc:postgresql://localhost/HotelDB]
-	Database driver: PostgreSQL JDBC Driver
-	Database dialect: PostgreSQLDialect
-	Database version: 18.0
-	Default catalog/schema: HotelDB/public
-	Autocommit mode: undefined/unknown
-	Isolation level: READ_COMMITTED [default READ_COMMITTED]
-	JDBC fetch size: none
-	Pool: DataSourceConnectionProvider
-	Minimum pool size: undefined/unknown
-	Maximum pool size: undefined/unknown
-2026-09-18 11:45:13.617 [main] INFO  org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-09-18 11:45:13.626 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-09-18 11:45:13.749 [main] INFO  o.s.d.j.r.q.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
-2026-09-18 11:45:14.711 [main] WARN  o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-09-18 11:45:15.008 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
-2026-09-18 11:45:16.729 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8084"]
-2026-09-18 11:45:16.769 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8084 (http) with context path '/'
-2026-09-18 11:45:16.783 [main] INFO  org.ghotel.ghotel.GHotelApplication - Started GHotelApplication in 12.866 seconds (process running for 15.179)
-2026-09-18 11:46:31.432 [http-nio-8084-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-09-18 11:46:31.432 [http-nio-8084-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2026-09-18 11:46:31.434 [http-nio-8084-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
-2026-09-18 11:46:32.270 [http-nio-8084-exec-2] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
-2026-09-18 11:46:32.413 [http-nio-8084-exec-4] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b3ab-44e6-76d0-835d-13adfacf19a5
-2026-09-18 11:49:34.301 [http-nio-8084-exec-7] WARN  o.g.g.c.security.service.JwtFilter - JWT token expired: JWT expired 76186 milliseconds ago at 2026-09-18T08:48:18.000Z. Current time: 2026-09-18T08:49:34.186Z. Allowed clock skew: 0 milliseconds.
-2026-09-18 11:49:42.051 [http-nio-8084-exec-9] WARN  o.g.g.c.security.service.JwtFilter - JWT token expired: JWT expired 84050 milliseconds ago at 2026-09-18T08:48:18.000Z. Current time: 2026-09-18T08:49:42.050Z. Allowed clock skew: 0 milliseconds.
-2026-09-18 11:49:57.978 [http-nio-8084-exec-1] WARN  o.g.g.c.security.service.JwtFilter - JWT token expired: JWT expired 99978 milliseconds ago at 2026-09-18T08:48:18.000Z. Current time: 2026-09-18T08:49:57.978Z. Allowed clock skew: 0 milliseconds.
-2026-09-18 11:50:01.158 [http-nio-8084-exec-2] WARN  o.g.g.c.security.service.JwtFilter - JWT token expired: JWT expired 103158 milliseconds ago at 2026-09-18T08:48:18.000Z. Current time: 2026-09-18T08:50:01.158Z. Allowed clock skew: 0 milliseconds.
-2026-09-18 11:53:50.267 [http-nio-8084-exec-6] INFO  o.g.ghotel.api.v1.AuthController - User with username: AnnaGenova logged in
-2026-09-18 11:53:51.409 [http-nio-8084-exec-8] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
-2026-09-18 11:53:51.437 [http-nio-8084-exec-10] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b3ab-44e6-76d0-835d-13adfacf19a5
-2026-09-18 12:46:04.677 [http-nio-8084-exec-3] WARN  o.g.g.c.security.service.JwtFilter - JWT token expired: JWT expired 2534676 milliseconds ago at 2026-09-18T09:03:50.000Z. Current time: 2026-09-18T09:46:04.676Z. Allowed clock skew: 0 milliseconds.
-2026-09-18 13:23:08.367 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 9.1.0.Final
-2026-09-18 13:23:08.535 [main] INFO  org.ghotel.ghotel.GHotelApplication - Starting GHotelApplication using Java 24.0.2 with PID 9024 (D:\ПУ\DREAM\Spring\GHotel\target\classes started by User in D:\ПУ\DREAM\Spring\GHotel)
-2026-09-18 13:23:08.538 [main] INFO  org.ghotel.ghotel.GHotelApplication - No active profile set, falling back to 1 default profile: "default"
-2026-09-18 13:23:10.812 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-09-18 13:23:10.894 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 71 ms. Found 4 JPA repository interfaces.
-2026-09-18 13:23:11.726 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8084 (http)
-2026-09-18 13:23:11.742 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8084"]
-2026-09-18 13:23:11.744 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2026-09-18 13:23:11.744 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.22]
-2026-09-18 13:23:11.811 [main] INFO  o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 3116 ms
-2026-09-18 13:23:12.094 [main] INFO  org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
-2026-09-18 13:23:12.172 [main] INFO  org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.4.1.Final
-2026-09-18 13:23:12.711 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-09-18 13:23:12.751 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2026-09-18 13:23:13.109 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4bceac99
-2026-09-18 13:23:13.112 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2026-09-18 13:23:13.224 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2026-09-18 13:23:13.336 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
-	Database JDBC URL [jdbc:postgresql://localhost/HotelDB]
-	Database driver: PostgreSQL JDBC Driver
-	Database dialect: PostgreSQLDialect
-	Database version: 18.0
-	Default catalog/schema: HotelDB/public
-	Autocommit mode: undefined/unknown
-	Isolation level: READ_COMMITTED [default READ_COMMITTED]
-	JDBC fetch size: none
-	Pool: DataSourceConnectionProvider
-	Minimum pool size: undefined/unknown
-	Maximum pool size: undefined/unknown
-2026-09-18 13:23:16.202 [main] INFO  org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-09-18 13:23:16.210 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-09-18 13:23:16.316 [main] INFO  o.s.d.j.r.q.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
-2026-09-18 13:23:16.891 [main] WARN  o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-09-18 13:23:16.997 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
-2026-09-18 13:23:17.766 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8084"]
-2026-09-18 13:23:17.791 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8084 (http) with context path '/'
-2026-09-18 13:23:17.804 [main] INFO  org.ghotel.ghotel.GHotelApplication - Started GHotelApplication in 10.952 seconds (process running for 12.702)
-2026-09-18 13:24:13.421 [http-nio-8084-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-09-18 13:24:13.421 [http-nio-8084-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2026-09-18 13:24:13.423 [http-nio-8084-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
-2026-09-18 13:24:14.364 [http-nio-8084-exec-2] INFO  o.g.ghotel.api.v1.AuthController - User with username: AnnaGenova logged in
-2026-09-18 13:24:15.693 [http-nio-8084-exec-4] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
-2026-09-18 13:24:15.739 [http-nio-8084-exec-6] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b3ab-44e6-76d0-835d-13adfacf19a5
-2026-09-18 13:26:49.271 [http-nio-8084-exec-9] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
-2026-09-18 13:26:49.378 [http-nio-8084-exec-1] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b3ab-44e6-76d0-835d-13adfacf19a5
-2026-09-18 13:31:03.621 [http-nio-8084-exec-4] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
-2026-09-18 13:31:03.698 [http-nio-8084-exec-6] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b3ab-44e6-76d0-835d-13adfacf19a5
-2026-09-18 13:37:23.415 [http-nio-8084-exec-9] WARN  o.g.g.c.security.service.JwtFilter - JWT token expired: JWT expired 189332 milliseconds ago at 2026-09-18T10:34:14.000Z. Current time: 2026-09-18T10:37:23.332Z. Allowed clock skew: 0 milliseconds.
-2026-09-18 13:37:31.112 [http-nio-8084-exec-1] WARN  o.g.g.c.security.service.JwtFilter - JWT token expired: JWT expired 197111 milliseconds ago at 2026-09-18T10:34:14.000Z. Current time: 2026-09-18T10:37:31.111Z. Allowed clock skew: 0 milliseconds.
-2026-09-18 13:37:47.666 [http-nio-8084-exec-3] INFO  o.g.ghotel.api.v1.AuthController - User with username: AnnaGenova logged in
-2026-09-18 13:37:49.362 [http-nio-8084-exec-5] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
-2026-09-18 13:37:49.478 [http-nio-8084-exec-7] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b3ab-44e6-76d0-835d-13adfacf19a5
-2026-09-18 13:37:59.021 [http-nio-8084-exec-9] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b3ab-44e6-76d0-835d-13adfacf19a5
-2026-09-18 13:38:08.998 [http-nio-8084-exec-1] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b3ab-44e6-76d0-835d-13adfacf19a5
-2026-09-18 13:38:23.092 [http-nio-8084-exec-3] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b3ab-44e6-76d0-835d-13adfacf19a5
-2026-09-18 13:38:30.417 [http-nio-8084-exec-5] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b3ab-44e6-76d0-835d-13adfacf19a5
-2026-09-18 13:38:34.897 [http-nio-8084-exec-6] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b3ab-44e6-76d0-835d-13adfacf19a5
-2026-09-18 13:40:03.098 [http-nio-8084-exec-9] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
-2026-09-18 13:40:03.139 [http-nio-8084-exec-1] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b3ab-44e6-76d0-835d-13adfacf19a5
-2026-09-18 13:42:41.389 [http-nio-8084-exec-4] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
-2026-09-18 13:42:41.429 [http-nio-8084-exec-6] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b3ab-44e6-76d0-835d-13adfacf19a5
-2026-09-18 13:49:34.112 [http-nio-8084-exec-8] WARN  o.g.g.c.security.service.JwtFilter - JWT token expired: JWT expired 7276105 milliseconds ago at 2026-09-18T08:48:18.000Z. Current time: 2026-09-18T10:49:34.105Z. Allowed clock skew: 0 milliseconds.
-2026-09-18 13:49:47.066 [http-nio-8084-exec-9] WARN  o.g.g.c.security.service.JwtFilter - JWT token expired: JWT expired 7289066 milliseconds ago at 2026-09-18T08:48:18.000Z. Current time: 2026-09-18T10:49:47.066Z. Allowed clock skew: 0 milliseconds.
-2026-09-18 13:49:47.190 [http-nio-8084-exec-9] WARN  o.g.g.api.error.ApiExceptionHandler - Warn [ed47aba5]: Failed to retrieve specific resource during [POST]: '/api/v1/auth/login'-User not found with username: string
-2026-09-18 13:50:15.928 [http-nio-8084-exec-10] WARN  o.g.g.c.security.service.JwtFilter - JWT token expired: JWT expired 7317928 milliseconds ago at 2026-09-18T08:48:18.000Z. Current time: 2026-09-18T10:50:15.928Z. Allowed clock skew: 0 milliseconds.
-2026-09-18 13:50:16.041 [http-nio-8084-exec-10] INFO  o.g.ghotel.api.v1.AuthController - User with username: RaliDrum logged in
-2026-09-18 13:50:33.938 [http-nio-8084-exec-1] INFO  o.g.ghotel.api.v1.RoomController - Created room with id: 01a0b423-b3e4-79e9-b1de-d8ef95b48548
-2026-09-18 13:50:40.176 [http-nio-8084-exec-3] WARN  o.g.g.c.security.service.JwtFilter - JWT token expired: JWT expired 173174 milliseconds ago at 2026-09-18T10:47:47.000Z. Current time: 2026-09-18T10:50:40.174Z. Allowed clock skew: 0 milliseconds.
-2026-09-18 13:50:47.346 [http-nio-8084-exec-5] INFO  o.g.ghotel.api.v1.AuthController - User with username: AnnaGenova logged in
-2026-09-18 13:50:49.052 [http-nio-8084-exec-7] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
-2026-09-18 13:50:49.094 [http-nio-8084-exec-10] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b3ab-44e6-76d0-835d-13adfacf19a5
-2026-09-18 13:50:49.106 [http-nio-8084-exec-1] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b423-b3e4-79e9-b1de-d8ef95b48548
-2026-09-18 13:51:06.486 [http-nio-8084-exec-3] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
-2026-09-18 13:51:06.510 [http-nio-8084-exec-7] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b423-b3e4-79e9-b1de-d8ef95b48548
-2026-09-18 13:51:06.511 [http-nio-8084-exec-6] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b3ab-44e6-76d0-835d-13adfacf19a5
-2026-09-18 13:51:10.122 [http-nio-8084-exec-8] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
-2026-09-18 13:51:10.147 [http-nio-8084-exec-9] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b3ab-44e6-76d0-835d-13adfacf19a5
-2026-09-18 13:51:10.164 [http-nio-8084-exec-10] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b423-b3e4-79e9-b1de-d8ef95b48548
-2026-09-18 13:51:22.664 [http-nio-8084-exec-2] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
-2026-09-18 13:51:22.687 [http-nio-8084-exec-5] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b3ab-44e6-76d0-835d-13adfacf19a5
-2026-09-18 13:51:22.692 [http-nio-8084-exec-7] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b423-b3e4-79e9-b1de-d8ef95b48548
-2026-09-18 13:52:24.601 [http-nio-8084-exec-1] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
-2026-09-18 13:52:24.629 [http-nio-8084-exec-4] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b3ab-44e6-76d0-835d-13adfacf19a5
-2026-09-18 13:52:24.638 [http-nio-8084-exec-5] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b423-b3e4-79e9-b1de-d8ef95b48548
-2026-09-18 13:52:43.557 [http-nio-8084-exec-7] WARN  o.g.g.api.error.ApiExceptionHandler - Warn [69927dac]: Unable to process data from HTTP request during [POST]: '/api/v1/room'-Cannot add room with number: 2
-2026-09-18 13:52:49.401 [http-nio-8084-exec-6] INFO  o.g.ghotel.api.v1.RoomController - Created room with id: 01a0b425-c571-7f41-9f76-8ed80e391978
-2026-09-18 13:52:53.466 [http-nio-8084-exec-8] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
-2026-09-18 13:52:53.535 [http-nio-8084-exec-4] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b423-b3e4-79e9-b1de-d8ef95b48548
-2026-09-18 13:52:53.538 [http-nio-8084-exec-3] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b3ab-44e6-76d0-835d-13adfacf19a5
-2026-09-18 13:52:53.548 [http-nio-8084-exec-5] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b425-c571-7f41-9f76-8ed80e391978
-2026-09-18 13:56:45.764 [http-nio-8084-exec-1] WARN  o.g.g.api.error.ApiExceptionHandler - Warn [7ea4a41d]: Validation violation for request [userRequestDTO]: {firstName=First name is required, lastName=Last name is required, password=Password is required, username=Username can be between 3 and 25 characters long}
-2026-09-18 13:56:46.104 [http-nio-8084-exec-2] WARN  o.g.g.api.error.ApiExceptionHandler - Warn [5cf8bc4a]: Validation violation for request [userRequestDTO]: {firstName=First name can be between 3 and 30 characters long, lastName=Last name can be between 3 and 30 characters long, password=Password is required, username=Username can be between 3 and 25 characters long}
-2026-09-18 13:56:46.463 [http-nio-8084-exec-4] WARN  o.g.g.api.error.ApiExceptionHandler - Warn [ff5f0018]: Validation violation for request [userRequestDTO]: {firstName=First name is required, lastName=Last name is required, password=Password is required, username=Username can be between 3 and 25 characters long}
-2026-09-18 13:56:46.760 [http-nio-8084-exec-3] WARN  o.g.g.api.error.ApiExceptionHandler - Warn [3771bca1]: Validation violation for request [userRequestDTO]: {firstName=First name can be between 3 and 30 characters long, lastName=Last name can be between 3 and 30 characters long, password=Password is required, username=Username can be between 3 and 25 characters long}
-2026-09-18 13:56:47.362 [http-nio-8084-exec-5] WARN  o.g.g.api.error.ApiExceptionHandler - Warn [4d77d1db]: Validation violation for request [userRequestDTO]: {firstName=First name is required, lastName=Last name can be between 3 and 30 characters long, password=Password is required, username=Username can be between 3 and 25 characters long}
-2026-09-18 13:57:13.153 [http-nio-8084-exec-6] WARN  o.g.g.api.error.ApiExceptionHandler - Warn [dcef4f41]: Validation violation for request [loginRequestDTO]: {rawPassword=Wrong username or password., username=Wrong username or password.}
-2026-09-18 13:57:14.022 [http-nio-8084-exec-9] WARN  o.g.g.api.error.ApiExceptionHandler - Warn [ec94253e]: Validation violation for request [loginRequestDTO]: {rawPassword=Wrong username or password., username=Wrong username or password.}
-2026-09-18 13:57:43.168 [http-nio-8084-exec-10] INFO  o.g.ghotel.api.v1.AuthController - User with username: gergi logged in
-2026-09-18 13:57:45.382 [http-nio-8084-exec-2] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
-2026-09-18 13:57:45.432 [http-nio-8084-exec-5] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b3ab-44e6-76d0-835d-13adfacf19a5
-2026-09-18 13:57:45.444 [http-nio-8084-exec-9] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b425-c571-7f41-9f76-8ed80e391978
-2026-09-18 13:57:45.455 [http-nio-8084-exec-6] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b423-b3e4-79e9-b1de-d8ef95b48548
-2026-09-18 13:58:47.727 [http-nio-8084-exec-4] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
-2026-09-18 13:58:47.746 [http-nio-8084-exec-9] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b3ab-44e6-76d0-835d-13adfacf19a5
-2026-09-18 13:58:47.753 [http-nio-8084-exec-8] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b425-c571-7f41-9f76-8ed80e391978
-2026-09-18 13:58:47.761 [http-nio-8084-exec-6] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b423-b3e4-79e9-b1de-d8ef95b48548
-2026-09-18 13:58:50.816 [http-nio-8084-exec-1] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
-2026-09-18 13:58:50.847 [http-nio-8084-exec-10] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b3ab-44e6-76d0-835d-13adfacf19a5
-2026-09-18 13:58:50.854 [http-nio-8084-exec-4] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b425-c571-7f41-9f76-8ed80e391978
-2026-09-18 13:58:50.854 [http-nio-8084-exec-2] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b423-b3e4-79e9-b1de-d8ef95b48548
-2026-09-18 13:59:15.778 [http-nio-8084-exec-3] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
-2026-09-18 13:59:15.912 [http-nio-8084-exec-9] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b3ab-44e6-76d0-835d-13adfacf19a5
-2026-09-18 13:59:15.922 [http-nio-8084-exec-1] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b423-b3e4-79e9-b1de-d8ef95b48548
-2026-09-18 13:59:15.927 [http-nio-8084-exec-10] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b425-c571-7f41-9f76-8ed80e391978
-2026-09-18 13:59:52.712 [http-nio-8084-exec-4] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
-2026-09-18 13:59:52.746 [http-nio-8084-exec-8] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b3ab-44e6-76d0-835d-13adfacf19a5
-2026-09-18 13:59:52.753 [http-nio-8084-exec-9] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b425-c571-7f41-9f76-8ed80e391978
-2026-09-18 13:59:52.755 [http-nio-8084-exec-6] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b423-b3e4-79e9-b1de-d8ef95b48548
-2026-09-18 14:02:37.777 [http-nio-8084-exec-7] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
-2026-09-18 14:02:37.862 [http-nio-8084-exec-9] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b3ab-44e6-76d0-835d-13adfacf19a5
-2026-09-18 14:02:37.864 [http-nio-8084-exec-6] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b423-b3e4-79e9-b1de-d8ef95b48548
-2026-09-18 14:02:37.868 [http-nio-8084-exec-1] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b425-c571-7f41-9f76-8ed80e391978
-2026-09-18 14:03:35.216 [http-nio-8084-exec-4] WARN  o.g.g.api.error.ApiExceptionHandler - Warn [2cac6850]: Validation violation for request [loginRequestDTO]: {rawPassword=Password is required, username=Username is required}
-2026-09-18 14:03:36.522 [http-nio-8084-exec-7] WARN  o.g.g.api.error.ApiExceptionHandler - Warn [586506dc]: Validation violation for request [loginRequestDTO]: {rawPassword=Wrong username or password., username=Wrong username or password.}
-2026-09-18 14:03:46.247 [http-nio-8084-exec-8] INFO  o.g.ghotel.api.v1.AuthController - User with username: RaliDrum logged in
-2026-09-18 14:03:51.675 [http-nio-8084-exec-6] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
-2026-09-18 14:03:51.694 [http-nio-8084-exec-2] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b3ab-44e6-76d0-835d-13adfacf19a5
-2026-09-18 14:03:51.704 [http-nio-8084-exec-7] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b423-b3e4-79e9-b1de-d8ef95b48548
-2026-09-18 14:03:51.705 [http-nio-8084-exec-3] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b425-c571-7f41-9f76-8ed80e391978
-2026-09-18 14:04:26.474 [http-nio-8084-exec-8] INFO  o.g.ghotel.api.v1.AuthController - Registered user with username: DakataAtanasov
-2026-09-18 14:04:50.383 [http-nio-8084-exec-4] INFO  o.g.ghotel.api.v1.AuthController - User with username: DakataAtanasov logged in
-2026-09-18 14:06:26.998 [http-nio-8084-exec-3] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
-2026-09-18 14:06:27.029 [http-nio-8084-exec-9] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b3ab-44e6-76d0-835d-13adfacf19a5
-2026-09-18 14:06:27.030 [http-nio-8084-exec-6] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b423-b3e4-79e9-b1de-d8ef95b48548
-2026-09-18 14:06:27.031 [http-nio-8084-exec-10] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b425-c571-7f41-9f76-8ed80e391978
-2026-09-18 14:12:36.678 [SpringApplicationShutdownHook] INFO  o.s.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
-2026-09-18 14:12:36.717 [tomcat-shutdown] INFO  o.s.boot.tomcat.GracefulShutdown - Graceful shutdown complete
-2026-09-18 14:12:36.766 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2026-09-18 14:12:36.808 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2026-09-18 14:12:36.883 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2026-09-18 15:01:24.208 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 9.1.0.Final
-2026-09-18 15:01:24.271 [main] INFO  org.ghotel.ghotel.GHotelApplication - Starting GHotelApplication using Java 24.0.2 with PID 14448 (D:\ПУ\DREAM\Spring\GHotel\target\classes started by User in D:\ПУ\DREAM\Spring\GHotel)
-2026-09-18 15:01:24.273 [main] INFO  org.ghotel.ghotel.GHotelApplication - No active profile set, falling back to 1 default profile: "default"
-2026-09-18 15:01:27.075 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-09-18 15:01:27.252 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 156 ms. Found 4 JPA repository interfaces.
-2026-09-18 15:01:29.612 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8084 (http)
-2026-09-18 15:01:29.631 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8084"]
-2026-09-18 15:01:29.633 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2026-09-18 15:01:29.633 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.22]
-2026-09-18 15:01:29.725 [main] INFO  o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 5336 ms
-2026-09-18 15:01:30.010 [main] INFO  org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
-2026-09-18 15:01:30.091 [main] INFO  org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.4.1.Final
-2026-09-18 15:01:30.636 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-09-18 15:01:30.679 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2026-09-18 15:01:30.893 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@6fdaef04
-2026-09-18 15:01:30.895 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2026-09-18 15:01:30.956 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2026-09-18 15:01:30.999 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
-	Database JDBC URL [jdbc:postgresql://localhost/HotelDB]
-	Database driver: PostgreSQL JDBC Driver
-	Database dialect: PostgreSQLDialect
-	Database version: 18.0
-	Default catalog/schema: HotelDB/public
-	Autocommit mode: undefined/unknown
-	Isolation level: READ_COMMITTED [default READ_COMMITTED]
-	JDBC fetch size: none
-	Pool: DataSourceConnectionProvider
-	Minimum pool size: undefined/unknown
-	Maximum pool size: undefined/unknown
-2026-09-18 15:01:33.574 [main] INFO  org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-09-18 15:01:33.595 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-09-18 15:01:33.843 [main] INFO  o.s.d.j.r.q.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
-2026-09-18 15:01:34.936 [main] WARN  o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-09-18 15:01:35.055 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
-2026-09-18 15:01:35.846 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8084"]
-2026-09-18 15:01:35.867 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8084 (http) with context path '/'
-2026-09-18 15:01:35.873 [main] INFO  org.ghotel.ghotel.GHotelApplication - Started GHotelApplication in 13.064 seconds (process running for 15.909)
-2026-09-18 15:01:41.287 [http-nio-8084-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-09-18 15:01:41.287 [http-nio-8084-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2026-09-18 15:01:41.288 [http-nio-8084-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
-2026-09-18 15:01:42.336 [http-nio-8084-exec-2] INFO  o.g.ghotel.api.v1.AuthController - User with username: DakataAtanasov logged in
-2026-09-18 15:03:10.025 [http-nio-8084-exec-7] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
-2026-09-18 15:03:10.081 [http-nio-8084-exec-9] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b3ab-44e6-76d0-835d-13adfacf19a5
-2026-09-18 15:03:10.085 [http-nio-8084-exec-6] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b423-b3e4-79e9-b1de-d8ef95b48548
-2026-09-18 15:03:10.085 [http-nio-8084-exec-1] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b425-c571-7f41-9f76-8ed80e391978
-2026-09-18 15:20:48.856 [http-nio-8084-exec-3] WARN  o.g.g.c.security.service.JwtFilter - JWT token expired: JWT expired 546852 milliseconds ago at 2026-09-18T12:11:42.000Z. Current time: 2026-09-18T12:20:48.852Z. Allowed clock skew: 0 milliseconds.
-2026-09-18 15:20:48.888 [http-nio-8084-exec-8] WARN  o.g.g.c.security.service.JwtFilter - JWT token expired: JWT expired 546887 milliseconds ago at 2026-09-18T12:11:42.000Z. Current time: 2026-09-18T12:20:48.887Z. Allowed clock skew: 0 milliseconds.
-2026-09-18 15:20:48.912 [http-nio-8084-exec-6] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
-2026-09-18 15:20:48.943 [http-nio-8084-exec-5] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b423-b3e4-79e9-b1de-d8ef95b48548
-2026-09-18 15:20:48.943 [http-nio-8084-exec-2] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b3ab-44e6-76d0-835d-13adfacf19a5
-2026-09-18 15:20:48.946 [http-nio-8084-exec-7] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b425-c571-7f41-9f76-8ed80e391978
-2026-09-18 15:20:59.331 [http-nio-8084-exec-10] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
-2026-09-18 15:20:59.443 [http-nio-8084-exec-1] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b3ab-44e6-76d0-835d-13adfacf19a5
-2026-09-18 15:20:59.467 [http-nio-8084-exec-4] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b423-b3e4-79e9-b1de-d8ef95b48548
-2026-09-18 15:20:59.470 [http-nio-8084-exec-5] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b425-c571-7f41-9f76-8ed80e391978
+2026-09-25 09:43:23.254 [main] INFO  org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-09-25 09:43:23.272 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-09-25 09:43:23.540 [main] INFO  o.s.d.j.r.q.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-09-25 09:43:24.930 [main] WARN  o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-09-25 09:43:25.243 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2026-09-25 09:43:27.115 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8084"]
+2026-09-25 09:43:27.139 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8084 (http) with context path '/'
+2026-09-25 09:43:27.147 [main] INFO  org.ghotel.ghotel.GHotelApplication - Started GHotelApplication in 17.904 seconds (process running for 21.055)
+2026-09-25 09:44:15.177 [http-nio-8084-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-09-25 09:44:15.180 [http-nio-8084-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-09-25 09:44:15.269 [http-nio-8084-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 88 ms
+2026-09-25 09:44:17.337 [http-nio-8084-exec-1] WARN  o.g.g.c.security.service.JwtFilter - JWT token expired: JWT expired 55052331 milliseconds ago at 2026-09-24T15:26:45.000Z. Current time: 2026-09-25T06:44:17.331Z. Allowed clock skew: 0 milliseconds.
+2026-09-25 09:44:17.443 [http-nio-8084-exec-4] WARN  o.g.g.c.security.service.JwtFilter - JWT token expired: JWT expired 55052442 milliseconds ago at 2026-09-24T15:26:45.000Z. Current time: 2026-09-25T06:44:17.442Z. Allowed clock skew: 0 milliseconds.
+2026-09-25 09:44:19.682 [http-nio-8084-exec-3] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
+2026-09-25 09:44:21.955 [http-nio-8084-exec-6] INFO  o.g.ghotel.api.v1.AuthController - User with username: RaliDrum logged in
+2026-09-25 09:44:23.490 [http-nio-8084-exec-8] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
+2026-09-25 09:44:25.336 [http-nio-8084-exec-10] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b3ab-44e6-76d0-835d-13adfacf19a5 and its reservations.
+2026-09-25 09:44:30.433 [http-nio-8084-exec-2] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
+2026-09-25 09:44:37.502 [http-nio-8084-exec-3] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
+2026-09-25 09:49:07.180 [http-nio-8084-exec-7] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
+2026-09-25 09:59:59.882 [http-nio-8084-exec-10] WARN  o.g.g.c.security.service.JwtFilter - JWT token expired: JWT expired 338864 milliseconds ago at 2026-09-25T06:54:21.000Z. Current time: 2026-09-25T06:59:59.864Z. Allowed clock skew: 0 milliseconds.
+2026-09-25 10:00:00.016 [http-nio-8084-exec-2] WARN  o.g.g.c.security.service.JwtFilter - JWT token expired: JWT expired 339015 milliseconds ago at 2026-09-25T06:54:21.000Z. Current time: 2026-09-25T07:00:00.015Z. Allowed clock skew: 0 milliseconds.
+2026-09-25 10:00:00.544 [http-nio-8084-exec-4] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
+2026-09-25 10:00:04.079 [http-nio-8084-exec-5] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b3ab-44e6-76d0-835d-13adfacf19a5 and its reservations.
+2026-09-25 10:01:51.596 [http-nio-8084-exec-8] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b3ab-44e6-76d0-835d-13adfacf19a5 and its reservations.
+2026-09-25 10:09:07.274 [http-nio-8084-exec-1] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b3ab-44e6-76d0-835d-13adfacf19a5 and its reservations.
+2026-09-25 10:09:17.824 [http-nio-8084-exec-4] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
+2026-09-25 10:09:19.694 [http-nio-8084-exec-5] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b423-b3e4-79e9-b1de-d8ef95b48548 and its reservations.
+2026-09-25 10:09:22.379 [http-nio-8084-exec-6] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
+2026-09-25 10:09:23.355 [http-nio-8084-exec-8] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b3ab-44e6-76d0-835d-13adfacf19a5 and its reservations.
+2026-09-25 10:10:26.014 [http-nio-8084-exec-1] WARN  o.g.g.c.security.service.JwtFilter - JWT token expired: JWT expired 26002 milliseconds ago at 2026-09-25T07:10:00.000Z. Current time: 2026-09-25T07:10:26.002Z. Allowed clock skew: 0 milliseconds.
+2026-09-25 10:10:26.061 [http-nio-8084-exec-4] WARN  o.g.g.c.security.service.JwtFilter - JWT token expired: JWT expired 26059 milliseconds ago at 2026-09-25T07:10:00.000Z. Current time: 2026-09-25T07:10:26.059Z. Allowed clock skew: 0 milliseconds.
+2026-09-25 10:10:26.458 [http-nio-8084-exec-3] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b3ab-44e6-76d0-835d-13adfacf19a5 and its reservations.
+2026-09-25 10:19:51.668 [http-nio-8084-exec-7] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b3ab-44e6-76d0-835d-13adfacf19a5 and its reservations.
+2026-09-25 10:20:50.004 [http-nio-8084-exec-9] WARN  o.g.g.c.security.service.JwtFilter - JWT token expired: JWT expired 23999 milliseconds ago at 2026-09-25T07:20:26.000Z. Current time: 2026-09-25T07:20:49.999Z. Allowed clock skew: 0 milliseconds.
+2026-09-25 10:20:50.074 [http-nio-8084-exec-1] WARN  o.g.g.c.security.service.JwtFilter - JWT token expired: JWT expired 24074 milliseconds ago at 2026-09-25T07:20:26.000Z. Current time: 2026-09-25T07:20:50.074Z. Allowed clock skew: 0 milliseconds.
+2026-09-25 10:20:50.228 [http-nio-8084-exec-2] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
+2026-09-25 10:20:51.437 [http-nio-8084-exec-3] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b3ab-44e6-76d0-835d-13adfacf19a5 and its reservations.
+2026-09-25 10:22:53.279 [http-nio-8084-exec-7] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
+2026-09-25 10:22:57.312 [http-nio-8084-exec-10] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b3ab-44e6-76d0-835d-13adfacf19a5 and its reservations.
+2026-09-25 10:24:34.938 [http-nio-8084-exec-4] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b3ab-44e6-76d0-835d-13adfacf19a5 and its reservations.
+2026-09-25 10:25:14.264 [http-nio-8084-exec-5] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
+2026-09-25 10:26:08.308 [http-nio-8084-exec-7] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
+2026-09-25 10:26:10.827 [http-nio-8084-exec-9] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b425-c571-7f41-9f76-8ed80e391978 and its reservations.
+2026-09-25 10:26:13.147 [http-nio-8084-exec-10] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
+2026-09-25 10:26:14.156 [http-nio-8084-exec-2] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b3ab-44e6-76d0-835d-13adfacf19a5 and its reservations.
+2026-09-25 10:26:26.522 [http-nio-8084-exec-6] INFO  o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 999 ms
+2026-09-25 10:27:19.866 [http-nio-8084-exec-9] INFO  o.g.ghotel.api.v1.AuthController - User with username: AnnaGenova logged in
+2026-09-25 10:27:26.010 [http-nio-8084-exec-10] WARN  o.g.g.api.error.ApiExceptionHandler - Warn [03cf6644]: Unable to process data from login HTTP request during [POST]: '/api/v1/auth/login'-Login failed: Wrong username or password.
+2026-09-25 10:27:30.234 [http-nio-8084-exec-1] INFO  o.g.ghotel.api.v1.AuthController - User with username: AnnaGenova logged in
+2026-09-25 10:27:42.983 [http-nio-8084-exec-2] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms with their reservations
+2026-09-25 10:28:00.806 [http-nio-8084-exec-4] INFO  o.g.g.api.v1.ReservationsController - Deleted reservation with id: 01a0d23c-a2e7-7352-8aee-25b7c151ce7a 
+2026-09-25 10:28:06.747 [http-nio-8084-exec-5] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b3ab-44e6-76d0-835d-13adfacf19a5 and its reservations.
+2026-09-25 10:28:10.548 [http-nio-8084-exec-6] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b3ab-44e6-76d0-835d-13adfacf19a5 and its reservations.
+2026-09-25 10:28:26.533 [http-nio-8084-exec-7] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms with their reservations
+2026-09-25 10:29:29.473 [http-nio-8084-exec-10] WARN  o.g.g.api.error.ApiExceptionHandler - Warn [929a733a]: Failed to retrieve specific resource during [DELETE]: '/api/v1/reservation/rooms'-Reservation not found with id: 01a0d23c-a2e7-7352-8aee-25b7c151ce7a
+2026-09-25 10:29:49.151 [http-nio-8084-exec-1] INFO  o.g.g.api.v1.ReservationsController - Restored reservation with id: 01a0d23c-a2e7-7352-8aee-25b7c151ce7a 
+2026-09-25 10:29:54.441 [http-nio-8084-exec-2] INFO  o.g.g.api.v1.ReservationsController - Removed room with id: 01a0b3ab-44e6-76d0-835d-13adfacf19a5 from reservation with id: 01a0d23c-a2e7-7352-8aee-25b7c151ce7a 
+2026-09-25 10:29:59.659 [http-nio-8084-exec-3] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b3ab-44e6-76d0-835d-13adfacf19a5 and its reservations.
+2026-09-25 10:56:47.089 [http-nio-8084-exec-8] WARN  o.g.g.c.security.service.JwtFilter - JWT token expired: JWT expired 1557086 milliseconds ago at 2026-09-25T07:30:50.000Z. Current time: 2026-09-25T07:56:47.086Z. Allowed clock skew: 0 milliseconds.
+2026-09-25 10:56:47.131 [http-nio-8084-exec-10] WARN  o.g.g.c.security.service.JwtFilter - JWT token expired: JWT expired 1557131 milliseconds ago at 2026-09-25T07:30:50.000Z. Current time: 2026-09-25T07:56:47.131Z. Allowed clock skew: 0 milliseconds.
+2026-09-25 10:56:47.263 [http-nio-8084-exec-1] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
+2026-09-25 10:57:26.753 [http-nio-8084-exec-4] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
+2026-09-25 10:57:27.676 [http-nio-8084-exec-5] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b3ab-44e6-76d0-835d-13adfacf19a5 and its reservations.
+2026-09-25 10:59:20.526 [http-nio-8084-exec-8] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b3ab-44e6-76d0-835d-13adfacf19a5 and its reservations.
+2026-09-25 11:00:05.065 [http-nio-8084-exec-10] INFO  o.g.g.api.v1.ReservationsController - Found all undeleted reservations
+2026-09-25 11:01:26.450 [http-nio-8084-exec-4] INFO  o.g.g.api.v1.ReservationsController - Found all undeleted reservations
+2026-09-25 11:01:51.965 [http-nio-8084-exec-5] INFO  o.g.g.api.v1.ReservationsController - Found all undeleted reservations
+2026-09-25 11:02:19.873 [http-nio-8084-exec-7] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
+2026-09-25 11:02:36.426 [http-nio-8084-exec-9] INFO  o.g.ghotel.api.v1.AuthController - User with username: RaliDrum logged in
+2026-09-25 11:06:11.750 [http-nio-8084-exec-2] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
+2026-09-25 11:06:14.699 [http-nio-8084-exec-3] INFO  o.g.g.api.v1.ReservationsController - Found all undeleted reservations
+2026-09-25 11:06:19.376 [http-nio-8084-exec-6] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
+2026-09-25 11:06:24.638 [http-nio-8084-exec-8] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b3ab-44e6-76d0-835d-13adfacf19a5 and its reservations.
+2026-09-25 11:06:47.819 [http-nio-8084-exec-10] INFO  o.g.g.api.v1.ReservationsController - Found all undeleted reservations
+2026-09-25 11:06:50.406 [http-nio-8084-exec-1] INFO  o.g.g.api.v1.ReservationsController - Found all undeleted reservations
+2026-09-25 11:06:54.113 [http-nio-8084-exec-4] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
+2026-09-25 11:07:13.919 [http-nio-8084-exec-5] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
+2026-09-25 11:07:19.883 [http-nio-8084-exec-7] INFO  o.g.g.api.v1.ReservationsController - Found all undeleted reservations
+2026-09-25 11:07:22.371 [http-nio-8084-exec-9] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
+2026-09-25 11:07:23.688 [http-nio-8084-exec-10] INFO  o.g.g.api.v1.ReservationsController - Found all undeleted reservations
+2026-09-25 11:07:42.898 [http-nio-8084-exec-2] INFO  o.g.g.api.v1.ReservationsController - Found all undeleted reservations
+2026-09-25 11:07:44.093 [http-nio-8084-exec-3] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
+2026-09-25 11:07:47.229 [http-nio-8084-exec-6] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b3ab-44e6-76d0-835d-13adfacf19a5 and its reservations.
+2026-09-25 11:08:43.670 [http-nio-8084-exec-8] INFO  o.g.g.api.v1.ReservationsController - Found all undeleted reservations
+2026-09-25 11:24:19.011 [http-nio-8084-exec-1] WARN  o.g.g.c.security.service.JwtFilter - JWT token expired: JWT expired 703006 milliseconds ago at 2026-09-25T08:12:36.000Z. Current time: 2026-09-25T08:24:19.006Z. Allowed clock skew: 0 milliseconds.
+2026-09-25 11:24:19.067 [http-nio-8084-exec-4] WARN  o.g.g.c.security.service.JwtFilter - JWT token expired: JWT expired 703067 milliseconds ago at 2026-09-25T08:12:36.000Z. Current time: 2026-09-25T08:24:19.067Z. Allowed clock skew: 0 milliseconds.
+2026-09-25 11:24:19.399 [http-nio-8084-exec-3] INFO  o.g.g.api.v1.ReservationsController - Found all undeleted reservations
+2026-09-25 11:24:51.649 [http-nio-8084-exec-6] INFO  o.g.g.api.v1.ReservationsController - Found all undeleted reservations
+2026-09-25 11:24:54.268 [http-nio-8084-exec-8] INFO  o.g.g.api.v1.ReservationsController - Found reservation with id: 01a0d22f-96c9-7a33-a294-b7efdf2e9851 and its rooms and customer.
+2026-09-25 11:25:16.489 [http-nio-8084-exec-10] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
+2026-09-25 11:25:17.084 [http-nio-8084-exec-2] INFO  o.g.g.api.v1.ReservationsController - Found all undeleted reservations
+2026-09-25 11:25:30.260 [http-nio-8084-exec-3] INFO  o.g.ghotel.api.v1.AuthController - User with username: RaliDrum logged in
+2026-09-25 11:25:34.151 [http-nio-8084-exec-6] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
+2026-09-25 11:25:34.766 [http-nio-8084-exec-8] INFO  o.g.g.api.v1.ReservationsController - Found all undeleted reservations
+2026-09-25 11:26:19.965 [http-nio-8084-exec-10] INFO  o.g.g.api.v1.ReservationsController - Found all undeleted reservations
+2026-09-25 11:30:16.760 [http-nio-8084-exec-4] INFO  o.g.g.api.v1.ReservationsController - Found all undeleted reservations
+2026-09-25 11:31:18.091 [http-nio-8084-exec-6] INFO  o.g.g.api.v1.ReservationsController - Found reservation with id: 01a0d22f-96c9-7a33-a294-b7efdf2e9851 and its rooms and customer.
+2026-09-25 11:31:21.904 [http-nio-8084-exec-8] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b3ab-44e6-76d0-835d-13adfacf19a5 and its reservations.
+2026-09-25 11:31:24.623 [http-nio-8084-exec-10] INFO  o.g.g.api.v1.ReservationsController - Found all undeleted reservations
+2026-09-25 11:31:25.859 [http-nio-8084-exec-2] INFO  o.g.g.api.v1.ReservationsController - Found reservation with id: 01a0d22f-96c9-7a33-a294-b7efdf2e9851 and its rooms and customer.
+2026-09-25 11:33:43.397 [http-nio-8084-exec-5] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b3ab-44e6-76d0-835d-13adfacf19a5 and its reservations.
+2026-09-25 11:33:45.713 [http-nio-8084-exec-7] INFO  o.g.g.api.v1.ReservationsController - Found reservation with id: 01a0d22f-96c9-7a33-a294-b7efdf2e9851 and its rooms and customer.
+2026-09-25 11:35:04.898 [http-nio-8084-exec-10] INFO  o.g.g.api.v1.ReservationsController - Found all undeleted reservations
+2026-09-25 11:35:06.501 [http-nio-8084-exec-2] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
+2026-09-25 11:35:16.032 [http-nio-8084-exec-3] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b425-c571-7f41-9f76-8ed80e391978 and its reservations.
+2026-09-25 11:35:18.048 [http-nio-8084-exec-6] INFO  o.g.g.api.v1.ReservationsController - Found all undeleted reservations
+2026-09-25 11:35:23.316 [http-nio-8084-exec-8] INFO  o.g.g.api.v1.ReservationsController - Found reservation with id: 01a0d23c-a2e7-7352-8aee-25b7c151ce7a and its rooms and customer.
+2026-09-25 11:35:26.454 [http-nio-8084-exec-10] INFO  o.g.g.api.v1.ReservationsController - Found all undeleted reservations
+2026-09-25 11:35:38.241 [http-nio-8084-exec-1] WARN  o.g.g.c.security.service.JwtFilter - JWT token expired: JWT expired 3488236 milliseconds ago at 2026-09-25T07:37:30.000Z. Current time: 2026-09-25T08:35:38.236Z. Allowed clock skew: 0 milliseconds.
+2026-09-25 11:35:38.462 [http-nio-8084-exec-1] INFO  o.g.ghotel.api.v1.AuthController - User with username: AnnaGenova logged in
+2026-09-25 11:36:03.589 [http-nio-8084-exec-2] INFO  o.g.g.api.v1.ReservationsController - Found all undeleted reservations
+2026-09-25 11:36:12.772 [http-nio-8084-exec-4] INFO  o.g.g.api.v1.ReservationsController - Deleted reservation with id: 01a0d23c-a2e7-7352-8aee-25b7c151ce7a 
+2026-09-25 11:36:15.369 [http-nio-8084-exec-5] WARN  o.g.g.c.security.service.JwtFilter - JWT token expired: JWT expired 45368 milliseconds ago at 2026-09-25T08:35:30.000Z. Current time: 2026-09-25T08:36:15.368Z. Allowed clock skew: 0 milliseconds.
+2026-09-25 11:36:15.393 [http-nio-8084-exec-7] WARN  o.g.g.c.security.service.JwtFilter - JWT token expired: JWT expired 45392 milliseconds ago at 2026-09-25T08:35:30.000Z. Current time: 2026-09-25T08:36:15.392Z. Allowed clock skew: 0 milliseconds.
+2026-09-25 11:36:15.412 [http-nio-8084-exec-8] INFO  o.g.g.api.v1.ReservationsController - Found all undeleted reservations
+2026-09-25 11:36:29.711 [http-nio-8084-exec-10] INFO  o.g.g.api.v1.ReservationsController - Found reservation with id: 01a0d22f-96c9-7a33-a294-b7efdf2e9851 and its rooms and customer.
+2026-09-25 11:37:05.516 [http-nio-8084-exec-2] INFO  o.g.g.api.v1.ReservationsController - Found all undeleted reservations
+2026-09-25 12:41:41.025 [http-nio-8084-exec-6] WARN  o.g.g.c.security.service.JwtFilter - JWT token expired: JWT expired 3326024 milliseconds ago at 2026-09-25T08:46:15.000Z. Current time: 2026-09-25T09:41:41.024Z. Allowed clock skew: 0 milliseconds.
+2026-09-25 12:41:41.041 [http-nio-8084-exec-8] WARN  o.g.g.c.security.service.JwtFilter - JWT token expired: JWT expired 3326041 milliseconds ago at 2026-09-25T08:46:15.000Z. Current time: 2026-09-25T09:41:41.041Z. Allowed clock skew: 0 milliseconds.
+2026-09-25 12:41:41.105 [http-nio-8084-exec-9] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
+2026-09-25 12:41:56.798 [http-nio-8084-exec-1] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
+2026-09-25 12:41:59.336 [http-nio-8084-exec-4] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b3ab-44e6-76d0-835d-13adfacf19a5 and its reservations.
+2026-09-25 12:42:01.636 [http-nio-8084-exec-5] INFO  o.g.g.api.v1.ReservationsController - Found reservation with id: 01a0d22f-96c9-7a33-a294-b7efdf2e9851 and its rooms and customer.
+2026-09-25 12:42:03.624 [http-nio-8084-exec-7] INFO  o.g.g.api.v1.ReservationsController - Found all undeleted reservations
+2026-09-25 12:42:04.993 [http-nio-8084-exec-9] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
+2026-09-25 12:53:58.498 [http-nio-8084-exec-1] WARN  o.g.g.c.security.service.JwtFilter - JWT token expired: JWT expired 137488 milliseconds ago at 2026-09-25T09:51:41.000Z. Current time: 2026-09-25T09:53:58.488Z. Allowed clock skew: 0 milliseconds.
+2026-09-25 12:53:58.614 [http-nio-8084-exec-4] WARN  o.g.g.c.security.service.JwtFilter - JWT token expired: JWT expired 137614 milliseconds ago at 2026-09-25T09:51:41.000Z. Current time: 2026-09-25T09:53:58.614Z. Allowed clock skew: 0 milliseconds.
+2026-09-25 12:53:59.042 [http-nio-8084-exec-3] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
+2026-09-25 12:54:01.630 [http-nio-8084-exec-6] INFO  o.g.g.api.v1.ReservationsController - Found all undeleted reservations
+2026-09-25 12:54:02.748 [http-nio-8084-exec-8] INFO  o.g.g.api.v1.ReservationsController - Found reservation with id: 01a0d22f-96c9-7a33-a294-b7efdf2e9851 and its rooms and customer.
+2026-09-25 12:57:27.001 [http-nio-8084-exec-1] INFO  o.g.g.api.v1.ReservationsController - Found reservation with id: 01a0d22f-96c9-7a33-a294-b7efdf2e9851 and its rooms and customer.
+2026-09-25 12:58:21.017 [http-nio-8084-exec-4] INFO  o.g.g.api.v1.ReservationsController - Found reservation with id: 01a0d22f-96c9-7a33-a294-b7efdf2e9851 and its rooms and customer.
+2026-09-25 12:59:23.584 [http-nio-8084-exec-6] INFO  o.g.g.api.v1.ReservationsController - Found reservation with id: 01a0d22f-96c9-7a33-a294-b7efdf2e9851 and its rooms and customer.
+2026-09-25 13:00:11.314 [http-nio-8084-exec-8] INFO  o.g.g.api.v1.ReservationsController - Found reservation with id: 01a0d22f-96c9-7a33-a294-b7efdf2e9851 and its rooms and customer.
+2026-09-25 13:00:32.658 [http-nio-8084-exec-10] INFO  o.g.g.api.v1.ReservationsController - Found reservation with id: 01a0d22f-96c9-7a33-a294-b7efdf2e9851 and its rooms and customer.
+2026-09-25 13:01:02.275 [http-nio-8084-exec-2] INFO  o.g.g.api.v1.ReservationsController - Found all undeleted reservations
+2026-09-25 13:01:02.975 [http-nio-8084-exec-3] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
+2026-09-25 13:01:04.572 [http-nio-8084-exec-5] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
+2026-09-25 13:01:06.550 [http-nio-8084-exec-7] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b425-c571-7f41-9f76-8ed80e391978 and its reservations.
+2026-09-25 13:01:33.943 [http-nio-8084-exec-9] INFO  o.g.ghotel.api.v1.AuthController - User with username: AnnaGenova logged in
+2026-09-25 13:01:39.989 [http-nio-8084-exec-1] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
+2026-09-25 13:01:42.401 [http-nio-8084-exec-4] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b425-c571-7f41-9f76-8ed80e391978 and its reservations.
+2026-09-25 13:01:44.679 [http-nio-8084-exec-3] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms
+2026-09-25 13:01:45.759 [http-nio-8084-exec-6] INFO  o.g.ghotel.api.v1.RoomController - Found room with id: 01a0b3ab-44e6-76d0-835d-13adfacf19a5 and its reservations.
+2026-09-25 13:01:51.450 [http-nio-8084-exec-8] INFO  o.g.g.api.v1.ReservationsController - Found all undeleted reservations
+2026-09-25 13:01:53.074 [http-nio-8084-exec-10] INFO  o.g.g.api.v1.ReservationsController - Found reservation with id: 01a0d22f-96c9-7a33-a294-b7efdf2e9851 and its rooms and customer.
+2026-09-25 13:02:25.685 [http-nio-8084-exec-2] INFO  o.g.g.api.v1.ReservationsController - Found all undeleted reservations
+2026-09-25 13:02:26.610 [http-nio-8084-exec-3] INFO  o.g.ghotel.api.v1.RoomController - Found all undeleted rooms

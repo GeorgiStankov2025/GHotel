@@ -3,10 +3,14 @@ import {RoomService} from '../../../services/room.service';
 import {RoomReservationsResponseDTO} from '../../../model/roomReservationsResponseDTO';
 import {ActivatedRoute} from '@angular/router';
 import {DatePipe} from '@angular/common';
+import {RoomCardComponent} from '../room-card.component/room-card.component';
+import {ReservationCardComponent} from '../../reservation/reservation-card.component/reservation-card.component';
 
 @Component({
   imports: [
-    DatePipe
+    DatePipe,
+    RoomCardComponent,
+    ReservationCardComponent
   ],
   selector: 'app-room-details.component',
   styleUrl: './room-details.component.css',

@@ -1,0 +1,5 @@
+<div class="reservation-list">
+  @for (reservation of reservations(); track reservation.id) {
+    <app-reservation-card [reservation]="reservation"></app-reservation-card>
+  }
+</div>
