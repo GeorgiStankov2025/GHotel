@@ -11,17 +11,21 @@ import {ReservationListComponent} from './components/reservation/reservation-lis
 import {
   ReservationDetailsComponent
 } from './components/reservation/reservation-details.component/reservation-details.component';
+import {RoomFormComponent} from './components/room/room-form.component/room-form.component';
+import {SuccessComponent} from './components/common/success.component/success.component';
 
 export const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'home', component: HomeComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'success', component: SuccessComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'logout', component: LogoutComponent},
   {path:'rooms',component:RoomListComponent},
   {path: 'rooms/:id', component: RoomDetailsComponent},
   {path: 'reservation/new/customer', component: CustomerFormComponent},
   {path: 'reservation/new/details', component: ReservationFormComponent},
+  {path: 'reservation/new/rooms', component: RoomFormComponent},
   {path:'reservations',component:ReservationListComponent},
   {path:'reservations/:id',component:ReservationDetailsComponent}
 ];

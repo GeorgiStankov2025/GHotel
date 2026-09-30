@@ -1,0 +1,20 @@
+<div class="room-form">
+  @for (room of availableRooms(); track room.id) {
+    @if (room.id) {
+      <app-room-card [room]="room" [detailsIsAvailable]="false">
+        @if (!isRoomAdded(room.id)) {
+          <button class="btn btn-success" (click)="onAddRoom(room.id)">
+            + Add Room {{ room.roomNumber }} to Reservation
+          </button>
+        } @else {
+          <div class="badge bg-success">
+            ✓ Room Added
+          </div>
+        }
+      </app-room-card>
+    }
+  }
+  <button class="btn bg-brown btn-primary" (click)="onFinish()" type="submit">
+    Finish Reservation
+  </button>
+</div>

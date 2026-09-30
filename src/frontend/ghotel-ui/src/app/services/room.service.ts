@@ -1,5 +1,5 @@
 import {inject, Service} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {RoomResponseDTO} from '../model/roomResponseDTO';
 import {RoomRequestDTO} from '../model/roomRequestDTO';
@@ -22,6 +22,10 @@ export class RoomService {
 
   public getRooms(): Observable<RoomResponseDTO[]> {
     return this.httpClient.get<RoomResponseDTO[]>(this.url)
+  }
+
+  public getAvailableRooms(dates:HttpParams): Observable<RoomResponseDTO[]> {
+    return this.httpClient.get<RoomResponseDTO[]>(`${this.url}/available`,{params: dates})
   }
 
   public getRoomWithDetails(id: string): Observable<RoomReservationsResponseDTO> {

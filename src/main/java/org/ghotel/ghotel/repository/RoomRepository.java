@@ -3,7 +3,10 @@ package org.ghotel.ghotel.repository;
 import org.ghotel.ghotel.entity.Room;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -11,6 +14,20 @@ import java.util.UUID;
 public interface RoomRepository extends JpaRepository<Room, UUID> {
     //Deleted false.
     Optional<Room> getRoomByIdAndDeletedFalse(UUID id);
+
+    @EntityGraph(value = "Room.reservations")
+    @Query("""
+        SELECT DISTINCT r FROM Room r 
+        WHERE r.deleted = false 
+          AND NOT EXISTS (
+            SELECT 1 FROM r.reservations res 
+            WHERE res.checkIn < :checkOut 
+              AND res.checkOut > :checkIn
+        )
+    """)
+    List<Room> findAvailableRooms(
+            @Param("checkIn") OffsetDateTime checkIn,
+            @Param("checkOut") OffsetDateTime checkOut);
 
     List<Room> getAllByDeletedFalse();
 

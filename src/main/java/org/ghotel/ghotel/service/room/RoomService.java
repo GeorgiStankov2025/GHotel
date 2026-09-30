@@ -6,6 +6,7 @@ import org.ghotel.ghotel.dto.response.RoomReservationsResponseDTO;
 import org.ghotel.ghotel.dto.response.RoomResponseDTO;
 import org.ghotel.ghotel.entity.Room;
 
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -21,6 +22,8 @@ public interface RoomService {
     List<RoomReservationsResponseDTO> getRoomsWithReservations();
 
     List<RoomResponseDTO> getAllRooms();
+
+    List<RoomResponseDTO> getAvailableRoomsForAPeriod(OffsetDateTime checkIn, OffsetDateTime checkOut);
 
     List<RoomReservationsResponseDTO> getAllRoomsWithReservations();
 
