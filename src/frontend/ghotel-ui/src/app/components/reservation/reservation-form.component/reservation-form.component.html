@@ -9,7 +9,7 @@
       </mat-form-field>
       <mat-form-field>
         <mat-label>Reservation period</mat-label>
-        <mat-date-range-input [rangePicker]="picker">
+        <mat-date-range-input [rangePicker]="picker" (click)="picker.open()" class="cursor-pointer">
           <input
             matStartDate
             formControlName="checkIn"

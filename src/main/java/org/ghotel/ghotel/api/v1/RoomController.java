@@ -8,10 +8,12 @@ import org.ghotel.ghotel.dto.response.DeletedDTO;
 import org.ghotel.ghotel.dto.response.RoomReservationsResponseDTO;
 import org.ghotel.ghotel.dto.response.RoomResponseDTO;
 import org.ghotel.ghotel.service.room.RoomService;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -58,6 +60,19 @@ public class RoomController {
     public ResponseEntity<List<RoomResponseDTO>> getRooms() {
         List<RoomResponseDTO> response = roomService.getRooms();
         log.info("Found all undeleted rooms");
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("/available")
+    @Operation(description = "Get all available rooms for a specific period.")
+    public ResponseEntity<List<RoomResponseDTO>> getAvailableRooms(
+            @RequestParam("checkIn")
+            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) OffsetDateTime checkIn,
+            @RequestParam("checkOut")
+            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) OffsetDateTime checkOut
+    ) {
+        List<RoomResponseDTO> response = roomService.getAvailableRoomsForAPeriod(checkIn, checkOut);
+        log.info("Found all available undeleted rooms between {} and {}", checkIn, checkOut);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 

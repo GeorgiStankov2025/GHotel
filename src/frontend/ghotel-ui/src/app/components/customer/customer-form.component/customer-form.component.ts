@@ -19,10 +19,6 @@ import {CustomerRequestDTO} from '../../../model/customerRequestDTO';
   templateUrl: './customer-form.component.html',
 })
 export class CustomerFormComponent {
-
-  private readonly _id: WritableSignal<string> = signal<string>('')
-  protected id: Signal<string> = this._id.asReadonly()
-
   private readonly router: Router = inject(Router)
   private readonly customerService: CustomerService = inject(CustomerService)
 
@@ -36,8 +32,9 @@ export class CustomerFormComponent {
     this.customerService.addCustomer(request).subscribe({
       next: (result: CustomerResponseDTO) => {
         if (result.id != null) {
-          this._id.set(result.id)
-          this.router.navigate(["reservation/new/details"]);
+          this.router.navigate(["reservation/new/details"],{
+            queryParams:{customerId:result.id}
+          })
         }
       },
       error: (err: Error) => {

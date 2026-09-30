@@ -12,6 +12,7 @@ import org.ghotel.ghotel.repository.RoomRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -78,6 +79,15 @@ public class RoomServiceImpl implements RoomService {
     public List<RoomResponseDTO> getAllRooms() {
         List<Room> rooms = roomRepository.findAll();
         return rooms
+                .stream()
+                .map(roomMapper::toRoomResponseDTO)
+                .toList();
+    }
+
+    @Override
+    public List<RoomResponseDTO> getAvailableRoomsForAPeriod(OffsetDateTime checkIn, OffsetDateTime checkOut) {
+        List<Room> availableRooms = roomRepository.findAvailableRooms(checkIn,checkOut);
+        return availableRooms
                 .stream()
                 .map(roomMapper::toRoomResponseDTO)
                 .toList();
