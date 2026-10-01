@@ -1,7 +1,9 @@
 package org.ghotel.ghotel.api.v1;
 
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
+import org.ghotel.ghotel.dto.request.UserRequestDTO;
 import org.ghotel.ghotel.dto.response.DeletedDTO;
 import org.ghotel.ghotel.dto.response.UserResponseDTO;
 import org.ghotel.ghotel.service.user.UserService;
@@ -23,15 +25,15 @@ public class UserController {
         this.userService = userService;
     }
 
-//    @PostMapping
-//    @Operation(description = "Add User.")
-//    public ResponseEntity<UserResponseDTO> addUser(
-//            @Valid
-//            @RequestBody UserRequestDTO request) {
-//        UserResponseDTO response = UserService.addUser(request);
-//        log.info("Created User with id: {}", response.id());
-//        return new ResponseEntity<>(response, HttpStatus.CREATED);
-//    }
+    @PostMapping
+    @Operation(description = "Add User.")
+    public ResponseEntity<UserResponseDTO> addUser(
+            @Valid
+            @RequestBody UserRequestDTO request) {
+        UserResponseDTO response = userService.addUser(request);
+        log.info("Created User with id: {}", response.id());
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
+    }
 
     @GetMapping("/{id}")
     @Operation(description = "Get User by id.")

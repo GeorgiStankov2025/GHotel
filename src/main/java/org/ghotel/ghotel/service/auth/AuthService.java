@@ -9,7 +9,7 @@ import org.ghotel.ghotel.dto.response.UserResponseDTO;
 public interface AuthService {
     AuthResponseDTO login(LoginRequestDTO request);
 
-    UserResponseDTO register(UserRequestDTO request);
+//    UserResponseDTO register(UserRequestDTO request);
 
     AuthResponseDTO refresh(TokenRequestDTO request);
 }

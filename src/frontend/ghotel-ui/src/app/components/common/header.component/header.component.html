@@ -7,12 +7,15 @@
       <li><a class="nav-link" routerLink="/home">Home</a></li>
       @if (!isLoggedIn()) {
         <li><a class="nav-link" routerLink="/login">Login</a></li>
-        <li><a class="nav-link" routerLink="/register">Register</a></li>
+<!--        <li><a class="nav-link" routerLink="/register">Register</a></li>-->
       }
       @else{
         <li><a class="nav-link" routerLink="/rooms">Rooms</a></li>
         <li><a class="nav-link" routerLink="/reservations">Reservations</a></li>
         <li><a class="nav-link" routerLink="/reservation/new/customer">Add Reservation</a></li>
+        @if (this.jwtService.isCurrentlyAuthorizedRole("ROLE_ADMIN")) {
+          <li><a class="nav-link" routerLink="/admin">Admin Dashboard</a></li>
+        }
         <li><a class="nav-link" routerLink="/logout">Logout</a></li>
       }
     </ol>

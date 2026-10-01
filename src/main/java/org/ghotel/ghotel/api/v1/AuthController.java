@@ -27,15 +27,15 @@ public class AuthController {
         this.authService = authService;
     }
 
-    @PostMapping("/register")
-    @Operation(description = "Register user.")
-    public ResponseEntity<UserResponseDTO> register(
-            @Valid
-            @RequestBody UserRequestDTO request) {
-        UserResponseDTO response = authService.register(request);
-        log.info("Registered user with username: {}", response.username());
-        return new ResponseEntity<>(response, HttpStatus.CREATED);
-    }
+//    @PostMapping("/register")
+//    @Operation(description = "Register user.")
+//    public ResponseEntity<UserResponseDTO> register(
+//            @Valid
+//            @RequestBody UserRequestDTO request) {
+//        UserResponseDTO response = authService.register(request);
+//        log.info("Registered user with username: {}", response.username());
+//        return new ResponseEntity<>(response, HttpStatus.CREATED);
+//    }
 
     @PostMapping("/login")
     @Operation(description = "Login endpoint for users/users.")

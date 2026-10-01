@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.UUID;
 
 public interface UserService {
-//    UserResponseDTO addUser(EmployeeRequestDTO request);
 
     UserResponseDTO getUserById(UUID id);
 
@@ -22,7 +21,6 @@ public interface UserService {
 
 //    UserResponseDTO editUser(UUID id, UserRequestDTO request);
 
-    @Transactional
     UserResponseDTO addUser(UserRequestDTO request);
 
     DeletedDTO deleteUser(UUID id);

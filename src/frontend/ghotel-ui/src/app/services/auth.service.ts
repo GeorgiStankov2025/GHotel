@@ -6,12 +6,13 @@ import {Observable, tap} from 'rxjs';
 import {LoginRequestDTO} from '../model/loginRequestDTO';
 import {AuthResponseDTO} from '../model/authResponseDTO';
 import {TokenRequestDTO} from '../model/tokenRequestDTO';
+import {JwtService} from './jwt.service';
 
 @Service()
 export class AuthService {
 
   private readonly url: string = 'http://localhost:8084/api/v1/auth'
-
+  private readonly jwtService: JwtService = inject(JwtService)
   private readonly httpClient: HttpClient = inject(HttpClient)
 
   public register(request: UserRequestDTO): Observable<UserResponseDTO> {
@@ -22,7 +23,7 @@ export class AuthService {
     return this.httpClient.post<AuthResponseDTO>(`${this.url}/login`, request).pipe(
       tap((res) => {
         if (res.accessToken && res.refreshToken) {
-          this.saveTokens(res.accessToken, res.refreshToken)
+          this.jwtService.saveTokens(res.accessToken, res.refreshToken)
         }
       })
     );
@@ -32,25 +33,14 @@ export class AuthService {
     return this.httpClient.post<AuthResponseDTO>(`${this.url}/refresh`, request);
   }
 
+  public isLoggedIn(): boolean {
+    return !!this.jwtService.getAccessToken();
+  }
+
   public logout(): void {
     localStorage.removeItem('access_token');
     localStorage.removeItem('refresh_token')
   }
 
-  public getAccessToken(): string | null {
-    return localStorage.getItem('access_token');
-  }
 
-  public getRefreshToken(): string | null {
-    return localStorage.getItem('refresh_token');
-  }
-
-  public isLoggedIn(): boolean {
-    return !!this.getAccessToken();
-  }
-
-  public saveTokens(accessToken: string, refreshToken: string) {
-    localStorage.setItem('access_token', accessToken);
-    localStorage.setItem('refresh_token', refreshToken);
-  }
 }

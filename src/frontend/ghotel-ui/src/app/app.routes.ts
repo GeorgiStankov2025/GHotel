@@ -13,13 +13,15 @@ import {
 } from './components/reservation/reservation-details.component/reservation-details.component';
 import {RoomFormComponent} from './components/room/room-form.component/room-form.component';
 import {SuccessComponent} from './components/common/success.component/success.component';
+import {UnauthorizedComponent} from './components/common/unauthorized.component/unauthorized.component';
+import {UserListComponent} from './components/admin/user-list.component/user-list.component';
 
 export const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'home', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'success', component: SuccessComponent},
-  {path: 'register', component: RegisterComponent},
+  // {path: 'register', component: RegisterComponent},
   {path: 'logout', component: LogoutComponent},
   {path:'rooms',component:RoomListComponent},
   {path: 'rooms/:id', component: RoomDetailsComponent},
@@ -27,5 +29,7 @@ export const routes: Routes = [
   {path: 'reservation/new/details', component: ReservationFormComponent},
   {path: 'reservation/new/rooms', component: RoomFormComponent},
   {path:'reservations',component:ReservationListComponent},
-  {path:'reservations/:id',component:ReservationDetailsComponent}
+  {path: 'reservations/:id', component: ReservationDetailsComponent},
+  {path: 'unauthorized', component: UnauthorizedComponent},
+  {path: 'admin', component: UserListComponent}
 ];

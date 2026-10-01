@@ -36,10 +36,10 @@ public class AuthServiceImpl implements AuthService {
         return jwtService.generateTokenPair(user.getUsername(), user.getRole().toString());
     }
 
-    @Override
-    public UserResponseDTO register(UserRequestDTO request) {
-        return userService.addUser(request);
-    }
+//    @Override
+//    public UserResponseDTO register(UserRequestDTO request) {
+//        return userService.addUser(request);
+//    }
 
     @Override
     public AuthResponseDTO refresh(TokenRequestDTO request) {

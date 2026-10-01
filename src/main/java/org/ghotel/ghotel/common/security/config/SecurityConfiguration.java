@@ -44,16 +44,15 @@ public class SecurityConfiguration {
                         (SessionCreationPolicy.STATELESS)
                 )
                 .exceptionHandling(ex -> ex
-                        .authenticationEntryPoint(((
-                                request,
-                                response,
-                                authException) ->
-                                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized")))
+                        .authenticationEntryPoint((request, response, authException) ->
+                                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED)
+                        )
                         .accessDeniedHandler((
                                 request,
                                 response,
                                 accessDeniedException) ->
-                                response.sendError(HttpServletResponse.SC_FORBIDDEN, "Forbidden"))
+                                response.setStatus(HttpServletResponse.SC_FORBIDDEN)
+                        )
                 )
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/v1/auth/**").permitAll()
@@ -63,7 +62,7 @@ public class SecurityConfiguration {
                                 "/swagger-ui/**",
                                 "/swagger-ui.html"
                         ).permitAll()
-                        .requestMatchers("/api/v1/user/**").hasAnyAuthority(UserRole.ROLE_ADMIN.name())
+                        .requestMatchers("/api/v1/user/**").hasAuthority("ROLE_ADMIN")
                         .requestMatchers("/api/v1/reservation/**").hasAnyAuthority(
                                 UserRole.ROLE_USER.name(), UserRole.ROLE_ADMIN.name())
                         .requestMatchers("/api/v1/room/**").hasAnyAuthority(

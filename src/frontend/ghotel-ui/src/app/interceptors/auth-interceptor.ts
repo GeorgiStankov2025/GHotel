@@ -2,13 +2,17 @@ import {HttpErrorResponse, HttpHandlerFn, HttpInterceptorFn, HttpRequest} from '
 import {inject} from '@angular/core';
 import {catchError, switchMap, throwError} from 'rxjs';
 import {AuthService} from '../services/auth.service';
+import {Router} from '@angular/router';
+import {JwtService} from '../services/jwt.service';
 
 export const authInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>, next: HttpHandlerFn) => {
-  const authService = inject(AuthService);
-  const token = authService.getAccessToken();
+  const authService:AuthService = inject(AuthService);
+  const jwtService:JwtService = inject(JwtService);
+  const token = jwtService.getAccessToken();
+  const router: Router = inject(Router);
 
   const authReq = token ? req.clone({setHeaders: {Authorization: `Bearer ${token}`}}) : req;
-  const refreshToken: string | null = authService.getRefreshToken();
+  const refreshToken: string | null = jwtService.getRefreshToken();
 
   return next(authReq).pipe(
     catchError((error: HttpErrorResponse) => {
@@ -17,7 +21,7 @@ export const authInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>, ne
           refreshToken: refreshToken
         }).pipe(
           switchMap((res: any) => {
-            authService.saveTokens(res.accessToken, res.refreshToken);
+            jwtService.saveTokens(res.accessToken, res.refreshToken);
 
             return next(req.clone({
               setHeaders: {Authorization: `Bearer ${res.accessToken}`}
@@ -30,6 +34,9 @@ export const authInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>, ne
         );
       }
 
+      if (error.status === 403) {
+        router.navigate(['/unauthorized'])
+      }
       return throwError(() => error);
     })
   );
