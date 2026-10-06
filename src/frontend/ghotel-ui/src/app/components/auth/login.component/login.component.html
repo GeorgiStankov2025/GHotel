@@ -12,6 +12,9 @@
         <input matInput type="password" formControlName="rawPassword">
       </mat-form-field>
       <button type="submit" class="btn bg-brown btn-primary">Login</button>
+      @if (errorMessage() !== '') {
+        <small>{{ errorMessage() }}</small>
+      }
     </form>
   </div>
 </div>

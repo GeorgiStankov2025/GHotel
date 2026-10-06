@@ -1,8 +1,8 @@
 <div class="container d-flex justify-content-center align-items-center vh-100">
   <div class="card shadow-lg p-3 p-md-4 rounded-4 register-card">
-    <form class="row g-3" [formGroup]="registerForm"
-          (ngSubmit)="onRegister()">
-      <h3 class="text-center mb-4">Register</h3>
+    <form class="row g-3" [formGroup]="userForm"
+          (ngSubmit)="onAddUser()">
+      <h3 class="text-center mb-4">Add New User</h3>
       <mat-form-field>
         <mat-label>Username</mat-label>
         <input matInput type="text" formControlName="username">
@@ -19,7 +19,10 @@
         <mat-label>Password</mat-label>
         <input matInput type="password" formControlName="password">
       </mat-form-field>
-      <button class="btn bg-brown btn-primary" type="submit">Register</button>
+      <button class="btn bg-brown btn-primary" type="submit">Add User</button>
+      @if (errorMessage() !== '') {
+        <small>{{ errorMessage() }}</small>
+      }
     </form>
   </div>
 </div>

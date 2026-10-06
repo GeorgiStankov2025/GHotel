@@ -1,6 +1,4 @@
 import {inject, Service} from '@angular/core';
-import {UserRequestDTO} from '../model/userRequestDTO';
-import {UserResponseDTO} from '../model/userResponseDTO';
 import {HttpClient} from '@angular/common/http';
 import {Observable, tap} from 'rxjs';
 import {LoginRequestDTO} from '../model/loginRequestDTO';
@@ -15,13 +13,9 @@ export class AuthService {
   private readonly jwtService: JwtService = inject(JwtService)
   private readonly httpClient: HttpClient = inject(HttpClient)
 
-  public register(request: UserRequestDTO): Observable<UserResponseDTO> {
-    return this.httpClient.post<UserResponseDTO>(`${this.url}/register`, request);
-  }
-
   public login(request: LoginRequestDTO): Observable<AuthResponseDTO> {
     return this.httpClient.post<AuthResponseDTO>(`${this.url}/login`, request).pipe(
-      tap((res) => {
+      tap((res: AuthResponseDTO): void => {
         if (res.accessToken && res.refreshToken) {
           this.jwtService.saveTokens(res.accessToken, res.refreshToken)
         }

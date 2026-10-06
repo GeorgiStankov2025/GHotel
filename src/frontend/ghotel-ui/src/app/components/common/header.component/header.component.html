@@ -14,7 +14,8 @@
         <li><a class="nav-link" routerLink="/reservations">Reservations</a></li>
         <li><a class="nav-link" routerLink="/reservation/new/customer">Add Reservation</a></li>
         @if (this.jwtService.isCurrentlyAuthorizedRole("ROLE_ADMIN")) {
-          <li><a class="nav-link" routerLink="/admin">Admin Dashboard</a></li>
+          <li><a class="nav-link" routerLink="/admin">Users</a></li>
+          <li><a class="nav-link" routerLink="/user/new">Add User</a></li>
         }
         <li><a class="nav-link" routerLink="/logout">Logout</a></li>
       }

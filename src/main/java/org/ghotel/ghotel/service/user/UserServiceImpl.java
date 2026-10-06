@@ -117,7 +117,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findByUsername(String username) {
-        return userRepository.getUserByUsername(username)
+        return userRepository.getUserByUsernameAndDeletedFalse(username)
                 .orElseThrow(() ->
                         new ResourceNotFoundException("User not found with username: " + username));
     }

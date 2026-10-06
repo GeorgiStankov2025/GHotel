@@ -32,12 +32,12 @@ export class LoginComponent {
   protected onLogin(): void {
     const request: LoginRequestDTO = this.loginForm.value;
     this.authService.login(request).subscribe({
-      next: (res) => {
+      next: (): void => {
         this.router.navigate(['/home']);
       },
-      error: (err: HttpErrorResponse) => {
-        if (err.status === 400) {
-          this._errorMessage.set(err.message);
+      error: (err: HttpErrorResponse):void => {
+        if (err.status === 404||err.status===400) {
+          this._errorMessage.set("Invalid login credentials.");
         } else {
           this._errorMessage.set(err.message)
         }

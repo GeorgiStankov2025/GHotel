@@ -1,6 +1,6 @@
 import {Routes} from '@angular/router';
 import {LoginComponent} from './components/auth/login.component/login.component';
-import {RegisterComponent} from './components/auth/register.component/register.component';
+import {UserFormComponent} from './components/admin/user-form.component/user-form.component';
 import {LogoutComponent} from './components/auth/logout.component/logout.component';
 import {HomeComponent} from './components/common/home.component/home.component';
 import {RoomListComponent} from './components/room/room-list.component/room-list.component';
@@ -21,7 +21,6 @@ export const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'success', component: SuccessComponent},
-  // {path: 'register', component: RegisterComponent},
   {path: 'logout', component: LogoutComponent},
   {path:'rooms',component:RoomListComponent},
   {path: 'rooms/:id', component: RoomDetailsComponent},
@@ -31,5 +30,6 @@ export const routes: Routes = [
   {path:'reservations',component:ReservationListComponent},
   {path: 'reservations/:id', component: ReservationDetailsComponent},
   {path: 'unauthorized', component: UnauthorizedComponent},
-  {path: 'admin', component: UserListComponent}
+  {path: 'admin', component: UserListComponent},
+  {path: 'user/new', component: UserFormComponent}
 ];

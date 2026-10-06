@@ -2,10 +2,12 @@ import {ChangeDetectionStrategy, Component, inject, OnInit, Signal, signal, Writ
 import {UserCardComponent} from '../user-card.component/user-card.component';
 import {UserResponseDTO} from '../../../model/userResponseDTO';
 import {UserService} from '../../../services/user.service';
+import {UserFormComponent} from '../user-form.component/user-form.component';
 
 @Component({
   imports: [
-    UserCardComponent
+    UserCardComponent,
+    UserFormComponent
   ],
   selector: 'app-user-list',
   styleUrl: './user-list.component.css',
