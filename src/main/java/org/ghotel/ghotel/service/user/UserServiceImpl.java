@@ -94,12 +94,13 @@ public class UserServiceImpl implements UserService {
         return userMapper.toUserResponseDTO(user);
     }
 
-//    public List<UserResponseDTO> getDeletedUsers() {
-//        List<User> users = userRepository.getAllByDeletedTrue();
-//        return users.stream()
-//                .map(userMapper::toUserResponseDTO)
-//                .toList();
-//    }
+    @Override
+    public List<UserResponseDTO> getDeletedUsers() {
+        List<User> users = userRepository.getAllByDeletedTrue();
+        return users.stream()
+                .map(userMapper::toUserResponseDTO)
+                .toList();
+    }
 
     @Override
     public User findById(UUID id) {

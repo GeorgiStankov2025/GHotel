@@ -89,13 +89,13 @@ public class CustomerController {
 //        return new ResponseEntity<>(response, HttpStatus.OK);
 //    }
 //
-//    @GetMapping("/deleted")
-//    @Operation(description = "Get all deleted customers.")
-//    public ResponseEntity<List<CustomerResponseDTO>> getDeletedCustomers() {
-//        List<CustomerResponseDTO> response = customerService.getDeletedCustomers();
-//        log.info("Found all deleted customers.");
-//        return new ResponseEntity<>(response, HttpStatus.OK);
-//    }
+    @GetMapping("/deleted")
+    @Operation(description = "Get all deleted customers.")
+    public ResponseEntity<List<CustomerResponseDTO>> getDeletedCustomers() {
+        List<CustomerResponseDTO> response = customerService.getDeletedCustomers();
+        log.info("Found all deleted customers.");
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 //
 //    @GetMapping("/deleted/reservations")
 //    @Operation(description = "Get all deleted customers including their reservations.")

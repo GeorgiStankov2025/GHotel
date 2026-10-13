@@ -5,6 +5,7 @@ import {RoomResponseDTO} from '../model/roomResponseDTO';
 import {RoomRequestDTO} from '../model/roomRequestDTO';
 import {DeletedDTO} from '../model/deletedDTO';
 import {RoomReservationsResponseDTO} from '../model/roomReservationsResponseDTO';
+import {UserResponseDTO} from '../model/userResponseDTO';
 
 @Service()
 export class RoomService {
@@ -24,6 +25,10 @@ export class RoomService {
     return this.httpClient.get<RoomResponseDTO[]>(this.url)
   }
 
+  public getDeletedRooms(): Observable<RoomResponseDTO[]> {
+    return this.httpClient.get<RoomResponseDTO[]>(`${this.url}/deleted`)
+  }
+
   public getAvailableRooms(dates:HttpParams): Observable<RoomResponseDTO[]> {
     return this.httpClient.get<RoomResponseDTO[]>(`${this.url}/available`,{params: dates})
   }
@@ -35,6 +40,7 @@ export class RoomService {
   public editRoom(id: string, request: RoomRequestDTO): Observable<RoomResponseDTO> {
     return this.httpClient.put<RoomResponseDTO>(`${this.url}/${id}`, request)
   }
+
 
   public deleteRoom(id: string): Observable<DeletedDTO> {
     return this.httpClient.delete<DeletedDTO>(`${this.url}/${id}`)

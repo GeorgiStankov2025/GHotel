@@ -1,7 +1,9 @@
 package org.ghotel.ghotel.service.reservation;
 
 import org.ghotel.ghotel.dto.request.ReservationRequestDTO;
-import org.ghotel.ghotel.dto.response.*;
+import org.ghotel.ghotel.dto.response.DeletedDTO;
+import org.ghotel.ghotel.dto.response.ReservationResponseDTO;
+import org.ghotel.ghotel.dto.response.ReservationRoomsCustomerResponseDTO;
 import org.ghotel.ghotel.entity.Customer;
 import org.ghotel.ghotel.entity.Reservation;
 import org.ghotel.ghotel.exception.ResourceNotFoundException;
@@ -164,12 +166,13 @@ public class ReservationServiceImpl implements ReservationService {
         return reservationMapper.toReservationResponseDTO(reservation);
     }
 
-//    public List<ReservationResponseDTO> getDeletedReservations() {
-//        List<Reservation> reservations = reservationRepository.getReservationsByDeletedTrue();
-//        return reservations.stream()
-//                .map(reservationMapper::toReservationResponseDTO)
-//                .toList();
-//    }
+    @Override
+    public List<ReservationResponseDTO> getDeletedReservations() {
+        List<Reservation> reservations = reservationRepository.getReservationsByDeletedTrue();
+        return reservations.stream()
+                .map(reservationMapper::toReservationResponseDTO)
+                .toList();
+    }
 //
 //    //With customer
 //    public ReservationCustomerResponseDTO getDeletedReservationWithCustomerById(UUID id) {

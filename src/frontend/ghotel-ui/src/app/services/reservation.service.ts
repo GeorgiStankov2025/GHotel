@@ -7,6 +7,7 @@ import {DeletedDTO} from '../model/deletedDTO';
 import {ReservationRoomsCustomerResponseDTO} from '../model/reservationRoomsCustomerResponseDTO';
 import {ReservationRoomRequestDTO} from '../model/reservationRoomRequestDTO';
 import {ReservationRoomsResponseDTO} from '../model/reservationRoomsResponseDTO';
+import {UserResponseDTO} from '../model/userResponseDTO';
 
 @Service()
 export class ReservationService {
@@ -32,6 +33,10 @@ export class ReservationService {
 
   public getReservations(): Observable<ReservationResponseDTO[]> {
     return this.httpClient.get<ReservationResponseDTO[]>(this.url)
+  }
+
+  public getDeletedReservations(): Observable<ReservationResponseDTO[]> {
+    return this.httpClient.get<ReservationResponseDTO[]>(`${this.url}/deleted`)
   }
 
   public editReservation(id: string, request: ReservationRequestDTO): Observable<ReservationResponseDTO> {

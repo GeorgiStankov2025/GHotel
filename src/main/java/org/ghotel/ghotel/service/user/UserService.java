@@ -27,6 +27,8 @@ public interface UserService {
 
     UserResponseDTO restoreUser(UUID id);
 
+    List<UserResponseDTO> getDeletedUsers();
+
     User findById(UUID id);
 
     User findByIdDeleted(UUID id);

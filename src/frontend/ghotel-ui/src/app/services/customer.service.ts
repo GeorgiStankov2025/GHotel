@@ -23,6 +23,10 @@ export class CustomerService {
     return this.httpClient.get<CustomerResponseDTO[]>(this.url)
   }
 
+  public getDeletedCustomers(): Observable<CustomerResponseDTO[]> {
+    return this.httpClient.get<CustomerResponseDTO[]>(`${this.url}/deleted`)
+  }
+
   public editCustomer(id: string, request: CustomerRequestDTO): Observable<CustomerResponseDTO> {
     return this.httpClient.put<CustomerResponseDTO>(`${this.url}/${id}`, request)
   }

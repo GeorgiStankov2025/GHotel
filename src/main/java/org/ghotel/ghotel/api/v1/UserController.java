@@ -61,13 +61,13 @@ public class UserController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-//    @GetMapping("/deleted")
-//    @Operation(description = "Get all deleted Users.")
-//    public ResponseEntity<List<UserResponseDTO>> getDeletedUsers() {
-//        List<UserResponseDTO> response = UserService.getDeletedUsers();
-//        log.info("Found all deleted Users.");
-//        return new ResponseEntity<>(response, HttpStatus.OK);
-//    }
+    @GetMapping("/deleted")
+    @Operation(description = "Get all deleted Users.")
+    public ResponseEntity<List<UserResponseDTO>> getDeletedUsers() {
+        List<UserResponseDTO> response = userService.getDeletedUsers();
+        log.info("Found all deleted Users.");
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 
     @GetMapping("/all")
     @Operation(description = "Get all Users including soft deleted ones.")

@@ -23,6 +23,10 @@ export class UserService {
     return this.httpClient.get<UserResponseDTO[]>(this.url)
   }
 
+  public getDeletedUsers(): Observable<UserResponseDTO[]> {
+    return this.httpClient.get<UserResponseDTO[]>(`${this.url}/deleted`)
+  }
+
   public deleteUser(id: string | undefined): Observable<DeletedDTO> {
     return this.httpClient.delete<DeletedDTO>(`${this.url}/${id}`)
   }

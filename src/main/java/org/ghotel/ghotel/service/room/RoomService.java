@@ -35,6 +35,8 @@ public interface RoomService {
 
     RoomResponseDTO restoreRoom(UUID id);
 
+    List<RoomResponseDTO> getDeletedRooms();
+
     Room findRoomById(UUID id);
 
     Room findDeletedRoomById(UUID id);

@@ -101,13 +101,13 @@ public class RoomController {
 //        return new ResponseEntity<>(response, HttpStatus.OK);
 //    }
 //
-//    @GetMapping("/deleted")
-//    @Operation(description = "Get all deleted rooms.")
-//    public ResponseEntity<List<RoomResponseDTO>> getDeletedRooms() {
-//        List<RoomResponseDTO> response = roomService.getDeletedRooms();
-//        log.info("Found all deleted rooms.");
-//        return new ResponseEntity<>(response, HttpStatus.OK);
-//    }
+    @GetMapping("/deleted")
+    @Operation(description = "Get all deleted rooms.")
+    public ResponseEntity<List<RoomResponseDTO>> getDeletedRooms() {
+        List<RoomResponseDTO> response = roomService.getDeletedRooms();
+        log.info("Found all deleted rooms.");
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 //
 //    @GetMapping("/deleted/reservations")
 //    @Operation(description = "Get all deleted rooms with their reservations.")

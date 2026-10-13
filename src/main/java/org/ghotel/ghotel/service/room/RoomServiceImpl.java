@@ -132,13 +132,14 @@ public class RoomServiceImpl implements RoomService {
         return roomMapper.toRoomResponseDTO(room);
     }
 
-//    public List<RoomResponseDTO> getDeletedRooms() {
-//        List<Room> rooms = roomRepository.getAllByDeletedTrue();
-//        return rooms
-//                .stream()
-//                .map(roomMapper::toRoomResponseDTO)
-//                .toList();
-//    }
+    @Override
+    public List<RoomResponseDTO> getDeletedRooms() {
+        List<Room> rooms = roomRepository.getAllByDeletedTrue();
+        return rooms
+                .stream()
+                .map(roomMapper::toRoomResponseDTO)
+                .toList();
+    }
 //
 //    public RoomReservationsResponseDTO getDeletedRoomWithReservationById(UUID id) {
 //        Room room = findDeletedRoomWithReservationsById(id);

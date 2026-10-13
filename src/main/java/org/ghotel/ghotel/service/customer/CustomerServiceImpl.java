@@ -91,13 +91,14 @@ public class CustomerServiceImpl implements CustomerService {
         return customerMapper.toCustomerResponseDTO(customer);
     }
 
-//    public List<CustomerResponseDTO> getDeletedCustomers() {
-//        List<Customer> customers = customerRepository.getAllByDeletedTrue();
-//        return customers
-//                .stream()
-//                .map(customerMapper::toCustomerResponseDTO)
-//                .toList();
-//    }
+    @Override
+    public List<CustomerResponseDTO> getDeletedCustomers() {
+        List<Customer> customers = customerRepository.getAllByDeletedTrue();
+        return customers
+                .stream()
+                .map(customerMapper::toCustomerResponseDTO)
+                .toList();
+    }
 //
 //    public CustomerReservationsResponseDTO getDeletedCustomerWithReservationsById(UUID id) {
 //        Customer customer = customerRepository.getWithReservationsByIdAndDeletedTrue(id)

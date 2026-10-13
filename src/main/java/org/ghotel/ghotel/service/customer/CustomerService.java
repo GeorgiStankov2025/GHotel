@@ -27,6 +27,8 @@ public interface CustomerService {
 
     CustomerResponseDTO getDeletedCustomerById(UUID id);
 
+    List<CustomerResponseDTO> getDeletedCustomers();
+
     CustomerResponseDTO editCustomer(UUID id, CustomerRequestDTO request);
 
     DeletedDTO deleteCustomer(UUID id);

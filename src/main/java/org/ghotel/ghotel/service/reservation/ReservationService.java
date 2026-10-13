@@ -34,6 +34,8 @@ public interface ReservationService {
 
     ReservationResponseDTO restoreReservation(UUID id);
 
+    List<ReservationResponseDTO> getDeletedReservations();
+
     Reservation findWithCustomerById(UUID id);
 
     Reservation findWithRoomsById(UUID id);
