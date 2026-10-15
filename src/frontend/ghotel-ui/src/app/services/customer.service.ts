@@ -34,4 +34,8 @@ export class CustomerService {
   public deleteCustomer(id: string): Observable<DeletedDTO> {
     return this.httpClient.delete<DeletedDTO>(`${this.url}/${id}`)
   }
+
+  public restoreCustomer(id: string | undefined): Observable<CustomerResponseDTO> {
+    return this.httpClient.patch<CustomerResponseDTO>(`${this.url}/${id}/restore`, {})
+  }
 }

@@ -15,7 +15,7 @@ import {RoomFormComponent} from './components/room/room-form.component/room-form
 import {SuccessComponent} from './components/common/success.component/success.component';
 import {UnauthorizedComponent} from './components/common/unauthorized.component/unauthorized.component';
 import {UserListComponent} from './components/admin/user-list.component/user-list.component';
-import {DeletedItemsComponent} from './components/admin/deleted-items.component/deleted-items.component';
+import {DeletedItemsComponent} from './components/deleted/deleted-items.component/deleted-items.component';
 
 export const routes: Routes = [
   {path: '', component: HomeComponent},

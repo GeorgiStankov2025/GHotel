@@ -31,4 +31,20 @@ export class DeletedItemsFacade {
   public getDeletedReservations(): Observable<ReservationResponseDTO[]> {
     return this.reservationService.getDeletedReservations();
   }
+
+  public restoreDeletedUser(id: string): Observable<UserResponseDTO> {
+    return this.userService.restoreUser(id);
+  }
+
+  public restoreDeletedRoom(id: string): Observable<RoomResponseDTO> {
+    return this.roomService.restoreRoom(id);
+  }
+
+  public restoreDeletedReservation(id: string): Observable<ReservationResponseDTO> {
+    return this.reservationService.restoreReservation(id);
+  }
+
+  public restoreDeletedCustomer(id: string): Observable<CustomerResponseDTO> {
+    return this.customerService.restoreCustomer(id);
+  }
 }

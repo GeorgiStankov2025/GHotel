@@ -30,4 +30,8 @@ export class UserService {
   public deleteUser(id: string | undefined): Observable<DeletedDTO> {
     return this.httpClient.delete<DeletedDTO>(`${this.url}/${id}`)
   }
+
+  public restoreUser(id: string | undefined): Observable<UserResponseDTO> {
+    return this.httpClient.patch<UserResponseDTO>(`${this.url}/${id}/restore`, {})
+  }
 }

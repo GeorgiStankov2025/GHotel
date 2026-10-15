@@ -10,9 +10,15 @@
           <p>Full name: {{ user().firstName + ' ' + user().lastName }}</p>
           <p class="mb-0">[Phone number placeholder]</p>
           <p class="mb-0">[Email address placeholder]</p><br>
+          @if (!isDeleted()) {
           <button class="btn bg-danger btn-danger" type="submit" (click)="onDelete()">
             Delete User
           </button>
+          } @else {
+            <button class="btn bg-success btn-success" type="submit" (click)="onRestore()">
+              Restore User
+            </button>
+          }
         </div>
       </div>
     </div>

@@ -1,0 +1,46 @@
+<div class="deleted-items-list">
+  <div class="p-6">
+    <select #selectRef [value]="selectedType()" (change)="onTypeChange(selectRef.value)"
+            class="w-full max-w-xs px-4 py-2.5 text-base text-slate-800 bg-white border border-slate-300 rounded-lg shadow-sm cursor-pointer outline-none transition-all duration-200 hover:border-slate-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20">
+      <option value="Rooms">Rooms</option>
+      <option value="Reservations">Reservations</option>
+      <option value="Customers">Customers</option>
+    @if (this.jwtService.isCurrentlyAuthorizedRole("ROLE_ADMIN")) {
+      <option value="Users">Users</option>
+    }
+  </select>
+  </div>
+  <div>
+    <h1 class="heading">{{ selectedType() }}</h1>
+    @switch (selectedType()) {
+      @case ('Rooms') {
+        @for (deletedRoom of deletedRooms(); track deletedRoom.id) {
+          <app-room-card [room]="deletedRoom"></app-room-card>
+        } @empty {
+          <p class="empty-msg">No deleted Rooms found.</p>
+        }
+      }
+      @case ('Reservations') {
+        @for (deletedReservation of deletedReservations(); track deletedReservation.id) {
+          <app-reservation-card [reservation]="deletedReservation"></app-reservation-card>
+        } @empty {
+          <p class="empty-msg">No deleted Reservations found.</p>
+        }
+      }
+      @case ('Customers') {
+        @for (deletedCustomer of deletedCustomers(); track deletedCustomer.id) {
+          <app-customer-card [customer]="deletedCustomer"></app-customer-card>
+        } @empty {
+          <p class="empty-msg">No deleted Customers found.</p>
+        }
+      }
+      @case ('Users') {
+        @for (deletedUser of deletedUsers(); track deletedUser.id) {
+          <app-user-card [user]="deletedUser" [isDeleted]="true" (restore)="restoreDeletedUser($event)"></app-user-card>
+        } @empty {
+          <p class="empty-msg">No deleted Users found.</p>
+        }
+      }
+    }
+  </div>
+</div>

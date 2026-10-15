@@ -46,4 +46,8 @@ export class ReservationService {
   public deleteReservation(id: string): Observable<DeletedDTO> {
     return this.httpClient.delete<DeletedDTO>(`${this.url}/${id}`)
   }
+
+  public restoreReservation(id: string | undefined): Observable<ReservationResponseDTO> {
+    return this.httpClient.patch<ReservationResponseDTO>(`${this.url}/${id}/restore`, {})
+  }
 }

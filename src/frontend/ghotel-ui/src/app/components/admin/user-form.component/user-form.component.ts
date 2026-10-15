@@ -38,7 +38,11 @@ export class UserFormComponent {
     const request: UserRequestDTO = this.userForm.value;
     this.userService.addUser(request).subscribe({
       next: (): void => {
-        this.router.navigate(['/']);
+        this.router.navigate(['/success'], {
+          queryParams: {
+            message: "User added successfully!"
+          }
+        });
       },
       error: (err: HttpErrorResponse): void => {
         if (err.status === 400) {

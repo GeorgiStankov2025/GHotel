@@ -9,13 +9,22 @@ import {UserResponseDTO} from '../../../model/userResponseDTO';
 })
 export class UserCardComponent {
   public user: InputSignal<UserResponseDTO> = input.required<UserResponseDTO>()
+  public isDeleted: InputSignal<boolean> = input<boolean>(false)
 
+  public restore: OutputEmitterRef<string> = output<string>()
   public delete: OutputEmitterRef<string> = output<string>();
 
   onDelete(): void {
     const id: string | undefined = this.user().id;
     if (id) {
       this.delete.emit(id);
+    }
+  }
+
+  onRestore(): void {
+    const id: string | undefined = this.user().id;
+    if (id) {
+      this.restore.emit(id);
     }
   }
 }

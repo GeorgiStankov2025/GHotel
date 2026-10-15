@@ -41,8 +41,11 @@ export class RoomService {
     return this.httpClient.put<RoomResponseDTO>(`${this.url}/${id}`, request)
   }
 
-
   public deleteRoom(id: string): Observable<DeletedDTO> {
     return this.httpClient.delete<DeletedDTO>(`${this.url}/${id}`)
+  }
+
+  public restoreRoom(id: string | undefined): Observable<RoomResponseDTO> {
+    return this.httpClient.patch<RoomResponseDTO>(`${this.url}/${id}/restore`, {})
   }
 }
