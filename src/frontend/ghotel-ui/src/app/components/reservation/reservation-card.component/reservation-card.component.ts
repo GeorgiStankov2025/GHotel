@@ -1,4 +1,4 @@
-import {Component, inject, input, InputSignal} from '@angular/core';
+import {Component, inject, input, InputSignal, output, OutputEmitterRef} from '@angular/core';
 import {ReservationResponseDTO} from '../../../model/reservationResponseDTO';
 import {Router} from '@angular/router';
 import {DatePipe} from '@angular/common';
@@ -17,7 +17,25 @@ export class ReservationCardComponent {
 
   private readonly router: Router = inject(Router)
 
+  public isDeleted: InputSignal<boolean> = input<boolean>(false);
+  public restore: OutputEmitterRef<string> = output<string>();
+  public delete: OutputEmitterRef<string> = output<string>();
+
   onSubmit(): void {
     this.router.navigate(["/reservations/"+this.reservation()?.id])
+  }
+
+  onDelete(): void {
+    const id: string | undefined = this.reservation()?.id
+    if (id) {
+      this.delete.emit(id)
+    }
+  }
+
+  onRestore(): void {
+    const id: string | undefined = this.reservation()?.id
+    if (id) {
+      this.restore.emit(id)
+    }
   }
 }

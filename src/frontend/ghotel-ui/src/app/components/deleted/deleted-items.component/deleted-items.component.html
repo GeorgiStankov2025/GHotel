@@ -22,7 +22,8 @@
       }
       @case ('Reservations') {
         @for (deletedReservation of deletedReservations(); track deletedReservation.id) {
-          <app-reservation-card [reservation]="deletedReservation"></app-reservation-card>
+          <app-reservation-card [reservation]="deletedReservation" [isDeleted]="true" [detailsIsAvailable]="false"
+                                (restore)="restoreDeletedReservation($event)"></app-reservation-card>
         } @empty {
           <p class="empty-msg">No deleted Reservations found.</p>
         }

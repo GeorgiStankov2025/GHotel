@@ -4,6 +4,7 @@ import {ReservationService} from '../../../services/reservation.service';
 import {ReservationCardComponent} from '../reservation-card.component/reservation-card.component';
 import {RoomCardComponent} from '../../room/room-card.component/room-card.component';
 import {CustomerCardComponent} from '../../customer/customer-card.component/customer-card.component';
+import {Router} from '@angular/router';
 
 @Component({
   imports: [
@@ -21,6 +22,7 @@ export class ReservationDetailsComponent implements OnInit {
   public id: InputSignal<string> = input.required<string>()
 
   private readonly reservationService: ReservationService = inject(ReservationService)
+  private readonly router: Router = inject(Router);
 
   ngOnInit(): void {
     this.reservationService.getReservationWithDetails(this.id()).subscribe({
@@ -31,5 +33,16 @@ export class ReservationDetailsComponent implements OnInit {
         console.log(err.message)
       }
     })
+  }
+
+  protected onDeleteReservation(id: string): void {
+    this.reservationService.deleteReservation(id).subscribe({
+      next: (): void => {
+        this.router.navigate(['/reservations']);
+      },
+      error: (err: Error): void => {
+        console.log(err.message);
+      }
+    });
   }
 }

@@ -1,5 +1,5 @@
 <div class="reservation-list">
   @for (reservation of reservations(); track reservation.id) {
-    <app-reservation-card [reservation]="reservation"></app-reservation-card>
+    <app-reservation-card [reservation]="reservation" (delete)="onDeleteReservation($event)"></app-reservation-card>
   }
 </div>

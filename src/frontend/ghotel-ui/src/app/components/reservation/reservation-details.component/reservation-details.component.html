@@ -2,7 +2,8 @@
   <h3 class="header">Reservation information</h3>
   @if (reservationDetails()?.reservation) {
     <app-reservation-card [reservation]="reservationDetails()?.reservation"
-                          [detailsIsAvailable]="false"></app-reservation-card>
+                          [detailsIsAvailable]="false"
+                          (delete)="onDeleteReservation($event)"></app-reservation-card>
   }
   <h3 class="header">Rooms</h3>
   <div class="border border-gray-200 rounded-xl divide-y divide-gray-200 bg-white max-w-xl mx-auto">
@@ -12,6 +13,6 @@
   </div>
   <h3 class="header">Customer details</h3>
   <div class="border border-gray-200 rounded-xl divide-y divide-gray-200 bg-white max-w-xl mx-auto">
-    <app-customer-card [customer]="reservationDetails()?.customer" ]></app-customer-card>
+    <app-customer-card [customer]="reservationDetails()?.customer"></app-customer-card>
   </div>
 </div>

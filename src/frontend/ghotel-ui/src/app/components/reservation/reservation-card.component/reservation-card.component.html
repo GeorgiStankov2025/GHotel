@@ -12,7 +12,16 @@
           <p class="mb-0">Reservation details: {{ reservation()?.details }}</p>
           <p class="mb-0"></p>
           @if (detailsIsAvailable()) {
-            <button class="btn btn-secondary" (click)="onSubmit()">Check details</button>
+            <button class="btn btn-secondary button" (click)="onSubmit()">Check details</button>
+          }
+          @if (!isDeleted()) {
+            <button class="btn bg-danger btn-danger button" type="submit" (click)="onDelete()">
+              Delete Reservation
+            </button>
+          } @else {
+            <button class="btn bg-success btn-success button" type="submit" (click)="onRestore()">
+              Restore Reservation
+            </button>
           }
         </div>
       </div>
